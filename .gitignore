@@ -1,7 +1,18 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
+﻿# Visual Studio specifieke bestanden
+.vs/
+.vscode/
+.idea/
 
-/.vs/DontWasteFood
-/.vs/ProjectEvaluation
-/.vs
+# Build resultaten
+/bin/
+obj/
+
+# NuGet bestanden
+/packages/
+
+# Logbestanden
+*.log
+
+# Build-output voor .NET Core / .NET projecten
+/project.lock.json
+/project.fragment.lock.json
