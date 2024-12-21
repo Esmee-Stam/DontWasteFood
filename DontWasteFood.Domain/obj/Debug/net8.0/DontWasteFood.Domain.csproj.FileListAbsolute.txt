@@ -1,0 +1,13 @@
+C:\Users\esmee\source\repos\SSWF_IO_EsmeeStam\DontWasteFood.Domain\bin\Debug\net8.0\DontWasteFood.Domain.deps.json
+C:\Users\esmee\source\repos\SSWF_IO_EsmeeStam\DontWasteFood.Domain\bin\Debug\net8.0\DontWasteFood.Domain.dll
+C:\Users\esmee\source\repos\SSWF_IO_EsmeeStam\DontWasteFood.Domain\bin\Debug\net8.0\DontWasteFood.Domain.pdb
+C:\Users\esmee\source\repos\SSWF_IO_EsmeeStam\DontWasteFood.Domain\obj\Debug\net8.0\DontWasteFood.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\esmee\source\repos\SSWF_IO_EsmeeStam\DontWasteFood.Domain\obj\Debug\net8.0\DontWasteFood.Domain.AssemblyInfoInputs.cache
+C:\Users\esmee\source\repos\SSWF_IO_EsmeeStam\DontWasteFood.Domain\obj\Debug\net8.0\DontWasteFood.Domain.AssemblyInfo.cs
+C:\Users\esmee\source\repos\SSWF_IO_EsmeeStam\DontWasteFood.Domain\obj\Debug\net8.0\DontWasteFood.Domain.csproj.CoreCompileInputs.cache
+C:\Users\esmee\source\repos\SSWF_IO_EsmeeStam\DontWasteFood.Domain\obj\Debug\net8.0\DontWasteFood.Domain.dll
+C:\Users\esmee\source\repos\SSWF_IO_EsmeeStam\DontWasteFood.Domain\obj\Debug\net8.0\refint\DontWasteFood.Domain.dll
+C:\Users\esmee\source\repos\SSWF_IO_EsmeeStam\DontWasteFood.Domain\obj\Debug\net8.0\DontWasteFood.Domain.pdb
+C:\Users\esmee\source\repos\SSWF_IO_EsmeeStam\DontWasteFood.Domain\obj\Debug\net8.0\ref\DontWasteFood.Domain.dll
+C:\Users\esmee\source\repos\SSWF_IO_EsmeeStam\DontWasteFood.Domain\bin\Debug\net8.0\DontWasteFood.Domain.runtimeconfig.json
+C:\Users\esmee\source\repos\SSWF_IO_EsmeeStam\DontWasteFood.Domain\obj\Debug\net8.0\DontWasteFood.Domain.genruntimeconfig.cache
