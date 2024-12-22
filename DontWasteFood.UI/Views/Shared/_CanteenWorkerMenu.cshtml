@@ -1,0 +1,15 @@
+﻿<nav class="menu-container">
+    <div class="menu-items">
+        <a type="button" class="menu-item" asp-controller="CanteenWorker" asp-action="Overview">Home</a>
+        <a type="button" class="menu-item" asp-controller="CanteenPackage" asp-action="MyCanteen">Mijn kantine</a>
+        <a type="button" class="menu-item" asp-controller="CanteenPackage" asp-action="OtherCanteen">Andere kantine</a>
+    </div>
+
+    <div class="nav-buttons-container">
+        <div class="nav-buttons">
+            <form asp-controller="Account" asp-action="Logout" method="post">
+                <button type="submit" class="nav-btn btn">Uitloggen</button>
+            </form>
+        </div>
+    </div>
+</nav>

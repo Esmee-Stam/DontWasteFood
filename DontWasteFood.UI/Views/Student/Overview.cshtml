@@ -1,0 +1,41 @@
+﻿@model AccountViewModel
+@{
+    ViewData["Title"] = "Overzicht";
+    Layout = "_Layout";
+}
+
+<partial name="_StudentMenu" />
+
+
+<div class="container mt-5 pt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card mb-2 mt-2 shadow w-100">
+                <div class="card-header">
+                    <h2>Welkom, @Model.Name</h2>
+                </div>
+                <div>
+                    <div class="card-body mt-3 ms-2 mb-0">
+                        <h2 class="mb-1">Aangeboden maaltijdpakketten</h2>
+                        <div class="d-flex justify-content-between align-items-end">
+                            <div>
+                                <p class="card-text mt-2 mb-1">Zeg NEE tegen voedselverspilling en JA tegen lekker! Samen maken we het verschil!</p>
+                                <p class="card-text mb-0" >Reserveer hier een heerlijk maaltijdpakket!</p>
+                            </div>
+                            <a class="btn me-3 mb-0" asp-controller="StudentPackage" asp-action="Packages">Bekijken</a>
+                        </div>
+
+                        <h2 class="mb-1">Mijn reserveringen</h2>
+                        <div class="d-flex justify-content-between align-items-end">
+                            <div>
+                                <p class="card-text mt-2 mb-1">De reserveringen wachten op je, Geniet ervan!</p>
+                                <p class="card-text mb-0">Bekijk hier jouw gereserveerde maaltijdpakketten!</p>
+                            </div>
+                            <a class="btn me-3" asp-controller="StudentPackage" asp-action="Reservation">Bekijken</a>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

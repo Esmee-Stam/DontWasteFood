@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DontWasteFood.DomainServices\DontWasteFood.DomainServices.csproj" />
     <ProjectReference Include="..\DontWasteFood.Domain\DontWasteFood.Domain.csproj" />
   </ItemGroup>
 
