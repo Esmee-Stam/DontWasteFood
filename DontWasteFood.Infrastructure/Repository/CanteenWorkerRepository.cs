@@ -17,7 +17,8 @@ namespace DontWasteFood.Infrastructure.Repository
 
         CanteenWorker? ICanteenWorkerRepository.getUserById(Guid id)
         {
-            return _dbContext.CanteenWorkers.Find(id);
+            return _dbContext.CanteenWorkers.FirstOrDefault(cw => cw.IdentityUserId == id.ToString());
+
         }
     }
 }

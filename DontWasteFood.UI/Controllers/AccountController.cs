@@ -17,15 +17,21 @@ namespace DontWasteFood.UI.Controllers
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IStudentRepository _studentRepository;
         private readonly ICanteenWorkerRepository _canteenWorkerRepository;
+        private readonly ICanteenRepository _canteenRepository;
 
-        public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, RoleManager<IdentityRole> roleManager,
-            IStudentRepository studentRepository, ICanteenWorkerRepository canteenWorkerRepository)
+        public AccountController(UserManager<IdentityUser> userManager, 
+            SignInManager<IdentityUser> signInManager,
+            RoleManager<IdentityRole> roleManager,
+            IStudentRepository studentRepository,
+            ICanteenWorkerRepository canteenWorkerRepository,
+            ICanteenRepository canteenRepository)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
             _studentRepository = studentRepository;
             _canteenWorkerRepository = canteenWorkerRepository;
+            _canteenRepository = canteenRepository;
         }
 
         [HttpGet]
@@ -132,24 +138,29 @@ namespace DontWasteFood.UI.Controllers
                 {
                     await _userManager.AddToRoleAsync(user, role);
 
-                    //var canteen = new Canteen
-                    //{
-                    //    CanteenId = Guid.NewGuid(),
-                    //    Location = model.CanteenLocation,
-                    //    City = model.City
-                    //};
+                    var canteen = _canteenRepository.findByLocation(model.City, model.CanteenLocation);
+                    if(canteen == null)
+                    {
+                        canteen = new Canteen
+                        {
+                            CanteenId = Guid.NewGuid(),
+                            CanteenLocation = model.CanteenLocation,
+                            City = model.City
+                        };
+                        _canteenRepository.Add(canteen);
+                    }
 
-                    //var canteenWorker = new CanteenWorker
-                    //{
-                    //    CanteenWorkerId = Guid.NewGuid(),
-                    //    Name = model.Name,
-                    //    EmployeeNumber = model.EmployeeNumber,
-                    //    IdentityUserId = user.Id,
-                    //    CanteenId = canteen.CanteenId,
-                    //    Canteen = canteen
-                    //};
+                    var canteenWorker = new CanteenWorker
+                    {
+                        CanteenWorkerId = Guid.NewGuid(),
+                        Name = model.Name,
+                        EmployeeNumber = model.EmployeeNumber,
+                        IdentityUserId = user.Id,
+                        CanteenId = canteen.CanteenId,
+                        Canteen = canteen
+                    };
 
-                    //_canteenWorkerRepository.Add(canteenWorker);
+                    _canteenWorkerRepository.Add(canteenWorker);
                     return RedirectToAction("Login", "Account");
                 }
 

@@ -6,7 +6,7 @@ namespace DontWasteFood.UI.Models
     public class CanteenWorkerViewModel
     {
         [Required(ErrorMessage = "Naam is verplicht.")]
-        public string? Name { get; set; }
+        public required string Name { get; set; }
 
         [Required(ErrorMessage = "Personeelsnummer is verplicht.")]
         [MinLength(7, ErrorMessage = "Personeelsnummer moet minimaal {0} cijfers lang zijn")]

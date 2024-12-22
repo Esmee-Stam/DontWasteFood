@@ -25,6 +25,7 @@ builder.Services.AddDbContext<AuthDbContext>(options => options.UseSqlServer(con
 
 builder.Services.AddScoped<ICanteenWorkerRepository, CanteenWorkerRepository>();
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+builder.Services.AddScoped<ICanteenRepository, CanteenRepository>();
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 {

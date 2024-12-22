@@ -1,6 +1,5 @@
 ﻿using DontWasteFood.Domain.Enums;
 using DontWasteFood.DomainServices;
-using DontWasteFood.DomainServices.IRepository;
 using DontWasteFood.UI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
