@@ -12,6 +12,7 @@ namespace DontWasteFood.UI.Controllers
     {
         private readonly IStudentRepository _studentRepository = studentRepository;
         private readonly UserManager<IdentityUser> _userManager = userManager;
+
         public async Task<IActionResult> Overview()
         {
             var user = await _userManager.GetUserAsync(User);

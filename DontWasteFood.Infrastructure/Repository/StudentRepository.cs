@@ -16,7 +16,7 @@ namespace DontWasteFood.Infrastructure.Repository
 
         public Student? getUserById(Guid id)
         {
-            return _dbContext.Students.Find(id);
+            return _dbContext.Students.FirstOrDefault(s => s.IdentityUserId == id.ToString());
         }
     }
 }

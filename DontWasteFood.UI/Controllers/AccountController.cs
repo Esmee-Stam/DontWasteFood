@@ -61,7 +61,6 @@ namespace DontWasteFood.UI.Controllers
                 return View(model);
             }
 
-
             if (ModelState.IsValid)
             {
                 var role = UserRole.Student.ToString();
@@ -80,31 +79,18 @@ namespace DontWasteFood.UI.Controllers
                 if (result.Succeeded)
                 {
                     await _userManager.AddToRoleAsync(user, role);
-                    //var student = new Student
-                    //{
-                    //    StudentId = Guid.NewGuid(),
-                    //    EmailAddress = model.EmailAddress ?? string.Empty,
-                    //    Name = model.Name ?? string.Empty,
-                    //    PhoneNumber = model.PhoneNumber,
-                    //    IdentityUserId = user.Id,
-                    //    StudentNumber = model.StudentNumber ?? string.Empty,
-                    //    City = model.StudyCity ?? string.Empty,
-                    //    DateOfBirth = model.DateOfBirth ?? DateTime.MinValue
-                    //};
+                    var student = new Student
+                    {
+                        StudentId = Guid.NewGuid(),
+                        Name = model.Name,
+                        StudentNumber = model.StudentNumber,
+                        EmailAddress = model.EmailAddress,
+                        City = model.StudyCity,
+                        IdentityUserId = user.Id
+                    };
 
-                    //var student = new Student
-                    //{
-                    //    StudentId = Guid.NewGuid(),
-                    //    EmailAddress = model.EmailAddress,
-                    //    Name = model.Name,
-                    //    PhoneNumber = model.PhoneNumber,
-                    //    IdentityUserId = user.Id,
-                    //    StudentNumber = model.StudentNumber,
-                    //    StudyCity = model.StudyCity,
-                    //    DateOfBirth = (DateTime)model.DateOfBirth
-                    //};
-
-                    //_studentRepository.Add(student);
+                    student.UpdateDateOfBirth(model.DateOfBirth);
+                    _studentRepository.Add(student);
                     return RedirectToAction("Login", "Account");
                 }
 
