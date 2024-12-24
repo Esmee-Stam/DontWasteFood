@@ -1,4 +1,5 @@
-﻿@model List<PackageViewModel>
+﻿@using DontWasteFood.Domain.Enums
+@model List<PackageViewModel>
 @{
     ViewData["Title"] = "Aanbevolen maaltijdpakketten";
 }
@@ -19,34 +20,44 @@
                 <div class="col-md-3">
                     <div>
                         <form>
-                            <h5>Locatie</h5>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="location" value="Breda" id="locationBreda" />
-                                <label class="form-check-label" for="locationBreda">Breda</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="location" value="Den Bosch" id="locationDenBosch" />
-                                <label class="form-check-label" for="locationDenBosch">Den Bosch</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="location" value="Tilburg" id="locationTilburg" />
-                                <label class="form-check-label" for="locationTilburg">Tilburg</label>
-                            </div>
+                            <h5>Stad:</h5>
+                            @{
+                                var cityItems = Html.GetEnumSelectList<City>()
+                                .Select(item => new SelectListItem
+                                {
+                                    Value = item.Value,
+                                    Text = item.Text.Replace("_", " ") 
+                                })
+                                .ToList();
+                            }
+                            @foreach(var item in cityItems)
+                            {
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="location" value="@item.Value" id="location@item.Value" />
+                                    <label class="form-check-label" for="location@item.Value">@item.Text</label>
+                                </div>
+                            }
+                           
 
                             <h5 class="mt-3">Maaltijdtype</h5>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="mealType" value="Brood" id="mealTypeBrood" />
-                                <label class="form-check-label" for="mealTypeBrood">Brood</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="mealType" value="Warm" id="mealTypeWarm" />
-                                <label class="form-check-label" for="mealTypeWarm">Warme Maaltijd</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="mealType" value="Drank" id="mealTypeDrank" />
-                                <label class="form-check-label" for="mealTypeDrank">Drank</label>
-                            </div>
+                            @{
+                                var mealItems = Html.GetEnumSelectList<MealType>()
+                                .Select(item => new SelectListItem
+                                {
+                                    Value = item.Value,
+                                    Text = item.Text.Replace("_", " ")
+                                })
+                                .ToList();
+                              }
 
+                            @foreach (var item in mealItems)
+                            {
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="mealType" value="@item.Value" id="mealType@item.Value" />
+                                    <label class="form-check-label" for="mealType@item.Value">@item.Text</label>
+                                </div>
+                            }
+                            
                             <button type="submit" class="btn mt-3">Filteren</button>
                         </form>
                     </div>
@@ -85,7 +96,7 @@
                                 </div>
                                 <div class="row detail-row mb-1">
                                     <div class="col-6 detail-label"><strong>Stad:</strong></div>
-                                    <div class="col-6 detail-value"><p>@package.City</p></div>
+                                    <div class="col-6 detail-value"><p>@package.City.ToString().Replace("_", " ")</p></div>
                                 </div>
                                 <div class="row detail-row mb-1">
                                     <div class="col-6 detail-label"><strong>18+ indicatie:</strong></div>
@@ -105,14 +116,12 @@
 
                             <div class="box mx-auto">
                                 <div class="row detail-row justify-content-end align-content-end mb-5 me-1">
-                                    <a type="button" class="btn" asp-controller="Package" asp-action="Details" asp-route-id="">Details</a>
+                                    <a type="button" class="btn" asp-controller="Package" asp-action="Detail" asp-route-id="@package.PackageId">Details</a>
 
                                 </div>
                             </div>
 
                         }
-
-
                     }
                 </div>
             </div>

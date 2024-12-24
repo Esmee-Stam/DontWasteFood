@@ -22,10 +22,17 @@ namespace DontWasteFood.Infrastructure.Repository
             return _dbContext.Packages
                 .Include(p => p.ReservedBy)
                 .Include(p => p.Canteen)
+                .Include(p => p.Products)
                 .Where(p => p.ReservedBy == null)
                 .ToList();
         }
 
-        
+        public Package? GetPackageById(Guid id)
+        {
+           return _dbContext.Packages
+                .Include(p => p.ReservedBy)
+                .Include(p => p.Canteen)
+                .FirstOrDefault(p => p.PackageId == id);
+        }
     }
 }

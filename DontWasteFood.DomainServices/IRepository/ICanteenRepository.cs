@@ -1,4 +1,5 @@
-﻿using DontWasteFood.Domain.Models;
+﻿using DontWasteFood.Domain.Enums;
+using DontWasteFood.Domain.Models;
 
 namespace DontWasteFood.DomainServices.IRepository
 {
@@ -6,6 +7,6 @@ namespace DontWasteFood.DomainServices.IRepository
     {
         void Add(Canteen canteen);
 
-        Canteen? findByLocation(string city, string location);
+        Canteen? FindByLocation(City city, string location);
     }
 }

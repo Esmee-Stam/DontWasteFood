@@ -29,6 +29,7 @@ builder.Services.AddScoped<ICanteenWorkerRepository, CanteenWorkerRepository>();
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 builder.Services.AddScoped<ICanteenRepository, CanteenRepository>();
 builder.Services.AddScoped<IPackageRepository, PackageRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IPackageService, PackageService>();
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>

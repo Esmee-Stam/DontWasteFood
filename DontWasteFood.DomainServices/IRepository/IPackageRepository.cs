@@ -8,6 +8,8 @@ namespace DontWasteFood.DomainServices.IRepository
 
         ICollection<Package> GetAllAvailablePackages();
 
+        Package? GetPackageById(Guid id);
+
 
     }
 }

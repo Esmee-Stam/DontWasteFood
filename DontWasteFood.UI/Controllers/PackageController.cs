@@ -45,5 +45,24 @@ namespace DontWasteFood.UI.Controllers
             var model = PackageHelper.ConvertToPackageViewModel(packages.ToList());
             return View(model);
         }
+
+        public IActionResult Detail(Guid id)
+        {
+            var package = _packageService.GetPackageWithProductsById(id);
+            if (package == null)
+            {
+                Console.WriteLine("Package not found");
+                return NotFound();
+            }
+
+            if (!package.Products.Any())
+            {
+                Console.WriteLine("No products found in the package");
+                return NotFound();
+            }
+
+            var model = PackageHelper.ConvertToPackageWithProdcutsViewModel(package, package.Products.ToList());
+            return View(model);
+        }
     }
 }

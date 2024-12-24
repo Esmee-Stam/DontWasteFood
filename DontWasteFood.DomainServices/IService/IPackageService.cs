@@ -6,5 +6,7 @@ namespace DontWasteFood.DomainServices.IService
     {
         ICollection<Package>? GetAllReservedPackagesByUserId(string email);
 
+        Package? GetPackageWithProductsById(Guid id);
+
     }
 }

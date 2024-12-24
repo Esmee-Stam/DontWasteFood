@@ -20,7 +20,7 @@
                 @if(!Model.Any()) {
                     <div class="alert alert-info" role="alert">
                         Je heeft nog geen reserveringen gemaakt.
-                        <a class="alert-link text-white" asp-controller="StudentPackage" asp-action="Packages">Klik hier om pakketten te bekijken en een reservering te maken.</a>
+                        <a class="alert-link text-white" asp-controller="Package" asp-action="Recommend">Klik hier om pakketten te bekijken en een reservering te maken.</a>
                     </div>
                 } else {
                     @foreach (var package in Model) {
@@ -38,7 +38,7 @@
                             </div>
                             <div class="row detail-row mb-1">
                                 <div class="col-6 detail-label"><strong>Maaltijdtype:</strong></div>
-                                <div class="col-6 detail-value"><p>@package.MealType</p></div>
+                                <div class="col-6 detail-value"><p>@package.MealType.ToString().Replace("_", " ")</p></div>
                             </div>
                             <div class="row detail-row mb-1">
                                 <div class="col-6 detail-label"><strong>Locatie:</strong></div>
@@ -46,7 +46,7 @@
                             </div>
                             <div class="row detail-row mb-1">
                                 <div class="col-6 detail-label"><strong>Stad:</strong></div>
-                                <div class="col-6 detail-value"><p>@package.City</p></div>
+                                <div class="col-6 detail-value"><p>@package.City.ToString().Replace("_", " ")</p></div>
                             </div>
                             <div class="row detail-row mb-1">
                                 <div class="col-6 detail-label"><strong>18+ indicatie:</strong></div>
@@ -65,7 +65,7 @@
 
                         <div class="box mx-auto">
                             <div class="row detail-row justify-content-end align-content-end mb-5 me-1">
-                                <a type="button" class="btn" asp-controller="Package" asp-action="Details" asp-route-id="">Details</a>
+                                <a type="button" class="btn" asp-controller="Package" asp-action="Detail" asp-route-id="@package.PackageId">Details</a>
 
                             </div>
                         </div>

@@ -4,6 +4,7 @@ using DontWasteFood.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DontWasteFood.Infrastructure.Migrations.DontWasteFoodDb
 {
     [DbContext(typeof(DontWasteFoodDbContext))]
-    partial class DontWasteFoodDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241224161035_UpdateStringToEnum")]
+    partial class UpdateStringToEnum
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,16 +50,16 @@ namespace DontWasteFood.Infrastructure.Migrations.DontWasteFoodDb
                     b.HasData(
                         new
                         {
-                            CanteenId = new Guid("012fde28-9566-482c-ae9b-d5fc7d4ffe32"),
+                            CanteenId = new Guid("80b47e9e-7398-411b-bb44-ae0052aeec36"),
                             CanteenLocation = "LA",
                             City = "Breda",
                             HotMealsOffer = true
                         },
                         new
                         {
-                            CanteenId = new Guid("c155bce0-27ad-4e9d-b96c-79269b49dbd1"),
+                            CanteenId = new Guid("2f3b01e4-b715-4d5a-90fc-e9217f23b2d0"),
                             CanteenLocation = "DB",
-                            City = "Den Bosch",
+                            City = "Den_Bosch",
                             HotMealsOffer = true
                         });
                 });
@@ -95,15 +98,15 @@ namespace DontWasteFood.Infrastructure.Migrations.DontWasteFoodDb
                         new
                         {
                             CanteenWorkerId = new Guid("4fdd4c4d-9cf0-4bfc-b9e4-df0329b7d77f"),
-                            CanteenId = new Guid("012fde28-9566-482c-ae9b-d5fc7d4ffe32"),
+                            CanteenId = new Guid("80b47e9e-7398-411b-bb44-ae0052aeec36"),
                             EmployeeNumber = "1234567",
                             IdentityUserId = "4fdd4c4d-9cf0-4bfc-b9e4-df0329b7d77f",
                             Name = "John Doe"
                         },
                         new
                         {
-                            CanteenWorkerId = new Guid("64178fba-d17d-465a-990d-e5dfb9cf8b18"),
-                            CanteenId = new Guid("012fde28-9566-482c-ae9b-d5fc7d4ffe32"),
+                            CanteenWorkerId = new Guid("92e85afc-396b-42df-a73f-56eb66532cc8"),
+                            CanteenId = new Guid("80b47e9e-7398-411b-bb44-ae0052aeec36"),
                             EmployeeNumber = "7654321",
                             Name = "Jan Jansen"
                         });
@@ -151,8 +154,8 @@ namespace DontWasteFood.Infrastructure.Migrations.DontWasteFoodDb
                     b.HasData(
                         new
                         {
-                            PackageId = new Guid("3cb1b9ec-f3d0-4f53-bdcf-01d7804a7f80"),
-                            CanteenId = new Guid("012fde28-9566-482c-ae9b-d5fc7d4ffe32"),
+                            PackageId = new Guid("66c691cc-0286-4dc8-90cc-87817fa4839e"),
+                            CanteenId = new Guid("80b47e9e-7398-411b-bb44-ae0052aeec36"),
                             DateOfPickUp = new DateTime(2024, 12, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Is18Plus = false,
                             MealType = 3,
@@ -163,8 +166,8 @@ namespace DontWasteFood.Infrastructure.Migrations.DontWasteFoodDb
                         },
                         new
                         {
-                            PackageId = new Guid("30bbebe7-938e-4aa2-9b4a-cd3716bc593f"),
-                            CanteenId = new Guid("012fde28-9566-482c-ae9b-d5fc7d4ffe32"),
+                            PackageId = new Guid("9e9d4fff-7dab-4cc2-bcf8-66ddc059d117"),
+                            CanteenId = new Guid("80b47e9e-7398-411b-bb44-ae0052aeec36"),
                             DateOfPickUp = new DateTime(2024, 12, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Is18Plus = true,
                             MealType = 2,
@@ -174,8 +177,8 @@ namespace DontWasteFood.Infrastructure.Migrations.DontWasteFoodDb
                         },
                         new
                         {
-                            PackageId = new Guid("0ed5e837-e5c6-44e9-96fd-566076b95f9c"),
-                            CanteenId = new Guid("c155bce0-27ad-4e9d-b96c-79269b49dbd1"),
+                            PackageId = new Guid("9c177e27-13fb-4b58-96d7-6a3c8f4f1052"),
+                            CanteenId = new Guid("2f3b01e4-b715-4d5a-90fc-e9217f23b2d0"),
                             DateOfPickUp = new DateTime(2024, 12, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Is18Plus = false,
                             MealType = 0,
@@ -185,8 +188,8 @@ namespace DontWasteFood.Infrastructure.Migrations.DontWasteFoodDb
                         },
                         new
                         {
-                            PackageId = new Guid("51bc1c46-b45e-4e3a-889a-f13de34eed1c"),
-                            CanteenId = new Guid("c155bce0-27ad-4e9d-b96c-79269b49dbd1"),
+                            PackageId = new Guid("6dae2b06-8627-46b2-81dd-5b27ed416a43"),
+                            CanteenId = new Guid("2f3b01e4-b715-4d5a-90fc-e9217f23b2d0"),
                             DateOfPickUp = new DateTime(2024, 12, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Is18Plus = false,
                             MealType = 0,
@@ -219,70 +222,70 @@ namespace DontWasteFood.Infrastructure.Migrations.DontWasteFoodDb
                     b.HasData(
                         new
                         {
-                            ProductId = new Guid("55fd481a-0a22-4495-8904-465e89304439"),
+                            ProductId = new Guid("56885c02-efb8-4b19-85ea-a772b779e8bd"),
                             IsAlcoholic = true,
                             Name = "Amstel",
                             PhotoUrl = "/images/amstel.jpg"
                         },
                         new
                         {
-                            ProductId = new Guid("950577a0-2b52-4550-94bf-e2a9e375b415"),
+                            ProductId = new Guid("df80ea80-7b4a-4bad-a5e8-719344d0496c"),
                             IsAlcoholic = false,
                             Name = "Broodje gezond",
                             PhotoUrl = "/images/broodje-gezond.jpg"
                         },
                         new
                         {
-                            ProductId = new Guid("33afbc2b-027b-4359-bcc3-13aebd0f92c3"),
+                            ProductId = new Guid("09c3891f-207e-498e-b3d8-2358e814d301"),
                             IsAlcoholic = true,
                             Name = "Cola",
                             PhotoUrl = "/images/cola.jpg"
                         },
                         new
                         {
-                            ProductId = new Guid("fc4ff700-6129-4f47-ace7-62022c7697fa"),
+                            ProductId = new Guid("d2a1b26e-dcb6-414d-9f7f-f892c6c03748"),
                             IsAlcoholic = false,
                             Name = "Fanta",
                             PhotoUrl = "/images/fanta.png"
                         },
                         new
                         {
-                            ProductId = new Guid("9f27fb92-d4ff-4992-a958-4896fb9ba4f9"),
+                            ProductId = new Guid("9c611891-a285-4760-a969-280b1c0d33d8"),
                             IsAlcoholic = false,
                             Name = "Fristi",
                             PhotoUrl = "/images/fristi.png"
                         },
                         new
                         {
-                            ProductId = new Guid("fb4c0a43-3bba-4169-8457-17a0cd8f5cd0"),
+                            ProductId = new Guid("aa775ff2-e551-420e-840f-b432f1f37e91"),
                             IsAlcoholic = false,
                             Name = "Gevulde Koek",
                             PhotoUrl = "/images/gevulde-koek.jpg"
                         },
                         new
                         {
-                            ProductId = new Guid("412640a7-4fc7-4f42-be43-bd6ddbce6390"),
+                            ProductId = new Guid("529e6978-5c79-43a9-b721-d3f4e6bc5565"),
                             IsAlcoholic = false,
                             Name = "Panini Salami",
                             PhotoUrl = "/images/panini-salami.jpg"
                         },
                         new
                         {
-                            ProductId = new Guid("87ba0997-4a1c-48a6-b799-9e89bdd054fa"),
+                            ProductId = new Guid("3f8863ee-49c0-45e2-b5e9-c4c94ed52eb8"),
                             IsAlcoholic = false,
                             Name = "Saucijzenbroodje",
                             PhotoUrl = "/images/saucijzenbroodje.png"
                         },
                         new
                         {
-                            ProductId = new Guid("706044eb-31ab-4a78-960b-490bb7a1bb14"),
+                            ProductId = new Guid("a04f585b-c189-4917-9ddf-a622580b4291"),
                             IsAlcoholic = false,
                             Name = "Spa Blauw",
                             PhotoUrl = "/images/spa-blauw.jpg"
                         },
                         new
                         {
-                            ProductId = new Guid("f8c64b40-26b9-4f1b-88a7-50579f4ae4e9"),
+                            ProductId = new Guid("ad867539-1fd1-403e-91e7-7ae26539a8c9"),
                             IsAlcoholic = false,
                             Name = "Stroopwafel",
                             PhotoUrl = "/images/stroopwafel.jpg"
@@ -344,8 +347,8 @@ namespace DontWasteFood.Infrastructure.Migrations.DontWasteFoodDb
                         },
                         new
                         {
-                            StudentId = new Guid("79cc8327-56e7-474b-936f-11717168a98b"),
-                            City = "Den Bosch",
+                            StudentId = new Guid("a3c26886-31c7-4468-b6a2-4eca734eaa4d"),
+                            City = "Den_Bosch",
                             DateOfBirth = new DateTime(2008, 3, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EmailAddress = "j.doe@student.avans.nl",
                             Name = "Jane Doe",
@@ -380,33 +383,33 @@ namespace DontWasteFood.Infrastructure.Migrations.DontWasteFoodDb
                     b.HasData(
                         new
                         {
-                            PackagesPackageId = new Guid("3cb1b9ec-f3d0-4f53-bdcf-01d7804a7f80"),
-                            ProductsProductId = new Guid("fb4c0a43-3bba-4169-8457-17a0cd8f5cd0")
+                            PackagesPackageId = new Guid("66c691cc-0286-4dc8-90cc-87817fa4839e"),
+                            ProductsProductId = new Guid("aa775ff2-e551-420e-840f-b432f1f37e91")
                         },
                         new
                         {
-                            PackagesPackageId = new Guid("3cb1b9ec-f3d0-4f53-bdcf-01d7804a7f80"),
-                            ProductsProductId = new Guid("9f27fb92-d4ff-4992-a958-4896fb9ba4f9")
+                            PackagesPackageId = new Guid("66c691cc-0286-4dc8-90cc-87817fa4839e"),
+                            ProductsProductId = new Guid("9c611891-a285-4760-a969-280b1c0d33d8")
                         },
                         new
                         {
-                            PackagesPackageId = new Guid("30bbebe7-938e-4aa2-9b4a-cd3716bc593f"),
-                            ProductsProductId = new Guid("55fd481a-0a22-4495-8904-465e89304439")
+                            PackagesPackageId = new Guid("9e9d4fff-7dab-4cc2-bcf8-66ddc059d117"),
+                            ProductsProductId = new Guid("56885c02-efb8-4b19-85ea-a772b779e8bd")
                         },
                         new
                         {
-                            PackagesPackageId = new Guid("30bbebe7-938e-4aa2-9b4a-cd3716bc593f"),
-                            ProductsProductId = new Guid("f8c64b40-26b9-4f1b-88a7-50579f4ae4e9")
+                            PackagesPackageId = new Guid("9e9d4fff-7dab-4cc2-bcf8-66ddc059d117"),
+                            ProductsProductId = new Guid("ad867539-1fd1-403e-91e7-7ae26539a8c9")
                         },
                         new
                         {
-                            PackagesPackageId = new Guid("0ed5e837-e5c6-44e9-96fd-566076b95f9c"),
-                            ProductsProductId = new Guid("950577a0-2b52-4550-94bf-e2a9e375b415")
+                            PackagesPackageId = new Guid("9c177e27-13fb-4b58-96d7-6a3c8f4f1052"),
+                            ProductsProductId = new Guid("df80ea80-7b4a-4bad-a5e8-719344d0496c")
                         },
                         new
                         {
-                            PackagesPackageId = new Guid("51bc1c46-b45e-4e3a-889a-f13de34eed1c"),
-                            ProductsProductId = new Guid("412640a7-4fc7-4f42-be43-bd6ddbce6390")
+                            PackagesPackageId = new Guid("6dae2b06-8627-46b2-81dd-5b27ed416a43"),
+                            ProductsProductId = new Guid("529e6978-5c79-43a9-b721-d3f4e6bc5565")
                         });
                 });
 

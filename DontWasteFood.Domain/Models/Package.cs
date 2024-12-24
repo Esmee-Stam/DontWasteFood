@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using DontWasteFood.Domain.Enums;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DontWasteFood.Domain.Models
@@ -25,7 +26,7 @@ namespace DontWasteFood.Domain.Models
         public decimal Price { get; set; }
 
         [Required]
-        public required string MealType { get; set; }
+        public required MealType MealType { get; set; }
 
         // Relatie met Student
         [ForeignKey("StudentId")]
