@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "NzHmtlY1qEeLGO97f/XqnAocNfLFz3YSwtjaPoLxh2A=",
+  "Hash": "BvoRjr6u2Wz8Owkyq1Op+KHadLzz9SrcVv7kurzcA8E=",
   "Source": "DontWasteFood.UI",
   "BasePath": "_content/DontWasteFood.UI",
   "Mode": "Default",
@@ -80,6 +80,27 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
+      "Identity": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\css\\styles.css",
+      "SourceId": "DontWasteFood.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\",
+      "BasePath": "_content/DontWasteFood.UI",
+      "RelativePath": "css/styles#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "bj5id0v4le",
+      "Integrity": "efa8ROosIJfNOSfIPApTFQWd41FBmlqTYOd1+azySx8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\styles.css"
+    },
+    {
       "Identity": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\favicon.ico",
       "SourceId": "DontWasteFood.UI",
       "SourceType": "Discovered",
@@ -99,6 +120,258 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\amstel.jpg",
+      "SourceId": "DontWasteFood.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\",
+      "BasePath": "_content/DontWasteFood.UI",
+      "RelativePath": "images/amstel#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "7emvj09ccn",
+      "Integrity": "HwYofzZ1hWsElbJoj6mhDoJlDErVH45ix9R4mQxHDuM=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\amstel.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\broodje-gezond.jpg",
+      "SourceId": "DontWasteFood.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\",
+      "BasePath": "_content/DontWasteFood.UI",
+      "RelativePath": "images/broodje-gezond#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "ak71rn3yfc",
+      "Integrity": "drzFnIvb1qPEB+nuxTSCFiFS9WgrZUjJiTXPkQb85Ow=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\broodje-gezond.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\cola.jpg",
+      "SourceId": "DontWasteFood.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\",
+      "BasePath": "_content/DontWasteFood.UI",
+      "RelativePath": "images/cola#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "avi4l60a37",
+      "Integrity": "hsVaRCBFPBMxnmDXJlXSCj+GhT3F011a7EN40ysxR3Q=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\cola.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\fanta.png",
+      "SourceId": "DontWasteFood.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\",
+      "BasePath": "_content/DontWasteFood.UI",
+      "RelativePath": "images/fanta#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "q0wtmyzh5j",
+      "Integrity": "WlVFbZJKgah6Dprj9Xh7DuT0hs4ch7hBIJyH/T1j9Y0=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\fanta.png"
+    },
+    {
+      "Identity": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\fristi.png",
+      "SourceId": "DontWasteFood.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\",
+      "BasePath": "_content/DontWasteFood.UI",
+      "RelativePath": "images/fristi#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "y15bthqvs5",
+      "Integrity": "Vm9V2aRfQBRx6MA5ue9c+g4VHT8LUQ23FioAww2gixQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\fristi.png"
+    },
+    {
+      "Identity": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\gevulde-koek.jpg",
+      "SourceId": "DontWasteFood.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\",
+      "BasePath": "_content/DontWasteFood.UI",
+      "RelativePath": "images/gevulde-koek#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "tudu2iacur",
+      "Integrity": "W/SLjvciQ8WYqPg7tM8j0I20X1nLK9Tj18zrE+PiHTg=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\gevulde-koek.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\Icon.jpg",
+      "SourceId": "DontWasteFood.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\",
+      "BasePath": "_content/DontWasteFood.UI",
+      "RelativePath": "images/Icon#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "rxlqp0zhun",
+      "Integrity": "ceVgMqryu03i/aowz4H5+LqUelDcs/bPYHajZbOwW9c=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Icon.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\logo.png",
+      "SourceId": "DontWasteFood.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\",
+      "BasePath": "_content/DontWasteFood.UI",
+      "RelativePath": "images/logo#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "cspeoqs7zu",
+      "Integrity": "DLqKSrkH8R0re/Qw1p1IVe3H+LsyOdA2JNCqPj3/+Wk=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\logo.png"
+    },
+    {
+      "Identity": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\panini-salami.jpg",
+      "SourceId": "DontWasteFood.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\",
+      "BasePath": "_content/DontWasteFood.UI",
+      "RelativePath": "images/panini-salami#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "dxkw6irvfr",
+      "Integrity": "DxDETHQ/e9uOOlwiABSx9UL8j/kodDYyrPaV4rJoNQc=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\panini-salami.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\saucijzenbroodje.png",
+      "SourceId": "DontWasteFood.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\",
+      "BasePath": "_content/DontWasteFood.UI",
+      "RelativePath": "images/saucijzenbroodje#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "91gm0uir3b",
+      "Integrity": "U+1x7jOyPlf+C7b7/olQ+Cq0UhSZxk7+rZsy2oTwrq4=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\saucijzenbroodje.png"
+    },
+    {
+      "Identity": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\spa-blauw.jpg",
+      "SourceId": "DontWasteFood.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\",
+      "BasePath": "_content/DontWasteFood.UI",
+      "RelativePath": "images/spa-blauw#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "tgecgwqrop",
+      "Integrity": "wzs0y9gyRVOkBklvMq+WZg7vDwgsZRkQSzB6UjiacKg=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\spa-blauw.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\stroopwafel.jpg",
+      "SourceId": "DontWasteFood.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\",
+      "BasePath": "_content/DontWasteFood.UI",
+      "RelativePath": "images/stroopwafel#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "bmb6xhvry5",
+      "Integrity": "rSofrl7eUrXsuhRzHcfenP7DJptT2rds0dpUGfzEzFE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\stroopwafel.jpg"
     },
     {
       "Identity": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\js\\site.js",
@@ -1343,7 +1616,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 21 Dec 2024 19:15:41 GMT"
+          "Value": "Fri, 25 Oct 2024 08:34:42 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1388,7 +1661,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 21 Dec 2024 19:15:41 GMT"
+          "Value": "Fri, 25 Oct 2024 08:34:42 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1399,6 +1672,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-pAGv4ietcJNk/EwsQZ5BN9+K4MuNYS2a9wl4Jw+q9D0="
+        }
+      ]
+    },
+    {
+      "Route": "css/styles.bj5id0v4le.css",
+      "AssetFile": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\css\\styles.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5056"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"efa8ROosIJfNOSfIPApTFQWd41FBmlqTYOd1+azySx8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 20 Nov 2024 17:51:47 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "bj5id0v4le"
+        },
+        {
+          "Name": "label",
+          "Value": "css/styles.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-efa8ROosIJfNOSfIPApTFQWd41FBmlqTYOd1+azySx8="
+        }
+      ]
+    },
+    {
+      "Route": "css/styles.css",
+      "AssetFile": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\css\\styles.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5056"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"efa8ROosIJfNOSfIPApTFQWd41FBmlqTYOd1+azySx8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 20 Nov 2024 17:51:47 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-efa8ROosIJfNOSfIPApTFQWd41FBmlqTYOd1+azySx8="
         }
       ]
     },
@@ -1645,6 +2000,990 @@
         {
           "Name": "integrity",
           "Value": "sha256-Jtxf9L+5ITKRc1gIRl4VbUpGkRNfOBXjYTdhJD4facM="
+        }
+      ]
+    },
+    {
+      "Route": "images/amstel.7emvj09ccn.jpg",
+      "AssetFile": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\amstel.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7108"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"HwYofzZ1hWsElbJoj6mhDoJlDErVH45ix9R4mQxHDuM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 26 Oct 2024 17:52:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "7emvj09ccn"
+        },
+        {
+          "Name": "label",
+          "Value": "images/amstel.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-HwYofzZ1hWsElbJoj6mhDoJlDErVH45ix9R4mQxHDuM="
+        }
+      ]
+    },
+    {
+      "Route": "images/amstel.jpg",
+      "AssetFile": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\amstel.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7108"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"HwYofzZ1hWsElbJoj6mhDoJlDErVH45ix9R4mQxHDuM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 26 Oct 2024 17:52:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-HwYofzZ1hWsElbJoj6mhDoJlDErVH45ix9R4mQxHDuM="
+        }
+      ]
+    },
+    {
+      "Route": "images/broodje-gezond.ak71rn3yfc.jpg",
+      "AssetFile": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\broodje-gezond.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7833"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"drzFnIvb1qPEB+nuxTSCFiFS9WgrZUjJiTXPkQb85Ow=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 26 Oct 2024 17:52:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ak71rn3yfc"
+        },
+        {
+          "Name": "label",
+          "Value": "images/broodje-gezond.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-drzFnIvb1qPEB+nuxTSCFiFS9WgrZUjJiTXPkQb85Ow="
+        }
+      ]
+    },
+    {
+      "Route": "images/broodje-gezond.jpg",
+      "AssetFile": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\broodje-gezond.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7833"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"drzFnIvb1qPEB+nuxTSCFiFS9WgrZUjJiTXPkQb85Ow=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 26 Oct 2024 17:52:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-drzFnIvb1qPEB+nuxTSCFiFS9WgrZUjJiTXPkQb85Ow="
+        }
+      ]
+    },
+    {
+      "Route": "images/cola.avi4l60a37.jpg",
+      "AssetFile": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\cola.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5682"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"hsVaRCBFPBMxnmDXJlXSCj+GhT3F011a7EN40ysxR3Q=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 26 Oct 2024 17:52:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "avi4l60a37"
+        },
+        {
+          "Name": "label",
+          "Value": "images/cola.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-hsVaRCBFPBMxnmDXJlXSCj+GhT3F011a7EN40ysxR3Q="
+        }
+      ]
+    },
+    {
+      "Route": "images/cola.jpg",
+      "AssetFile": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\cola.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5682"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"hsVaRCBFPBMxnmDXJlXSCj+GhT3F011a7EN40ysxR3Q=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 26 Oct 2024 17:52:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-hsVaRCBFPBMxnmDXJlXSCj+GhT3F011a7EN40ysxR3Q="
+        }
+      ]
+    },
+    {
+      "Route": "images/fanta.png",
+      "AssetFile": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\fanta.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "997350"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"WlVFbZJKgah6Dprj9Xh7DuT0hs4ch7hBIJyH/T1j9Y0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 26 Oct 2024 17:52:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-WlVFbZJKgah6Dprj9Xh7DuT0hs4ch7hBIJyH/T1j9Y0="
+        }
+      ]
+    },
+    {
+      "Route": "images/fanta.q0wtmyzh5j.png",
+      "AssetFile": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\fanta.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "997350"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"WlVFbZJKgah6Dprj9Xh7DuT0hs4ch7hBIJyH/T1j9Y0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 26 Oct 2024 17:52:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "q0wtmyzh5j"
+        },
+        {
+          "Name": "label",
+          "Value": "images/fanta.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-WlVFbZJKgah6Dprj9Xh7DuT0hs4ch7hBIJyH/T1j9Y0="
+        }
+      ]
+    },
+    {
+      "Route": "images/fristi.png",
+      "AssetFile": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\fristi.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "727030"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Vm9V2aRfQBRx6MA5ue9c+g4VHT8LUQ23FioAww2gixQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 26 Oct 2024 17:52:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Vm9V2aRfQBRx6MA5ue9c+g4VHT8LUQ23FioAww2gixQ="
+        }
+      ]
+    },
+    {
+      "Route": "images/fristi.y15bthqvs5.png",
+      "AssetFile": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\fristi.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "727030"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Vm9V2aRfQBRx6MA5ue9c+g4VHT8LUQ23FioAww2gixQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 26 Oct 2024 17:52:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "y15bthqvs5"
+        },
+        {
+          "Name": "label",
+          "Value": "images/fristi.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Vm9V2aRfQBRx6MA5ue9c+g4VHT8LUQ23FioAww2gixQ="
+        }
+      ]
+    },
+    {
+      "Route": "images/gevulde-koek.jpg",
+      "AssetFile": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\gevulde-koek.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4362"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"W/SLjvciQ8WYqPg7tM8j0I20X1nLK9Tj18zrE+PiHTg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 26 Oct 2024 17:52:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-W/SLjvciQ8WYqPg7tM8j0I20X1nLK9Tj18zrE+PiHTg="
+        }
+      ]
+    },
+    {
+      "Route": "images/gevulde-koek.tudu2iacur.jpg",
+      "AssetFile": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\gevulde-koek.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4362"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"W/SLjvciQ8WYqPg7tM8j0I20X1nLK9Tj18zrE+PiHTg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 26 Oct 2024 17:52:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "tudu2iacur"
+        },
+        {
+          "Name": "label",
+          "Value": "images/gevulde-koek.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-W/SLjvciQ8WYqPg7tM8j0I20X1nLK9Tj18zrE+PiHTg="
+        }
+      ]
+    },
+    {
+      "Route": "images/Icon.jpg",
+      "AssetFile": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\Icon.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "43122"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ceVgMqryu03i/aowz4H5+LqUelDcs/bPYHajZbOwW9c=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 25 Oct 2024 08:34:42 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ceVgMqryu03i/aowz4H5+LqUelDcs/bPYHajZbOwW9c="
+        }
+      ]
+    },
+    {
+      "Route": "images/Icon.rxlqp0zhun.jpg",
+      "AssetFile": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\Icon.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "43122"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ceVgMqryu03i/aowz4H5+LqUelDcs/bPYHajZbOwW9c=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 25 Oct 2024 08:34:42 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "rxlqp0zhun"
+        },
+        {
+          "Name": "label",
+          "Value": "images/Icon.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ceVgMqryu03i/aowz4H5+LqUelDcs/bPYHajZbOwW9c="
+        }
+      ]
+    },
+    {
+      "Route": "images/logo.cspeoqs7zu.png",
+      "AssetFile": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\logo.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "40284"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"DLqKSrkH8R0re/Qw1p1IVe3H+LsyOdA2JNCqPj3/+Wk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 25 Oct 2024 08:34:42 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "cspeoqs7zu"
+        },
+        {
+          "Name": "label",
+          "Value": "images/logo.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-DLqKSrkH8R0re/Qw1p1IVe3H+LsyOdA2JNCqPj3/+Wk="
+        }
+      ]
+    },
+    {
+      "Route": "images/logo.png",
+      "AssetFile": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\logo.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "40284"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"DLqKSrkH8R0re/Qw1p1IVe3H+LsyOdA2JNCqPj3/+Wk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 25 Oct 2024 08:34:42 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-DLqKSrkH8R0re/Qw1p1IVe3H+LsyOdA2JNCqPj3/+Wk="
+        }
+      ]
+    },
+    {
+      "Route": "images/panini-salami.dxkw6irvfr.jpg",
+      "AssetFile": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\panini-salami.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "102736"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"DxDETHQ/e9uOOlwiABSx9UL8j/kodDYyrPaV4rJoNQc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 26 Oct 2024 17:52:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "dxkw6irvfr"
+        },
+        {
+          "Name": "label",
+          "Value": "images/panini-salami.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-DxDETHQ/e9uOOlwiABSx9UL8j/kodDYyrPaV4rJoNQc="
+        }
+      ]
+    },
+    {
+      "Route": "images/panini-salami.jpg",
+      "AssetFile": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\panini-salami.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "102736"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"DxDETHQ/e9uOOlwiABSx9UL8j/kodDYyrPaV4rJoNQc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 26 Oct 2024 17:52:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-DxDETHQ/e9uOOlwiABSx9UL8j/kodDYyrPaV4rJoNQc="
+        }
+      ]
+    },
+    {
+      "Route": "images/saucijzenbroodje.91gm0uir3b.png",
+      "AssetFile": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\saucijzenbroodje.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "277297"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"U+1x7jOyPlf+C7b7/olQ+Cq0UhSZxk7+rZsy2oTwrq4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 26 Oct 2024 17:52:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "91gm0uir3b"
+        },
+        {
+          "Name": "label",
+          "Value": "images/saucijzenbroodje.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-U+1x7jOyPlf+C7b7/olQ+Cq0UhSZxk7+rZsy2oTwrq4="
+        }
+      ]
+    },
+    {
+      "Route": "images/saucijzenbroodje.png",
+      "AssetFile": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\saucijzenbroodje.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "277297"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"U+1x7jOyPlf+C7b7/olQ+Cq0UhSZxk7+rZsy2oTwrq4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 26 Oct 2024 17:52:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-U+1x7jOyPlf+C7b7/olQ+Cq0UhSZxk7+rZsy2oTwrq4="
+        }
+      ]
+    },
+    {
+      "Route": "images/spa-blauw.jpg",
+      "AssetFile": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\spa-blauw.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2745"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"wzs0y9gyRVOkBklvMq+WZg7vDwgsZRkQSzB6UjiacKg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 26 Oct 2024 17:52:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-wzs0y9gyRVOkBklvMq+WZg7vDwgsZRkQSzB6UjiacKg="
+        }
+      ]
+    },
+    {
+      "Route": "images/spa-blauw.tgecgwqrop.jpg",
+      "AssetFile": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\spa-blauw.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2745"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"wzs0y9gyRVOkBklvMq+WZg7vDwgsZRkQSzB6UjiacKg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 26 Oct 2024 17:52:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "tgecgwqrop"
+        },
+        {
+          "Name": "label",
+          "Value": "images/spa-blauw.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-wzs0y9gyRVOkBklvMq+WZg7vDwgsZRkQSzB6UjiacKg="
+        }
+      ]
+    },
+    {
+      "Route": "images/stroopwafel.bmb6xhvry5.jpg",
+      "AssetFile": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\stroopwafel.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4218"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"rSofrl7eUrXsuhRzHcfenP7DJptT2rds0dpUGfzEzFE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 26 Oct 2024 17:52:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "bmb6xhvry5"
+        },
+        {
+          "Name": "label",
+          "Value": "images/stroopwafel.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-rSofrl7eUrXsuhRzHcfenP7DJptT2rds0dpUGfzEzFE="
+        }
+      ]
+    },
+    {
+      "Route": "images/stroopwafel.jpg",
+      "AssetFile": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\stroopwafel.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4218"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"rSofrl7eUrXsuhRzHcfenP7DJptT2rds0dpUGfzEzFE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 26 Oct 2024 17:52:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-rSofrl7eUrXsuhRzHcfenP7DJptT2rds0dpUGfzEzFE="
         }
       ]
     },

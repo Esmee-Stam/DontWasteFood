@@ -1,0 +1,15 @@
+﻿<nav class="menu-container">
+    <div class="menu-items">
+        <a type="button" class="menu-item" asp-controller="Student" asp-action="Overview">Home</a>
+        <a type="button" class="menu-item" asp-controller="StudentPackage" asp-action="Packages">Aangeboden maaltijdpakketten</a>
+        <a type="button" class="menu-item" asp-controller="StudentPackage" asp-action="Reservation">Mijn reserveringen</a>
+    </div>
+
+    <div class="nav-buttons-container">
+        <div class="nav-buttons">
+            <form asp-controller="Account" asp-action="Logout" method="post">
+                <button type="submit" class="nav-btn btn">Uitloggen</button>
+            </form>
+        </div>
+    </div>
+</nav>

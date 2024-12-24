@@ -1,0 +1,92 @@
+﻿@model CanteenWorkerViewModel
+@{
+    ViewData["Title"] = "Aanmelden";
+    Layout = "_Layout";
+}
+
+<div class="container mt-5 pt-5">
+    <div class="d-flex justify-content-center">
+        <div class="card mb-2 mt-2 shadow">
+            <div class="card-header">
+                <h2>Aanmelden</h2>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-end mb-3">
+                    <a type="button" class="btn" asp-controller="Home" asp-action="Index">Terug</a>
+                </div>
+
+                <h2>Selecteer hier een rol voor het formulier:</h2>
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Account" asp-action="RegisterStudent" role="tab" aria-controls="student-form" aria-selected="false">
+                            Student
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="Account" asp-action="RegisterCanteenWorker" role="tab" aria-controls="canteenworker-form" aria-selected="true">
+                            Kantinemedewerker
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="tab-content mt-4">
+                    
+                    <div class="tab-pane fade show active" id="canteenworker-form" role="tabpanel" aria-labelledby="canteenworker-tab">
+                        <form asp-action="RegisterCanteenWorker" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="Role" value="Kantinemedewerker" />
+
+                            <h2>Kantinemedewerker gegevens:</h2>
+                            <div class="form-group mb-3">
+                                <label asp-for="Name">Naam:</label>
+                                <input type="text" class="form-control" asp-for="Name" placeholder="Voer je naam in" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label asp-for="EmployeeNumber">Personeelsnummer:</label>
+                                <input type="text" class="form-control" asp-for="EmployeeNumber" placeholder="Voer je personeelsnummer in" />
+                                <span asp-validation-for="EmployeeNumber" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label asp-for="City">Stad:</label>
+                                <select class="form-control" asp-for="City">
+                                    <option value="">Selecteer een stad van de kantine</option>
+                                    <option value="Breda">Breda</option>
+                                    <option value="Den Bosch">Den Bosch</option>
+                                    <option value="Tilburg">Tilburg</option>
+                                </select>
+                                <span asp-validation-for="City" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label asp-for="CanteenLocation">Gebouw:</label>
+                                <input type="text" class="form-control" asp-for="CanteenLocation" placeholder="Voer het gebouw in" />
+                                <span asp-validation-for="CanteenLocation" class="text-danger"></span>
+                            </div>
+
+                            <h2>Inloggegevens:</h2>
+                            <div class="form-group mb-3">
+                                <label asp-for="EmailAddress">Emailadres:</label>
+                                <input type="email" class="form-control" asp-for="EmailAddress" placeholder="Voer je emailadres in" />
+                                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label asp-for="Password">Wachtwoord:</label>
+                                <input type="password" class="form-control" asp-for="Password" placeholder="Voer je wachtwoord in" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label asp-for="PasswordConfirmation">Bevestig wachtwoord:</label>
+                                <input type="password" class="form-control" asp-for="PasswordConfirmation" placeholder="Bevestig je wachtwoord" />
+                                <span asp-validation-for="PasswordConfirmation" class="text-danger"></span>
+                            </div>
+
+                            <div class="d-flex justify-content-end align-items-center mt-3">
+                                <button type="submit" class="btn">Aanmelden</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

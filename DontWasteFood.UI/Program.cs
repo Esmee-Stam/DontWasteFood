@@ -1,4 +1,7 @@
+using DontWasteFood.DomainServices;
+using DontWasteFood.DomainServices.IRepository;
 using DontWasteFood.Infrastructure.Data;
+using DontWasteFood.Infrastructure.Repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,6 +22,10 @@ else
 }
 builder.Services.AddDbContext<DontWasteFoodDbContext>(options => options.UseSqlServer(connectionString));
 builder.Services.AddDbContext<AuthDbContext>(options => options.UseSqlServer(connectionString));
+
+builder.Services.AddScoped<ICanteenWorkerRepository, CanteenWorkerRepository>();
+builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+builder.Services.AddScoped<ICanteenRepository, CanteenRepository>();
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 {

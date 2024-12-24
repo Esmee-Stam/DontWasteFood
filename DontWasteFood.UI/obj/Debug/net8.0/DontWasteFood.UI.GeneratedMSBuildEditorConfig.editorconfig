@@ -20,6 +20,26 @@ build_property._RazorSourceGeneratorDebug =
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
+[C:/Users/esmee/source/repos/SSWF_IO_EsmeeStam/DontWasteFood.UI/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/esmee/source/repos/SSWF_IO_EsmeeStam/DontWasteFood.UI/Views/Account/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/esmee/source/repos/SSWF_IO_EsmeeStam/DontWasteFood.UI/Views/Account/RegisterCanteenWorker.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3RlckNhbnRlZW5Xb3JrZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/esmee/source/repos/SSWF_IO_EsmeeStam/DontWasteFood.UI/Views/Account/RegisterStudent.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3RlclN0dWRlbnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/esmee/source/repos/SSWF_IO_EsmeeStam/DontWasteFood.UI/Views/CanteenWorker/Overview.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FudGVlbldvcmtlclxPdmVydmlldy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/esmee/source/repos/SSWF_IO_EsmeeStam/DontWasteFood.UI/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -32,8 +52,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/esmee/source/repos/SSWF_IO_EsmeeStam/DontWasteFood.UI/Views/Shared/_CanteenWorkerMenu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9DYW50ZWVuV29ya2VyTWVudS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/esmee/source/repos/SSWF_IO_EsmeeStam/DontWasteFood.UI/Views/Shared/_StudentMenu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9TdHVkZW50TWVudS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/esmee/source/repos/SSWF_IO_EsmeeStam/DontWasteFood.UI/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/esmee/source/repos/SSWF_IO_EsmeeStam/DontWasteFood.UI/Views/Student/Overview.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxPdmVydmlldy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/esmee/source/repos/SSWF_IO_EsmeeStam/DontWasteFood.UI/Views/_ViewImports.cshtml]

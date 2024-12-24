@@ -1,0 +1,41 @@
+﻿@model AccountViewModel
+@{
+    ViewData["Title"] = "Overzicht";
+
+    Layout = "_Layout";
+}
+
+<partial name="_CanteenWorkerMenu" />
+
+<div class="container mt-5 pt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card mb-2 mt-2 shadow w-100">
+                <div class="card-header">
+                    <h2>Welkom, @Model.Name</h2>
+                </div>
+                <div>
+                    <div class="card-body mt-3 ms-2 mb-0">
+                        <h2 class="mb-1">Mijn kantine</h2>
+                        <div class="d-flex justify-content-between align-items-end">
+                            <div>
+                                <p class="card-text mt-2 mb-1"></p>
+                                <p class="card-text mb-0">Beheer hier de maaltijdpakketten!</p>
+                            </div>
+                            <a class="btn me-3 mb-0" asp-controller="CanteenPackage" asp-action="MyCanteen">Bekijken</a>
+                        </div>
+
+                        <h2 class="mb-1">Andere kantine</h2>
+                        <div class="d-flex justify-content-between align-items-end">
+                            <div>
+                                <p class="card-text mt-2 mb-1"></p>
+                                <p class="card-text mb-0">Bekijk hier alle maaltijdpakketten van de andere kantine locaties!</p>
+                            </div>
+                            <a class="btn me-3" asp-controller="CanteenPackage" asp-action="OtherCanteen">Bekijken</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

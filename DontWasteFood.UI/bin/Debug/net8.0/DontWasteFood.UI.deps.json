@@ -956,9 +956,21 @@
           }
         }
       },
+      "DontWasteFood.DomainServices/1.0.0": {
+        "dependencies": {
+          "DontWasteFood.Domain": "1.0.0"
+        },
+        "runtime": {
+          "DontWasteFood.DomainServices.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "DontWasteFood.Infrastructure/1.0.0": {
         "dependencies": {
           "DontWasteFood.Domain": "1.0.0",
+          "DontWasteFood.DomainServices": "1.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.10",
           "Microsoft.EntityFrameworkCore": "8.0.10",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.10"
@@ -1546,6 +1558,11 @@
       "hashPath": "system.windows.extensions.6.0.0.nupkg.sha512"
     },
     "DontWasteFood.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DontWasteFood.DomainServices/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

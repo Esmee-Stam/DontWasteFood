@@ -1588,11 +1588,25 @@
           "bin/placeholder/DontWasteFood.Domain.dll": {}
         }
       },
+      "DontWasteFood.DomainServices/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "DontWasteFood.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DontWasteFood.DomainServices.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DontWasteFood.DomainServices.dll": {}
+        }
+      },
       "DontWasteFood.Infrastructure/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "DontWasteFood.Domain": "1.0.0",
+          "DontWasteFood.DomainServices": "1.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.10",
           "Microsoft.EntityFrameworkCore": "8.0.10",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.10"
@@ -4234,6 +4248,11 @@
       "type": "project",
       "path": "../DontWasteFood.Domain/DontWasteFood.Domain.csproj",
       "msbuildProject": "../DontWasteFood.Domain/DontWasteFood.Domain.csproj"
+    },
+    "DontWasteFood.DomainServices/1.0.0": {
+      "type": "project",
+      "path": "../DontWasteFood.DomainServices/DontWasteFood.DomainServices.csproj",
+      "msbuildProject": "../DontWasteFood.DomainServices/DontWasteFood.DomainServices.csproj"
     },
     "DontWasteFood.Infrastructure/1.0.0": {
       "type": "project",

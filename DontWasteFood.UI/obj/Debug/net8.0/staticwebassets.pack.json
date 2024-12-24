@@ -9,8 +9,60 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
+      "Id": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\css\\styles.css",
+      "PackagePath": "staticwebassets\\css\\styles.css"
+    },
+    {
       "Id": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\Icon.jpg",
+      "PackagePath": "staticwebassets\\images\\Icon.jpg"
+    },
+    {
+      "Id": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\amstel.jpg",
+      "PackagePath": "staticwebassets\\images\\amstel.jpg"
+    },
+    {
+      "Id": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\broodje-gezond.jpg",
+      "PackagePath": "staticwebassets\\images\\broodje-gezond.jpg"
+    },
+    {
+      "Id": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\cola.jpg",
+      "PackagePath": "staticwebassets\\images\\cola.jpg"
+    },
+    {
+      "Id": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\fanta.png",
+      "PackagePath": "staticwebassets\\images\\fanta.png"
+    },
+    {
+      "Id": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\fristi.png",
+      "PackagePath": "staticwebassets\\images\\fristi.png"
+    },
+    {
+      "Id": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\gevulde-koek.jpg",
+      "PackagePath": "staticwebassets\\images\\gevulde-koek.jpg"
+    },
+    {
+      "Id": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\logo.png",
+      "PackagePath": "staticwebassets\\images\\logo.png"
+    },
+    {
+      "Id": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\panini-salami.jpg",
+      "PackagePath": "staticwebassets\\images\\panini-salami.jpg"
+    },
+    {
+      "Id": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\saucijzenbroodje.png",
+      "PackagePath": "staticwebassets\\images\\saucijzenbroodje.png"
+    },
+    {
+      "Id": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\spa-blauw.jpg",
+      "PackagePath": "staticwebassets\\images\\spa-blauw.jpg"
+    },
+    {
+      "Id": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\images\\stroopwafel.jpg",
+      "PackagePath": "staticwebassets\\images\\stroopwafel.jpg"
     },
     {
       "Id": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\js\\site.js",

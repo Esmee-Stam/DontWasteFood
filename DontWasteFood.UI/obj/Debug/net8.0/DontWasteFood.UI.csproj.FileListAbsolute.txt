@@ -154,3 +154,5 @@ C:\Users\esmee\source\repos\SSWF_IO_EsmeeStam\DontWasteFood.UI\bin\Debug\net8.0\
 C:\Users\esmee\source\repos\SSWF_IO_EsmeeStam\DontWasteFood.UI\obj\Debug\net8.0\DontWasteFood.UI.csproj.AssemblyReference.cache
 C:\Users\esmee\source\repos\SSWF_IO_EsmeeStam\DontWasteFood.UI\obj\Debug\net8.0\DontWasteFood.UI.sourcelink.json
 C:\Users\esmee\source\repos\SSWF_IO_EsmeeStam\DontWasteFood.UI\obj\Debug\net8.0\DontWast.42211354.Up2Date
+C:\Users\esmee\source\repos\SSWF_IO_EsmeeStam\DontWasteFood.UI\bin\Debug\net8.0\DontWasteFood.DomainServices.dll
+C:\Users\esmee\source\repos\SSWF_IO_EsmeeStam\DontWasteFood.UI\bin\Debug\net8.0\DontWasteFood.DomainServices.pdb

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontWasteFood.Infrastructur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontWasteFood.UI", "DontWasteFood.UI\DontWasteFood.UI.csproj", "{4016582A-E300-4897-A7F7-133538CFCCED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontWasteFood.DomainServices", "DontWasteFood.DomainServices\DontWasteFood.DomainServices.csproj", "{10CA51F2-BDF4-449E-9141-6FDFF6E984C6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{4016582A-E300-4897-A7F7-133538CFCCED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4016582A-E300-4897-A7F7-133538CFCCED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4016582A-E300-4897-A7F7-133538CFCCED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10CA51F2-BDF4-449E-9141-6FDFF6E984C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10CA51F2-BDF4-449E-9141-6FDFF6E984C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10CA51F2-BDF4-449E-9141-6FDFF6E984C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10CA51F2-BDF4-449E-9141-6FDFF6E984C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

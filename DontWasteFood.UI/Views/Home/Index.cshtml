@@ -1,8 +1,90 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Welkom bij Don't Waste Food";
+    Layout = "_Layout";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="nav-buttons-container">
+    <div class="nav-buttons">
+        <a type="button" class="btn" asp-controller="Account" asp-action="Register">Aanmelden</a>
+        <a type="button" class="btn" asp-controller="Account" asp-action="Login">Inloggen</a>
+    </div>
+</div>
+
+<div class="container mt-5 pt-5">
+    <div class="d-flex justify-content-center">
+        <div class="card mb-2 mt-2 shadow">
+            <div class="card-header">
+                <h2>Wat is Don't Waste Food</h2>
+            </div>
+            <div class="d-flex">
+                <div class="col-md-8">
+                    <div class="card-body ms-2">
+                        <p class="card-text mb-4">
+                            Don't Waste Food is een project van Avans Hogeschool om voedselverspilling in de kantines te vermindereverminderen.
+                        </p>
+                        <p class="card-text mb-4">
+                            Kantinemedewerkers maken pakketten van overgebleven voedsel, die studenten tegen een lagere prijs kunnen reserveren en ophalen.
+                        </p>
+                        <p class="card-text">
+                            De inhoud van de pakketten verschilt per dag, afhankelijk van wat er overblijft. Een voorbeeld van de inhoud wordt getoond, maar de werkelijke inhoud kan anders zijn.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4 justify-content-center mt-3 ms-5">
+                    <img src="~/images/logo.png" class="card-img" alt="Logo Don't Waste Food">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center">
+        <div class="card mb-2 mt-2 shadow">
+            <div class="card-header">
+                <h2>Wat is er mogelijk?</h2>
+            </div>
+            <div class="d-flex">
+                <div class="col-md-12">
+                    <div class="card-body ms-2">
+                        <p class="card-text mb-4">
+                            Studenten kunnen gemakkelijk pakketten bekijken en reserveren, terwijl kantinemedewerkers nieuwe pakketten aanbieden.
+                        </p>
+                        <p class="card-text mb-4">
+                            De studenten van Avans Hogeschool kunnen filteren op maaltijdsoorten, zoals brood of warme maaltijden, en de locatie van hun kantine kiezen.
+                        </p>
+                        <p class="card-text mb-4">
+                            De maaltijdpakketten worden enkele dagen van te voren aangeboden en reserveringen kunnen gemakkelijk geplaatst worden.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center">
+        <div class="card mb-2 mt-2 shadow">
+            <div class="card-header">
+                <h2>Hoe werkt het?</h2>
+            </div>
+            <div class="d-flex">
+                <div class="col-md-12">
+                    <div class="card-body ms-2">
+                        <p class="card-text mb-2"><strong>Studenten</strong></p>
+                        <p class="card-text mb-3">
+                            1. <a class="account-information" asp-controller="Account" asp-action="Login">Log in </a>met jouw eigen email van Avans of <a class="account-information" asp-controller="Account" asp-action="Register">meld je hier aan</a>
+                        </p>
+                        <p class="card-text mb-3">2. Reserveer een maaltijdpakket bij aangeboden maaltijdpakketten </p>
+                        <p class="card-text mb-3">3. Bekijk de details van een maaltijdpakket </p>
+                        <p class="card-text mb-3">4. Bekijk de gereserveerde maaltijdpakketten bij mijn reserveringen</p>
+
+                        <p class="card-text mb-2 mt-3"><strong>Kantinemedewerkers</strong></p>
+                        <p class="card-text mb-3">1. <a class="account-information" asp-controller="Account" asp-action="Login">Log in </a>met jouw eigen email van Avans of <a class="account-information" asp-controller="Account" asp-action="Register">meld je hier aan</a> </p>
+                        <p class="card-text mb-3">2. Bekijk de maaltijdpakketten in jouw eigen kantine of bij de andere kantines </p>
+                        <p class="card-text mb-3">3. Voeg een maaltijdpakket toe in jouw eigen kanine</p>
+                        <p class="card-text mb-3">4. Sla het maaltijdpakket op voor de studenten</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
