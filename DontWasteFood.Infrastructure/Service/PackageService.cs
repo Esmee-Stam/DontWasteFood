@@ -6,13 +6,11 @@ namespace DontWasteFood.Infrastructure.Service
 {
     public class PackageService(IPackageRepository packageRepository,
             IStudentRepository studentRepository,
-            IProductRepository productRepository,
-            ICanteenRepository canteenRepository) : IPackageService
+            IProductRepository productRepository) : IPackageService
     {
         private readonly IPackageRepository _packageRepository = packageRepository;
         private readonly IStudentRepository _studentRepository = studentRepository;
         private readonly IProductRepository _productRepository = productRepository;
-        private readonly ICanteenRepository _canteenRepository = canteenRepository;
 
         public Package? GetPackageWithProductsById(Guid id)
         {
