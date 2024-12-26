@@ -25,15 +25,5 @@ namespace DontWasteFood.UI.Controllers
 
             return View(model);
         }
-
-        public IActionResult Packages()
-        {
-            return View();
-        }
-
-        public IActionResult Reservation()
-        {
-            return View();
-        }
     }
 }
