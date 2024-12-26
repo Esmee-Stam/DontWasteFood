@@ -52,6 +52,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFja2FnZVxEZXRhaWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/esmee/source/repos/SSWF_IO_EsmeeStam/DontWasteFood.UI/Views/Package/MyCanteen.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFja2FnZVxNeUNhbnRlZW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/esmee/source/repos/SSWF_IO_EsmeeStam/DontWasteFood.UI/Views/Package/OtherCanteen.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFja2FnZVxPdGhlckNhbnRlZW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/esmee/source/repos/SSWF_IO_EsmeeStam/DontWasteFood.UI/Views/Package/Recommend.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFja2FnZVxSZWNvbW1lbmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

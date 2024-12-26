@@ -7,6 +7,8 @@ namespace DontWasteFood.DomainServices.IRepository
     {
         void Add(Canteen canteen);
 
+        Canteen? FindById(Guid canteenId);
+
         Canteen? FindByLocation(City city, string location);
     }
 }
