@@ -19,7 +19,7 @@ namespace DontWasteFood.UI.Models
         public string? PhoneNumber { get; set; }
 
         [Required(ErrorMessage = "Studiestad is verplicht.")]
-        public required string StudyCity { get; set; }
+        public required City City { get; set; }
 
         [Required(ErrorMessage = "Emailadres is verplicht.")]
         [EmailAddress(ErrorMessage = "Ongeldig emailadres.")]

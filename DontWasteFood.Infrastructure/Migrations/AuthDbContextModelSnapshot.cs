@@ -52,13 +52,13 @@ namespace DontWasteFood.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "383929a2-6d64-485b-be94-5b212d52374c",
+                            Id = "d5018e04-daad-4562-8587-a50f12503833",
                             Name = "Kantinemedewerker",
                             NormalizedName = "KANTINEMEDEWERKER"
                         },
                         new
                         {
-                            Id = "2be63278-8807-4d8d-bfcc-828e26f90663",
+                            Id = "15aed218-ee8c-4f0e-a2aa-09db40f46c5f",
                             Name = "Student",
                             NormalizedName = "STUDENT"
                         });
@@ -158,15 +158,15 @@ namespace DontWasteFood.Infrastructure.Migrations
                         {
                             Id = "4fdd4c4d-9cf0-4bfc-b9e4-df0329b7d77f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "707999a6-39f3-4ddf-8c4b-d576d74214fa",
+                            ConcurrencyStamp = "e1a54bce-3741-4ff0-83b3-2a543048d36e",
                             Email = "j.doe@avans.nl",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "J.DOE@AVANS.NL",
                             NormalizedUserName = "J.DOE@AVANS.NL",
-                            PasswordHash = "AQAAAAIAAYagAAAAEIpdhSCgCbY9OKVg2E2QAwx9lslP43O5mft73hutyGDPNqgg7RmoVNuaCUk/ljE47g==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGyIcIZSDtMinRx/v0o04hV2MXweULajNAo6A+b5UUvMhxgn/Hax5q6HzlOzRdAzRw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "296661ab-9ecb-478e-9aaf-5306db621ad6",
+                            SecurityStamp = "458b8750-d607-4695-8fe0-d704cf6743a2",
                             TwoFactorEnabled = false,
                             UserName = "j.doe@avans.nl"
                         },
@@ -174,15 +174,15 @@ namespace DontWasteFood.Infrastructure.Migrations
                         {
                             Id = "a96fda13-9eee-4a49-94b7-ddf4c84ec61e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c54b69a4-b456-4f13-8e2b-ae0e456c70dd",
+                            ConcurrencyStamp = "66ee8b47-f3c9-456b-ade8-5ad02ff63056",
                             Email = "el.stam@student.avans.nl",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "EL.STAM@STUDENT.AVANS.NL",
                             NormalizedUserName = "EL.STAM@STUDENT.AVANS.NL",
-                            PasswordHash = "AQAAAAIAAYagAAAAEP6Mx6IUsXkmWEKKnV0wIe+MgryaUTLlGWSiP7HT1mThA6scwgNB5tzYJpuPDiP5ww==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIDzGofU9kyhqTvl3Z+NMBEARpswXB5a2r+nUym/PxE7xsaAzAgzLIe3ghJ6Rla4HQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a8f3b200-1d20-484e-82b9-7c697a6c0c30",
+                            SecurityStamp = "c858db83-1a26-4a91-a23b-40164a97c4d6",
                             TwoFactorEnabled = false,
                             UserName = "el.stam@student.avans.nl"
                         });
@@ -253,12 +253,12 @@ namespace DontWasteFood.Infrastructure.Migrations
                         new
                         {
                             UserId = "4fdd4c4d-9cf0-4bfc-b9e4-df0329b7d77f",
-                            RoleId = "383929a2-6d64-485b-be94-5b212d52374c"
+                            RoleId = "d5018e04-daad-4562-8587-a50f12503833"
                         },
                         new
                         {
                             UserId = "a96fda13-9eee-4a49-94b7-ddf4c84ec61e",
-                            RoleId = "2be63278-8807-4d8d-bfcc-828e26f90663"
+                            RoleId = "15aed218-ee8c-4f0e-a2aa-09db40f46c5f"
                         });
                 });
 

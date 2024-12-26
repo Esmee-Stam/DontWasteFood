@@ -1,4 +1,5 @@
-﻿@model CanteenWorkerViewModel
+﻿@using DontWasteFood.Domain.Enums
+@model CanteenWorkerViewModel
 @{
     ViewData["Title"] = "Aanmelden";
     Layout = "_Layout";
@@ -49,12 +50,16 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label asp-for="City">Stad:</label>
-                                <select class="form-control" asp-for="City">
-                                    <option value="">Selecteer een stad van de kantine</option>
-                                    <option value="Breda">Breda</option>
-                                    <option value="Den Bosch">Den Bosch</option>
-                                    <option value="Tilburg">Tilburg</option>
-                                </select>
+                                @{
+                                    var items = Html.GetEnumSelectList<City>()
+                                    .Select(item => new SelectListItem
+                                    {
+                                        Value = item.Value,
+                                        Text = item.Text.Replace("_", " ") 
+                                    })
+                                    .ToList();
+                                }
+                                <select asp-for="City" asp-items="items" class="form-control"></select>
                                 <span asp-validation-for="City" class="text-danger"></span>
                             </div>
                             <div class="form-group mb-3">

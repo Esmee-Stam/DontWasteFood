@@ -8,5 +8,7 @@ namespace DontWasteFood.DomainServices.IRepository
 
         Student? getUserById(Guid id);
 
+        Student? getUserByEmail(string email);
+
     }
 }

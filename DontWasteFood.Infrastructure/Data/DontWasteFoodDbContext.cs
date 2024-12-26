@@ -53,6 +53,21 @@ namespace DontWasteFood.Infrastructure.Data
                    }
                );
 
+            modelBuilder.Entity<Student>()
+                .Property(s => s.City)
+                .HasConversion(
+                city => city.ToString().Replace("_", " "),
+                city => (City)Enum.Parse(typeof(City), city.Replace(" ", "_")));
+
+            modelBuilder.Entity<Canteen>()
+                .Property(c => c.City)
+                .HasConversion(
+                city => city.ToString().Replace("_", " "), 
+                city => (City)Enum.Parse(typeof(City), city.Replace(" ", "_"))
+                );
+
+
+
             // Seeding Canteens
             var canteenId1 = Guid.NewGuid();
             var canteenId2 = Guid.NewGuid();
@@ -61,14 +76,14 @@ namespace DontWasteFood.Infrastructure.Data
                 new Canteen
                 {
                     CanteenId = canteenId1,
-                    City = City.Breda.ToString(),
+                    City = City.Breda,
                     CanteenLocation = "LA",
                     HotMealsOffer = true,
                 },
                  new Canteen
                  {
                      CanteenId = canteenId2,
-                     City = City.Den_Bosch.ToString(),
+                     City = City.Den_Bosch,
                      CanteenLocation = "DB",
                      HotMealsOffer = true,
                  }
@@ -108,7 +123,8 @@ namespace DontWasteFood.Infrastructure.Data
                 StudentNumber = "2196911",
                 EmailAddress = "el.stam@student.avans.nl",
                 IdentityUserId = studentId1.ToString(),
-                City = City.Breda.ToString(),
+                City = City.Breda,
+
             };
             student1.UpdateDateOfBirth(new DateTime(2004, 8, 31));
 
@@ -119,7 +135,7 @@ namespace DontWasteFood.Infrastructure.Data
                 Name = "Jane Doe",
                 StudentNumber = "2176034",
                 EmailAddress = "j.doe@student.avans.nl",
-                City = City.Den_Bosch.ToString(),
+                City = City.Den_Bosch,
             };
             student2.UpdateDateOfBirth(new DateTime(2008, 3, 21));
             modelBuilder.Entity<Student>().HasData(student1, student2);
@@ -223,7 +239,7 @@ namespace DontWasteFood.Infrastructure.Data
                     TimeOfPickUp = new DateTime(2024, 12, 30, 16, 0, 0),
                     Is18Plus = false,
                     Price = 5.00m,
-                    MealType = MealType.Anders.ToString(),
+                    MealType = MealType.Anders,
                     StudentId = studentId1,
                     CanteenId = canteenId1
                 },
@@ -235,7 +251,7 @@ namespace DontWasteFood.Infrastructure.Data
                     TimeOfPickUp = new DateTime(2024, 12, 13, 13, 0, 0),
                     Is18Plus = true,
                     Price = 10.00m,
-                    MealType = MealType.Drank.ToString(),
+                    MealType = MealType.Drank,
                     StudentId = null,
                     CanteenId = canteenId1
                 },
@@ -247,7 +263,7 @@ namespace DontWasteFood.Infrastructure.Data
                     TimeOfPickUp = new DateTime(2024, 12, 14, 11, 0, 0),
                     Is18Plus = false,
                     Price = 3.00m,
-                    MealType = MealType.Brood.ToString(),
+                    MealType = MealType.Brood,
                     StudentId = null,
                     CanteenId = canteenId2
                 },
@@ -259,7 +275,7 @@ namespace DontWasteFood.Infrastructure.Data
                     TimeOfPickUp = new DateTime(2024, 12, 20, 15, 0, 0),
                     Is18Plus = false,
                     Price = 4.00m,
-                    MealType = MealType.Brood.ToString(),
+                    MealType = MealType.Brood,
                     StudentId = null,
                     CanteenId = canteenId2
                 }
