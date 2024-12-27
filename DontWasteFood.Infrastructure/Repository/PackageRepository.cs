@@ -41,7 +41,7 @@ namespace DontWasteFood.Infrastructure.Repository
            return _dbContext.Packages
                 .Include(p => p.ReservedBy)
                 .Include(p => p.Canteen)
-                .FirstOrDefault(p => p.PackageId == id);
+                .FirstOrDefault(p => p.Id == id);
         }
     }
 }

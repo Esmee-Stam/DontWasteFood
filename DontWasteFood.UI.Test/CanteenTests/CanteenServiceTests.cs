@@ -18,7 +18,7 @@ public class CanteenServiceTests
         var canteenId = Guid.NewGuid();
         var mockCanteen = new Canteen
         {
-            CanteenId = canteenId,
+            Id = canteenId,
             CanteenLocation = "LA",
             City = City.Breda
 
@@ -26,7 +26,7 @@ public class CanteenServiceTests
 
         var canteenworker = new CanteenWorker
         {
-            CanteenWorkerId = Guid.NewGuid(),
+            Id = Guid.NewGuid(),
             CanteenId = canteenId,
             Name = "Jane Doe",
             EmployeeNumber = "12345678"
@@ -35,7 +35,7 @@ public class CanteenServiceTests
 
         var package = new Package
         {
-            PackageId = Guid.NewGuid(),
+            Id = Guid.NewGuid(),
             Name = "Kaiserbroodje",
             DateOfPickUp = DateTime.Now,
             TimeOfPickUp = DateTime.Now,
@@ -47,7 +47,7 @@ public class CanteenServiceTests
             {
                 new Product
                 {
-                    ProductId = Guid.NewGuid(),
+                    Id = Guid.NewGuid(),
                     Name = "Kaiserbroodje",
                     IsAlcoholic = false
                 }
@@ -57,19 +57,19 @@ public class CanteenServiceTests
         var canteenRepo = NSubstitute.Substitute.For<ICanteenRepository>(); 
         var packageRepo = NSubstitute.Substitute.For<IPackageRepository>();
 
-        canteenWorkerRepo.getUserById(canteenworker.CanteenWorkerId).Returns(canteenworker);
+        canteenWorkerRepo.getUserById(canteenworker.Id).Returns(canteenworker);
         canteenRepo.FindById(canteenworker.CanteenId).Returns(mockCanteen);
         packageRepo.GetAll().Returns(new List<Package> { package });
 
         var canteenService = NSubstitute.Substitute.For<ICanteenService>();
 
         //Act
-        var result = canteenService.GetPackagesForCanteen(canteenworker.CanteenWorkerId);
+        var result = canteenService.GetPackagesForCanteen(canteenworker.Id);
 
         //Assert
         Assert.NotNull(result);
-        Assert.Equal(mockCanteen.CanteenId, canteenworker.CanteenId);
-        Assert.Equal(mockCanteen.CanteenId, package.CanteenId);
+        Assert.Equal(mockCanteen.Id, canteenworker.CanteenId);
+        Assert.Equal(mockCanteen.Id, package.CanteenId);
 
     }
 
@@ -81,7 +81,7 @@ public class CanteenServiceTests
         var canteenId2 = Guid.NewGuid();
         var mockCanteen = new Canteen
         {
-            CanteenId = canteenId1,
+            Id = canteenId1,
             CanteenLocation = "LA",
             City = City.Breda
 
@@ -89,7 +89,7 @@ public class CanteenServiceTests
 
         var canteenworker = new CanteenWorker
         {
-            CanteenWorkerId = Guid.NewGuid(),
+            Id = Guid.NewGuid(),
             CanteenId = canteenId2,
             Name = "Jane Doe",
             EmployeeNumber = "12345678"
@@ -98,7 +98,7 @@ public class CanteenServiceTests
 
         var package = new Package
         {
-            PackageId = Guid.NewGuid(),
+            Id = Guid.NewGuid(),
             Name = "Panini Salami",
             DateOfPickUp = DateTime.Now,
             TimeOfPickUp = DateTime.Now,
@@ -110,7 +110,7 @@ public class CanteenServiceTests
             {
                 new Product
                 {
-                    ProductId = Guid.NewGuid(),
+                    Id = Guid.NewGuid(),
                     Name = "Panini Salami",
                     IsAlcoholic = false
                 }
@@ -120,18 +120,18 @@ public class CanteenServiceTests
         var canteenRepo = NSubstitute.Substitute.For<ICanteenRepository>();
         var packageRepo = NSubstitute.Substitute.For<IPackageRepository>();
 
-        canteenWorkerRepo.getUserById(canteenworker.CanteenWorkerId).Returns(canteenworker);
+        canteenWorkerRepo.getUserById(canteenworker.Id).Returns(canteenworker);
         canteenRepo.FindById(canteenworker.CanteenId).Returns(mockCanteen);
         packageRepo.GetAll().Returns(new List<Package> { package });
 
         var canteenService = NSubstitute.Substitute.For<ICanteenService>();
 
         //Act
-        var result = canteenService.GetPackagesForCanteen(canteenworker.CanteenWorkerId);
+        var result = canteenService.GetPackagesForCanteen(canteenworker.Id);
 
         //Assert
         Assert.NotNull(result);
-        Assert.NotEqual(mockCanteen.CanteenId, canteenworker.CanteenId);
-        Assert.Equal(mockCanteen.CanteenId, package.CanteenId);
+        Assert.NotEqual(mockCanteen.Id, canteenworker.CanteenId);
+        Assert.Equal(mockCanteen.Id, package.CanteenId);
     }
 }

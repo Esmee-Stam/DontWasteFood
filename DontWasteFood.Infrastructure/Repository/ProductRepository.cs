@@ -19,7 +19,7 @@ namespace DontWasteFood.Infrastructure.Repository
         {
             return _dbContext.Products
                 .Include(p => p.Packages)
-                .FirstOrDefault(p => p.ProductId == id);
+                .FirstOrDefault(p => p.Id == id);
         }
     }
 }

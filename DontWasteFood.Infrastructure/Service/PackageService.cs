@@ -22,7 +22,7 @@ namespace DontWasteFood.Infrastructure.Service
             }
 
             var products = _productRepository.GetAll()
-                .Where(p => p.Packages.Any(pp => pp.PackageId == id))
+                .Where(p => p.Packages.Any(pp => pp.Id == id))
                 .ToList();
 
             package.Products = products;
@@ -40,7 +40,7 @@ namespace DontWasteFood.Infrastructure.Service
             }
 
             return _packageRepository.GetAll()
-                .Where(p => p.ReservedBy != null && p.ReservedBy.StudentId == student.StudentId)
+                .Where(p => p.ReservedBy != null && p.ReservedBy.Id == student.Id)
                 .ToList();
         }
     }

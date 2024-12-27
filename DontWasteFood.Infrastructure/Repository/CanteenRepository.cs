@@ -22,7 +22,7 @@ namespace DontWasteFood.Infrastructure.Repository
 
         public Canteen? FindById(Guid canteenId)
         {
-            return _dbContext.Canteens.FirstOrDefault(c => c.CanteenId == canteenId);
+            return _dbContext.Canteens.FirstOrDefault(c => c.Id == canteenId);
         }
 
         public Canteen? FindByLocation(City city, string location)

@@ -6,7 +6,7 @@ namespace DontWasteFood.Domain.Models
     public class Student
     {
         [Key]
-        public Guid StudentId { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         public required string Name { get; set; }
@@ -32,7 +32,7 @@ namespace DontWasteFood.Domain.Models
 
         public ICollection<Package> Packages { get; set; } = new List<Package>();
 
-        public Student(Guid studentId, string name, DateTime dateOfBirth, string studentNumber, string emailAddress, City city)
+        public Student(Guid id, string name, DateTime dateOfBirth, string studentNumber, string emailAddress, City city)
         {
             if (dateOfBirth > DateTime.Now)
             {
@@ -44,7 +44,7 @@ namespace DontWasteFood.Domain.Models
                 throw new Exception("Student must be 16 years old");
             }
 
-            StudentId = studentId;
+            Id = id;
             Name = name;
             DateOfBirth = dateOfBirth; 
             StudentNumber = studentNumber;

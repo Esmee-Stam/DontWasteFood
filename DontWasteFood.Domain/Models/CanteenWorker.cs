@@ -6,7 +6,7 @@ namespace DontWasteFood.Domain.Models
     public class CanteenWorker
     {
         [Key]
-        public Guid CanteenWorkerId { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         public required string Name { get; set; }
@@ -18,7 +18,7 @@ namespace DontWasteFood.Domain.Models
         public string? IdentityUserId { get; set; }
 
         //Relatie met Kantine
-        [ForeignKey("CanteenId")]
+        [ForeignKey("Canteen")]
         public Guid CanteenId { get; set; }
         public Canteen? Canteen {  get; set; }
        

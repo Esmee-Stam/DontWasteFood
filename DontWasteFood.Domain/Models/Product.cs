@@ -5,7 +5,7 @@ namespace DontWasteFood.Domain.Models
     public class Product
     {
         [Key]
-        public Guid ProductId { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         public required string Name { get; set; }

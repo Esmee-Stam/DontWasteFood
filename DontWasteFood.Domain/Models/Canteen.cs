@@ -6,7 +6,7 @@ namespace DontWasteFood.Domain.Models
     public class Canteen
     {
         [Key]
-        public Guid CanteenId { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         public City City { get; set; }

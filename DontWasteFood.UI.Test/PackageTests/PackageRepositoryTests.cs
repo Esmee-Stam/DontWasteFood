@@ -18,7 +18,7 @@ namespace DontWasteFood.UI.Test.PackageTests
                     {
                         new Package
                         {
-                            PackageId = Guid.NewGuid(),
+                            Id = Guid.NewGuid(),
                             Name = "Kaiserbroodje",
                             DateOfPickUp = DateTime.Now,
                             TimeOfPickUp = DateTime.Now,
@@ -29,7 +29,7 @@ namespace DontWasteFood.UI.Test.PackageTests
                             {
                                 new Product
                                 {
-                                    ProductId = Guid.NewGuid(),
+                                    Id = Guid.NewGuid(),
                                     Name = "Kaiserbroodje",
                                     IsAlcoholic = false
                                 }
@@ -38,7 +38,7 @@ namespace DontWasteFood.UI.Test.PackageTests
 
                          new Package
                          {
-                            PackageId = Guid.NewGuid(),
+                            Id = Guid.NewGuid(),
                             Name = "Panini ham & kaas",
                             DateOfPickUp = DateTime.Now,
                             TimeOfPickUp = DateTime.Now,
@@ -49,7 +49,7 @@ namespace DontWasteFood.UI.Test.PackageTests
                             {
                                 new Product
                                 {
-                                    ProductId = Guid.NewGuid(),
+                                    Id = Guid.NewGuid(),
                                     Name = "Panini ham & kaas",
                                     IsAlcoholic = false
                                 }

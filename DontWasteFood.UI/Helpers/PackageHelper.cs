@@ -9,7 +9,7 @@ namespace DontWasteFood.UI.Helpers
         {
             return packages.Select(package => new PackageViewModel
             {
-                PackageId = package.PackageId,
+                PackageId = package.Id,
                 Name = package.Name,
                 DateOfPickUp = package.DateOfPickUp,
                 MealType = package.MealType,
@@ -24,7 +24,7 @@ namespace DontWasteFood.UI.Helpers
         {
             return new PackageViewModel
             {
-                PackageId = package.PackageId,
+                PackageId = package.Id,
                 Name = package.Name,
                 DateOfPickUp = package.DateOfPickUp,
                 TimeOfPickUp = package.TimeOfPickUp,
