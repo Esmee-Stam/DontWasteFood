@@ -17,6 +17,15 @@ namespace DontWasteFood.Infrastructure.Repository
 
         }
 
+        public IQueryable<Package> GetAllAsync()
+        {
+            return _dbContext.Packages
+                .Include(p => p.ReservedBy)
+                .Include(p => p.Canteen)
+                .Include(p => p.Products)
+                .AsQueryable();
+        }
+
         public ICollection<Package> GetAllAvailablePackages()
         {
             return _dbContext.Packages

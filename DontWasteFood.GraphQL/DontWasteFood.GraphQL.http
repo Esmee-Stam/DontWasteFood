@@ -1,0 +1,6 @@
+@DontWasteFood.GraphQL_HostAddress = http://localhost:5054
+
+GET {{DontWasteFood.GraphQL_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

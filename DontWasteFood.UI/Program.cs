@@ -31,6 +31,7 @@ builder.Services.AddScoped<ICanteenRepository, CanteenRepository>();
 builder.Services.AddScoped<IPackageRepository, PackageRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IPackageService, PackageService>();
+builder.Services.AddScoped<ICanteenService, CanteenService>();
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 {
