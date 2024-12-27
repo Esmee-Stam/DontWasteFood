@@ -17,6 +17,6 @@ builder.Services
 
 var app = builder.Build();
 
-app.MapGraphQL("/");
+app.MapGraphQL("/graphql");
 
 app.Run();
