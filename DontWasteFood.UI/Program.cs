@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-var connectionString = String.Empty;
+var connectionString = string.Empty;
 
 if (builder.Environment.IsDevelopment())
 {
