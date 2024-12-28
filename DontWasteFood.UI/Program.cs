@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-var connectionString = String.Empty;
+var connectionString = string.Empty;
 
 if (builder.Environment.IsDevelopment())
 {
@@ -24,6 +24,23 @@ else
 }
 builder.Services.AddDbContext<DontWasteFoodDbContext>(options => options.UseSqlServer(connectionString));
 builder.Services.AddDbContext<AuthDbContext>(options => options.UseSqlServer(connectionString));
+
+builder.Services.AddSession(s =>
+{
+    s.IdleTimeout = TimeSpan.FromSeconds(60);
+    s.Cookie.HttpOnly = true;
+    s.Cookie.Name = "CookieName";
+    s.Cookie.IsEssential = false;
+    s.Cookie.SecurePolicy = CookieSecurePolicy.Always;  // Alleen versturen via HTTPS
+});
+
+builder.Services.Configure<CookiePolicyOptions>(options =>
+{
+    options.CheckConsentNeeded = context => true;
+    options.MinimumSameSitePolicy = SameSiteMode.Lax; // Lax is vaak goed voor de meeste gevallen
+});
+
+
 
 builder.Services.AddScoped<ICanteenWorkerRepository, CanteenWorkerRepository>();
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
@@ -48,8 +65,6 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 .AddEntityFrameworkStores<AuthDbContext>()
 .AddDefaultTokenProviders();
 
-//builder.Services.AddAuthorization(policyBuilder => { // policies / claims configureren }
-
 
 var app = builder.Build();
 
@@ -66,6 +81,9 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseSession();
+app.UseCookiePolicy();
 
 app.UseAuthentication();
 app.UseAuthorization();

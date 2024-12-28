@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "KzSh2hFhgr6PI8cKbWojMdQaPhh+F9EU+aNJIwgKXvs=",
+  "Hash": "RCiBF7QdvheIM8psfdQtl4EDkdrhSl3p1r5+LVReRXg=",
   "Source": "DontWasteFood.UI",
   "BasePath": "_content/DontWasteFood.UI",
   "Mode": "Default",
@@ -1698,7 +1698,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 27 Dec 2024 13:27:20 GMT"
+          "Value": "Sat, 28 Dec 2024 18:27:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1743,7 +1743,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 27 Dec 2024 13:27:20 GMT"
+          "Value": "Sat, 28 Dec 2024 18:27:48 GMT"
         },
         {
           "Name": "Cache-Control",

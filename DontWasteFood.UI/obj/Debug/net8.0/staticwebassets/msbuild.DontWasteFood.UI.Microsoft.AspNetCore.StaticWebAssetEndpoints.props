@@ -16,13 +16,13 @@
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\styles.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"6rk025avxg"},{"Name":"integrity","Value":"sha256-7sA1aepDnOHS0F97qaEI0Vm4VKCu1exv52xPl6\u002By0Eo="},{"Name":"label","Value":"_content/DontWasteFood.UI/css/styles.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"5089"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u00227sA1aepDnOHS0F97qaEI0Vm4VKCu1exv52xPl6\u002By0Eo=\u0022"},{"Name":"Last-Modified","Value":"Fri, 27 Dec 2024 13:27:20 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"5089"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u00227sA1aepDnOHS0F97qaEI0Vm4VKCu1exv52xPl6\u002By0Eo=\u0022"},{"Name":"Last-Modified","Value":"Sat, 28 Dec 2024 18:27:48 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/DontWasteFood.UI/css/styles.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\styles.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-7sA1aepDnOHS0F97qaEI0Vm4VKCu1exv52xPl6\u002By0Eo="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"5089"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u00227sA1aepDnOHS0F97qaEI0Vm4VKCu1exv52xPl6\u002By0Eo=\u0022"},{"Name":"Last-Modified","Value":"Fri, 27 Dec 2024 13:27:20 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"5089"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u00227sA1aepDnOHS0F97qaEI0Vm4VKCu1exv52xPl6\u002By0Eo=\u0022"},{"Name":"Last-Modified","Value":"Sat, 28 Dec 2024 18:27:48 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/DontWasteFood.UI/DontWasteFood.UI.bundle.scp.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\DontWasteFood.UI.h2ol1sovur.bundle.scp.css'))</AssetFile>
