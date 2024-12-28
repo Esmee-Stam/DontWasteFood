@@ -46,11 +46,6 @@ namespace DontWasteFood.Domain.Models
             Products.Add(product);
             Is18PlusStatus();
         }
-        public void RemoveProduct(Product product)
-        {
-            Products.Remove(product);
-            Is18PlusStatus();
-        }
 
         public void Is18PlusStatus()
         {
@@ -59,7 +54,17 @@ namespace DontWasteFood.Domain.Models
 
         public bool CanBeReserved()
         {
-            return StudentId == Guid.Empty && TimeOfPickUp > DateTime.Now;
+            if (Is18Plus && ReservedBy != null)
+            {
+                var studentAge = (DateTime.Now - ReservedBy.DateOfBirth).TotalDays / 365;
+                if (studentAge < 18)
+                {
+                    return false; 
+                }
+            }
+
+            return ReservedBy == null && TimeOfPickUp > DateTime.Now;
+
         }
 
     }

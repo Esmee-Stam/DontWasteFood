@@ -74,7 +74,7 @@ namespace DontWasteFood.Domain.Models
             return (DateTime.Now - dateOfBirth).TotalDays / 365 >= 16;
         }
 
-        private bool Is18Plus(DateTime pickUpDate)
+        public bool Is18Plus(DateTime pickUpDate)
         {
             return (pickUpDate - DateOfBirth).TotalDays / 365 >= 18;
         }
