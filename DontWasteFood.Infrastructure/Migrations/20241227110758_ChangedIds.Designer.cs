@@ -4,6 +4,7 @@ using DontWasteFood.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DontWasteFood.Infrastructure.Migrations
 {
     [DbContext(typeof(AuthDbContext))]
-    partial class AuthDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241227110758_ChangedIds")]
+    partial class ChangedIds
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,13 +55,13 @@ namespace DontWasteFood.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "f513bdd1-8c29-489b-acd4-864daec2c4b2",
+                            Id = "f1d9e56b-a3d3-4ab8-a504-197a320e3511",
                             Name = "Kantinemedewerker",
                             NormalizedName = "KANTINEMEDEWERKER"
                         },
                         new
                         {
-                            Id = "7b8343b2-53cd-43fe-90fe-2a006522cfcf",
+                            Id = "5ee95552-789b-40b2-a9ee-c76f70f83a1f",
                             Name = "Student",
                             NormalizedName = "STUDENT"
                         });
@@ -158,15 +161,15 @@ namespace DontWasteFood.Infrastructure.Migrations
                         {
                             Id = "4fdd4c4d-9cf0-4bfc-b9e4-df0329b7d77f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "285980bd-185f-44ff-b74d-bc8384a196ec",
+                            ConcurrencyStamp = "3b60a8fd-bfbc-4380-b38a-f503b0cabc4a",
                             Email = "j.doe@avans.nl",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "J.DOE@AVANS.NL",
                             NormalizedUserName = "J.DOE@AVANS.NL",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJ/PjwLldJSmPQPILnmypynr+FcXOcLUbtFRfO1Q/E92hcFzBgy095/brnIh2NXoYA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAECmuHGTcz0B3GNh7chd97LcSvZmBMOs4CYpdXFS9XJUI/YEKc76sdFO+eAt4m3PWgw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0e534d16-3844-4a3f-84df-323af9cb0ea7",
+                            SecurityStamp = "29d25d10-0b88-4399-8788-9b5405366725",
                             TwoFactorEnabled = false,
                             UserName = "j.doe@avans.nl"
                         },
@@ -174,15 +177,15 @@ namespace DontWasteFood.Infrastructure.Migrations
                         {
                             Id = "a96fda13-9eee-4a49-94b7-ddf4c84ec61e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2ea70091-e24a-46d1-922e-11a48b1186e9",
+                            ConcurrencyStamp = "508f8494-a890-4e98-8e01-5f11b0ee41a6",
                             Email = "el.stam@student.avans.nl",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "EL.STAM@STUDENT.AVANS.NL",
                             NormalizedUserName = "EL.STAM@STUDENT.AVANS.NL",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGMQw34NfNksSFPh876HO7OfPKHI3nuYTR/p4UbUsU4DvbcXAyfIEbhMjnEK9lLdGA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEP9rHzBECkFaXpkNuI6drhJS44QB0sIaUAuKsvTn+3vIRSGsKNz9QxabMEDp4RUU8Q==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b939b867-a3f6-4b48-b938-870dbfb26c1b",
+                            SecurityStamp = "51a57105-2aa0-49dc-a7c2-3d777597caef",
                             TwoFactorEnabled = false,
                             UserName = "el.stam@student.avans.nl"
                         });
@@ -253,12 +256,12 @@ namespace DontWasteFood.Infrastructure.Migrations
                         new
                         {
                             UserId = "4fdd4c4d-9cf0-4bfc-b9e4-df0329b7d77f",
-                            RoleId = "f513bdd1-8c29-489b-acd4-864daec2c4b2"
+                            RoleId = "f1d9e56b-a3d3-4ab8-a504-197a320e3511"
                         },
                         new
                         {
                             UserId = "a96fda13-9eee-4a49-94b7-ddf4c84ec61e",
-                            RoleId = "7b8343b2-53cd-43fe-90fe-2a006522cfcf"
+                            RoleId = "5ee95552-789b-40b2-a9ee-c76f70f83a1f"
                         });
                 });
 

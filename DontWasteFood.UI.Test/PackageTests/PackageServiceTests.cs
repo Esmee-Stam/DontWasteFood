@@ -16,7 +16,7 @@ namespace DontWasteFood.UI.Test
 
             var mockStudent = new Student
             {
-                StudentId = Guid.NewGuid(),
+                Id = Guid.NewGuid(),
                 Name = "John Doe",
                 StudentNumber = "2183811",
                 EmailAddress = "j.doe@student.avans.nl",
@@ -27,7 +27,7 @@ namespace DontWasteFood.UI.Test
                 {
                     new Package
                     {
-                        PackageId = Guid.NewGuid(),
+                        Id = Guid.NewGuid(),
                         Name = "Kaiserbroodje",
                         DateOfPickUp = DateTime.Now,
                         TimeOfPickUp = DateTime.Now,
@@ -39,7 +39,7 @@ namespace DontWasteFood.UI.Test
                         {
                             new Product
                             {
-                                ProductId = Guid.NewGuid(),
+                                Id = Guid.NewGuid(),
                                 Name = "Kaiserbroodje",
                                 IsAlcoholic = false
                             }
@@ -47,7 +47,7 @@ namespace DontWasteFood.UI.Test
                     },
                      new Package
                     {
-                        PackageId = Guid.NewGuid(),
+                        Id = Guid.NewGuid(),
                         Name = "Panini ham & kaas",
                         DateOfPickUp = DateTime.Now,
                         TimeOfPickUp = DateTime.Now,
@@ -59,7 +59,7 @@ namespace DontWasteFood.UI.Test
                         {
                             new Product
                             {
-                                ProductId = Guid.NewGuid(),
+                                Id = Guid.NewGuid(),
                                 Name = "Panini ham & kaas",
                                 IsAlcoholic = false
                             }
@@ -86,7 +86,7 @@ namespace DontWasteFood.UI.Test
                 var packageService = NSubstitute.Substitute.For<IPackageService>();
                 var mockStudent = new Student
                 {
-                    StudentId = Guid.NewGuid(),
+                    Id = Guid.NewGuid(),
                     Name = "John Doe",
                     StudentNumber = "2183811",
                     EmailAddress = "j.doe@student.avans.nl",

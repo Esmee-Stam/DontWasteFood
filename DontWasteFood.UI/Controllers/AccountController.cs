@@ -87,7 +87,7 @@ namespace DontWasteFood.UI.Controllers
                     await _userManager.AddToRoleAsync(user, role);
                     var student = new Student
                     {
-                        StudentId = Guid.NewGuid(),
+                        Id = Guid.NewGuid(),
                         Name = model.Name,
                         StudentNumber = model.StudentNumber,
                         EmailAddress = model.EmailAddress,
@@ -143,7 +143,7 @@ namespace DontWasteFood.UI.Controllers
                     {
                         canteen = new Canteen
                         {
-                            CanteenId = Guid.NewGuid(),
+                            Id = Guid.NewGuid(),
                             CanteenLocation = model.CanteenLocation,
                             City = model.City
                         };
@@ -152,11 +152,11 @@ namespace DontWasteFood.UI.Controllers
 
                     var canteenWorker = new CanteenWorker
                     {
-                        CanteenWorkerId = Guid.NewGuid(),
+                        Id = Guid.NewGuid(),
                         Name = model.Name,
                         EmployeeNumber = model.EmployeeNumber,
                         IdentityUserId = user.Id,
-                        CanteenId = canteen.CanteenId,
+                        CanteenId = canteen.Id,
                         Canteen = canteen
                     };
 

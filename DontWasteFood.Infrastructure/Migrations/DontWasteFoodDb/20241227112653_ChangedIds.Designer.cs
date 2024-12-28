@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DontWasteFood.Infrastructure.Migrations.DontWasteFoodDb
 {
     [DbContext(typeof(DontWasteFoodDbContext))]
-    [Migration("20241224161413_UpdateCity")]
-    partial class UpdateCity
+    [Migration("20241227112653_ChangedIds")]
+    partial class ChangedIds
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,7 +28,7 @@ namespace DontWasteFood.Infrastructure.Migrations.DontWasteFoodDb
 
             modelBuilder.Entity("DontWasteFood.Domain.Models.Canteen", b =>
                 {
-                    b.Property<Guid>("CanteenId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -36,37 +36,36 @@ namespace DontWasteFood.Infrastructure.Migrations.DontWasteFoodDb
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("City")
+                        .HasColumnType("int");
 
                     b.Property<bool>("HotMealsOffer")
                         .HasColumnType("bit");
 
-                    b.HasKey("CanteenId");
+                    b.HasKey("Id");
 
                     b.ToTable("Canteens", "DontWasteFood");
 
                     b.HasData(
                         new
                         {
-                            CanteenId = new Guid("4be48778-d81a-4eb5-bd1c-553f546a5966"),
+                            Id = new Guid("353c3168-f82f-4f15-a6a4-5d55f800ef72"),
                             CanteenLocation = "LA",
-                            City = "Breda",
+                            City = 0,
                             HotMealsOffer = true
                         },
                         new
                         {
-                            CanteenId = new Guid("01086a90-ff33-4d5b-9b49-9cbbb6291efa"),
+                            Id = new Guid("df310e40-acd3-49b0-911a-94ae12c53b32"),
                             CanteenLocation = "DB",
-                            City = "Den Bosch",
+                            City = 1,
                             HotMealsOffer = true
                         });
                 });
 
             modelBuilder.Entity("DontWasteFood.Domain.Models.CanteenWorker", b =>
                 {
-                    b.Property<Guid>("CanteenWorkerId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -85,7 +84,7 @@ namespace DontWasteFood.Infrastructure.Migrations.DontWasteFoodDb
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("CanteenWorkerId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CanteenId");
 
@@ -97,16 +96,16 @@ namespace DontWasteFood.Infrastructure.Migrations.DontWasteFoodDb
                     b.HasData(
                         new
                         {
-                            CanteenWorkerId = new Guid("4fdd4c4d-9cf0-4bfc-b9e4-df0329b7d77f"),
-                            CanteenId = new Guid("4be48778-d81a-4eb5-bd1c-553f546a5966"),
+                            Id = new Guid("4fdd4c4d-9cf0-4bfc-b9e4-df0329b7d77f"),
+                            CanteenId = new Guid("353c3168-f82f-4f15-a6a4-5d55f800ef72"),
                             EmployeeNumber = "1234567",
                             IdentityUserId = "4fdd4c4d-9cf0-4bfc-b9e4-df0329b7d77f",
                             Name = "John Doe"
                         },
                         new
                         {
-                            CanteenWorkerId = new Guid("5f1e9cbc-9748-4e28-b7cc-b6d52ace34c7"),
-                            CanteenId = new Guid("4be48778-d81a-4eb5-bd1c-553f546a5966"),
+                            Id = new Guid("13e30a51-4f97-456b-9697-b0e9cc0818f2"),
+                            CanteenId = new Guid("353c3168-f82f-4f15-a6a4-5d55f800ef72"),
                             EmployeeNumber = "7654321",
                             Name = "Jan Jansen"
                         });
@@ -114,7 +113,7 @@ namespace DontWasteFood.Infrastructure.Migrations.DontWasteFoodDb
 
             modelBuilder.Entity("DontWasteFood.Domain.Models.Package", b =>
                 {
-                    b.Property<Guid>("PackageId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -143,7 +142,7 @@ namespace DontWasteFood.Infrastructure.Migrations.DontWasteFoodDb
                     b.Property<DateTime>("TimeOfPickUp")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("PackageId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CanteenId");
 
@@ -154,8 +153,8 @@ namespace DontWasteFood.Infrastructure.Migrations.DontWasteFoodDb
                     b.HasData(
                         new
                         {
-                            PackageId = new Guid("a5305b5a-ec00-4626-925f-901f9b61bbf8"),
-                            CanteenId = new Guid("4be48778-d81a-4eb5-bd1c-553f546a5966"),
+                            Id = new Guid("6c487ef0-d53b-4ce0-9587-5253646eb4d4"),
+                            CanteenId = new Guid("353c3168-f82f-4f15-a6a4-5d55f800ef72"),
                             DateOfPickUp = new DateTime(2024, 12, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Is18Plus = false,
                             MealType = 3,
@@ -166,8 +165,8 @@ namespace DontWasteFood.Infrastructure.Migrations.DontWasteFoodDb
                         },
                         new
                         {
-                            PackageId = new Guid("09051bc9-81fb-438d-9ffa-e0dab29213d0"),
-                            CanteenId = new Guid("4be48778-d81a-4eb5-bd1c-553f546a5966"),
+                            Id = new Guid("a8f6cf81-fbff-40a7-80f2-e2f0f0491f67"),
+                            CanteenId = new Guid("353c3168-f82f-4f15-a6a4-5d55f800ef72"),
                             DateOfPickUp = new DateTime(2024, 12, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Is18Plus = true,
                             MealType = 2,
@@ -177,8 +176,8 @@ namespace DontWasteFood.Infrastructure.Migrations.DontWasteFoodDb
                         },
                         new
                         {
-                            PackageId = new Guid("8afc3f7f-0452-4db5-a0a3-6de0802419c1"),
-                            CanteenId = new Guid("01086a90-ff33-4d5b-9b49-9cbbb6291efa"),
+                            Id = new Guid("e4f925ce-107f-4b27-b666-ed7644e48dec"),
+                            CanteenId = new Guid("df310e40-acd3-49b0-911a-94ae12c53b32"),
                             DateOfPickUp = new DateTime(2024, 12, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Is18Plus = false,
                             MealType = 0,
@@ -188,8 +187,8 @@ namespace DontWasteFood.Infrastructure.Migrations.DontWasteFoodDb
                         },
                         new
                         {
-                            PackageId = new Guid("20ee797e-8930-41d9-841e-acf3659640e1"),
-                            CanteenId = new Guid("01086a90-ff33-4d5b-9b49-9cbbb6291efa"),
+                            Id = new Guid("f0f36860-035a-4a22-b94f-dd8972ac36c1"),
+                            CanteenId = new Guid("df310e40-acd3-49b0-911a-94ae12c53b32"),
                             DateOfPickUp = new DateTime(2024, 12, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Is18Plus = false,
                             MealType = 0,
@@ -201,7 +200,7 @@ namespace DontWasteFood.Infrastructure.Migrations.DontWasteFoodDb
 
             modelBuilder.Entity("DontWasteFood.Domain.Models.Product", b =>
                 {
-                    b.Property<Guid>("ProductId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -215,77 +214,77 @@ namespace DontWasteFood.Infrastructure.Migrations.DontWasteFoodDb
                     b.Property<string>("PhotoUrl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ProductId");
+                    b.HasKey("Id");
 
                     b.ToTable("Products", "DontWasteFood");
 
                     b.HasData(
                         new
                         {
-                            ProductId = new Guid("88288629-2bfe-46a2-973e-175ff977fb99"),
+                            Id = new Guid("70614a29-79cc-4281-8234-6b24a84d9a4b"),
                             IsAlcoholic = true,
                             Name = "Amstel",
                             PhotoUrl = "/images/amstel.jpg"
                         },
                         new
                         {
-                            ProductId = new Guid("f3054f1f-f875-4e12-b891-7314711b0627"),
+                            Id = new Guid("3d7d5038-343d-45f2-a2b8-b9bd4e47e954"),
                             IsAlcoholic = false,
                             Name = "Broodje gezond",
                             PhotoUrl = "/images/broodje-gezond.jpg"
                         },
                         new
                         {
-                            ProductId = new Guid("af827f12-12ee-475b-95d4-f2bb164993b5"),
+                            Id = new Guid("f561d211-0029-4ced-bf80-55f14c2a33a5"),
                             IsAlcoholic = true,
                             Name = "Cola",
                             PhotoUrl = "/images/cola.jpg"
                         },
                         new
                         {
-                            ProductId = new Guid("4d6fbfb7-f701-4a3a-96f5-2328d5ad3e9b"),
+                            Id = new Guid("fccbf2e2-ce94-4301-8ec5-367ca2f3916d"),
                             IsAlcoholic = false,
                             Name = "Fanta",
                             PhotoUrl = "/images/fanta.png"
                         },
                         new
                         {
-                            ProductId = new Guid("2b24029b-ca23-41e0-946c-c65751b83ba5"),
+                            Id = new Guid("8296acc7-5300-406f-b00d-e017ea5d2de6"),
                             IsAlcoholic = false,
                             Name = "Fristi",
                             PhotoUrl = "/images/fristi.png"
                         },
                         new
                         {
-                            ProductId = new Guid("7dec6dc3-029a-41f3-89da-d535b213afd5"),
+                            Id = new Guid("1678cba3-1c99-4f15-8583-56b197b54693"),
                             IsAlcoholic = false,
                             Name = "Gevulde Koek",
                             PhotoUrl = "/images/gevulde-koek.jpg"
                         },
                         new
                         {
-                            ProductId = new Guid("fdbe441a-2d9b-44ef-8d95-d087785d7c02"),
+                            Id = new Guid("5d5ccd73-c672-4cf3-b400-e7c149527a71"),
                             IsAlcoholic = false,
                             Name = "Panini Salami",
                             PhotoUrl = "/images/panini-salami.jpg"
                         },
                         new
                         {
-                            ProductId = new Guid("d86c27f0-daa1-4546-9a98-3df8bdab4229"),
+                            Id = new Guid("65a67986-2a3c-4d78-bf5f-d8d67e53cc53"),
                             IsAlcoholic = false,
                             Name = "Saucijzenbroodje",
                             PhotoUrl = "/images/saucijzenbroodje.png"
                         },
                         new
                         {
-                            ProductId = new Guid("1a3c84e8-ef8f-4070-b1e9-d8da5c51f4de"),
+                            Id = new Guid("7fd05664-8451-4923-9f93-6746a1d801f9"),
                             IsAlcoholic = false,
                             Name = "Spa Blauw",
                             PhotoUrl = "/images/spa-blauw.jpg"
                         },
                         new
                         {
-                            ProductId = new Guid("6af0b603-68a1-429d-b614-8e50f3aa2231"),
+                            Id = new Guid("2a8e51a3-7c1d-4cde-aad9-f5e633522cd3"),
                             IsAlcoholic = false,
                             Name = "Stroopwafel",
                             PhotoUrl = "/images/stroopwafel.jpg"
@@ -294,13 +293,12 @@ namespace DontWasteFood.Infrastructure.Migrations.DontWasteFoodDb
 
             modelBuilder.Entity("DontWasteFood.Domain.Models.Student", b =>
                 {
-                    b.Property<Guid>("StudentId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("City")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
@@ -324,7 +322,7 @@ namespace DontWasteFood.Infrastructure.Migrations.DontWasteFoodDb
                         .HasMaxLength(7)
                         .HasColumnType("nvarchar(7)");
 
-                    b.HasKey("StudentId");
+                    b.HasKey("Id");
 
                     b.HasIndex("EmailAddress")
                         .IsUnique();
@@ -337,8 +335,8 @@ namespace DontWasteFood.Infrastructure.Migrations.DontWasteFoodDb
                     b.HasData(
                         new
                         {
-                            StudentId = new Guid("a96fda13-9eee-4a49-94b7-ddf4c84ec61e"),
-                            City = "Breda",
+                            Id = new Guid("a96fda13-9eee-4a49-94b7-ddf4c84ec61e"),
+                            City = 0,
                             DateOfBirth = new DateTime(2004, 8, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EmailAddress = "el.stam@student.avans.nl",
                             IdentityUserId = "a96fda13-9eee-4a49-94b7-ddf4c84ec61e",
@@ -347,8 +345,8 @@ namespace DontWasteFood.Infrastructure.Migrations.DontWasteFoodDb
                         },
                         new
                         {
-                            StudentId = new Guid("10a8c01b-7df8-42ca-bc43-7473dd6d4df4"),
-                            City = "Den_Bosch",
+                            Id = new Guid("cf43c7ca-7546-4645-ba45-6ed790ca486a"),
+                            City = 1,
                             DateOfBirth = new DateTime(2008, 3, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EmailAddress = "j.doe@student.avans.nl",
                             Name = "Jane Doe",
@@ -358,58 +356,48 @@ namespace DontWasteFood.Infrastructure.Migrations.DontWasteFoodDb
 
             modelBuilder.Entity("PackageProduct", b =>
                 {
-                    b.Property<Guid>("PackagesPackageId")
+                    b.Property<Guid>("PackagesId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ProductsProductId")
+                    b.Property<Guid>("ProductsId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("PackageId")
-                        .HasColumnType("uniqueidentifier");
+                    b.HasKey("PackagesId", "ProductsId");
 
-                    b.Property<Guid?>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("PackagesPackageId", "ProductsProductId");
-
-                    b.HasIndex("PackageId");
-
-                    b.HasIndex("ProductId");
-
-                    b.HasIndex("ProductsProductId");
+                    b.HasIndex("ProductsId");
 
                     b.ToTable("PackageProduct", "DontWasteFood");
 
                     b.HasData(
                         new
                         {
-                            PackagesPackageId = new Guid("a5305b5a-ec00-4626-925f-901f9b61bbf8"),
-                            ProductsProductId = new Guid("7dec6dc3-029a-41f3-89da-d535b213afd5")
+                            PackagesId = new Guid("6c487ef0-d53b-4ce0-9587-5253646eb4d4"),
+                            ProductsId = new Guid("1678cba3-1c99-4f15-8583-56b197b54693")
                         },
                         new
                         {
-                            PackagesPackageId = new Guid("a5305b5a-ec00-4626-925f-901f9b61bbf8"),
-                            ProductsProductId = new Guid("2b24029b-ca23-41e0-946c-c65751b83ba5")
+                            PackagesId = new Guid("6c487ef0-d53b-4ce0-9587-5253646eb4d4"),
+                            ProductsId = new Guid("8296acc7-5300-406f-b00d-e017ea5d2de6")
                         },
                         new
                         {
-                            PackagesPackageId = new Guid("09051bc9-81fb-438d-9ffa-e0dab29213d0"),
-                            ProductsProductId = new Guid("88288629-2bfe-46a2-973e-175ff977fb99")
+                            PackagesId = new Guid("a8f6cf81-fbff-40a7-80f2-e2f0f0491f67"),
+                            ProductsId = new Guid("70614a29-79cc-4281-8234-6b24a84d9a4b")
                         },
                         new
                         {
-                            PackagesPackageId = new Guid("09051bc9-81fb-438d-9ffa-e0dab29213d0"),
-                            ProductsProductId = new Guid("6af0b603-68a1-429d-b614-8e50f3aa2231")
+                            PackagesId = new Guid("a8f6cf81-fbff-40a7-80f2-e2f0f0491f67"),
+                            ProductsId = new Guid("2a8e51a3-7c1d-4cde-aad9-f5e633522cd3")
                         },
                         new
                         {
-                            PackagesPackageId = new Guid("8afc3f7f-0452-4db5-a0a3-6de0802419c1"),
-                            ProductsProductId = new Guid("f3054f1f-f875-4e12-b891-7314711b0627")
+                            PackagesId = new Guid("e4f925ce-107f-4b27-b666-ed7644e48dec"),
+                            ProductsId = new Guid("3d7d5038-343d-45f2-a2b8-b9bd4e47e954")
                         },
                         new
                         {
-                            PackagesPackageId = new Guid("20ee797e-8930-41d9-841e-acf3659640e1"),
-                            ProductsProductId = new Guid("fdbe441a-2d9b-44ef-8d95-d087785d7c02")
+                            PackagesId = new Guid("f0f36860-035a-4a22-b94f-dd8972ac36c1"),
+                            ProductsId = new Guid("5d5ccd73-c672-4cf3-b400-e7c149527a71")
                         });
                 });
 
@@ -445,23 +433,13 @@ namespace DontWasteFood.Infrastructure.Migrations.DontWasteFoodDb
                 {
                     b.HasOne("DontWasteFood.Domain.Models.Package", null)
                         .WithMany()
-                        .HasForeignKey("PackageId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("DontWasteFood.Domain.Models.Package", null)
-                        .WithMany()
-                        .HasForeignKey("PackagesPackageId")
+                        .HasForeignKey("PackagesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DontWasteFood.Domain.Models.Product", null)
                         .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("DontWasteFood.Domain.Models.Product", null)
-                        .WithMany()
-                        .HasForeignKey("ProductsProductId")
+                        .HasForeignKey("ProductsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

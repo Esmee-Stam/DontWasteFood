@@ -12,24 +12,6 @@ namespace DontWasteFood.Infrastructure.Service
         private readonly IStudentRepository _studentRepository = studentRepository;
         private readonly IProductRepository _productRepository = productRepository;
 
-        public Package? GetPackageWithProductsById(Guid id)
-        {
-            var package = _packageRepository.GetPackageById(id);
-
-            if (package == null)
-            {
-                return null;
-            }
-
-            var products = _productRepository.GetAll()
-                .Where(p => p.Packages.Any(pp => pp.PackageId == id))
-                .ToList();
-
-            package.Products = products;
-
-            return package;
-        }
-
         ICollection<Package>? IPackageService.GetAllReservedPackagesByUserId(string email)
         {
             var student = _studentRepository.getUserByEmail(email);
@@ -40,7 +22,7 @@ namespace DontWasteFood.Infrastructure.Service
             }
 
             return _packageRepository.GetAll()
-                .Where(p => p.ReservedBy != null && p.ReservedBy.StudentId == student.StudentId)
+                .Where(p => p.ReservedBy != null && p.ReservedBy.Id == student.Id)
                 .ToList();
         }
     }

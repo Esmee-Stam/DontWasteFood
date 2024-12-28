@@ -8,6 +8,29 @@ namespace DontWasteFood.Infrastructure.Repository
     public class PackageRepository(DontWasteFoodDbContext dbContext) : IPackageRepository
     {
         private readonly DontWasteFoodDbContext _dbContext = dbContext;
+
+        public void Add(Package package)
+        {
+            if(package.DateOfPickUp > DateTime.Now.AddDays(2))
+            {
+                throw new Exception("The package can only be added 2 days in advance");
+            }
+            _dbContext.Packages.Add(package);
+            _dbContext.SaveChanges();
+        }
+
+        public bool Delete(Package package)
+        {
+            if(package.ReservedBy != null && package.StudentId != null)
+            {
+                return false;
+            }
+
+            _dbContext.Packages.Remove(package);
+            _dbContext.SaveChanges();
+            return true;
+        }
+
         public IEnumerable<Package> GetAll()
         {
             return _dbContext.Packages
@@ -41,7 +64,20 @@ namespace DontWasteFood.Infrastructure.Repository
            return _dbContext.Packages
                 .Include(p => p.ReservedBy)
                 .Include(p => p.Canteen)
-                .FirstOrDefault(p => p.PackageId == id);
+                .Include(p => p.Products)
+                .FirstOrDefault(p => p.Id == id);
+        }
+
+        public bool Update(Package package)
+        {
+            if (package.ReservedBy != null && package.StudentId != null)
+            {
+                return false;
+            }
+
+            _dbContext.Packages.Update(package);
+            _dbContext.SaveChanges();
+            return true;
         }
     }
 }

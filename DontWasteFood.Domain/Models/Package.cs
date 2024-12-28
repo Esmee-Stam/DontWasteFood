@@ -7,7 +7,7 @@ namespace DontWasteFood.Domain.Models
     public class Package
     {
         [Key]
-        public Guid PackageId { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         public required string Name { get; set; }
@@ -29,12 +29,12 @@ namespace DontWasteFood.Domain.Models
         public required MealType MealType { get; set; }
 
         // Relatie met Student
-        [ForeignKey("StudentId")]
+        [ForeignKey("Student")]
         public Guid? StudentId { get; set; }
         public Student? ReservedBy { get; set; }
 
         //Relatie met Kantine om locatie op te halen
-        [ForeignKey("CanteenId")]
+        [ForeignKey("Canteen")]
         public Guid CanteenId { get; set; }
         public Canteen? Canteen { get; set; }
 
@@ -47,14 +47,24 @@ namespace DontWasteFood.Domain.Models
             Is18PlusStatus();
         }
 
-        private void Is18PlusStatus()
+        public void Is18PlusStatus()
         {
             Is18Plus = Products.Any(p => p.IsAlcoholic);
         }
 
         public bool CanBeReserved()
         {
-            return StudentId == Guid.Empty && TimeOfPickUp > DateTime.Now;
+            if (Is18Plus && ReservedBy != null)
+            {
+                var studentAge = (DateTime.Now - ReservedBy.DateOfBirth).TotalDays / 365;
+                if (studentAge < 18)
+                {
+                    return false; 
+                }
+            }
+
+            return ReservedBy == null && TimeOfPickUp > DateTime.Now;
+
         }
 
     }

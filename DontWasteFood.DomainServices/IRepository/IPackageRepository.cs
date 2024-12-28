@@ -12,6 +12,12 @@ namespace DontWasteFood.DomainServices.IRepository
 
         Package? GetPackageById(Guid id);
 
+        void Add(Package package);
+
+        bool Update(Package package);
+
+        bool Delete(Package package);
+
 
     }
 }

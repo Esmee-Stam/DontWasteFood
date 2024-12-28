@@ -35,38 +35,10 @@ namespace DontWasteFood.Infrastructure.Data
                 .HasForeignKey(p => p.CanteenId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            //Relatie PackageProduct
+            //Relatie tussen Package en Product
             modelBuilder.Entity<Package>()
-               .HasMany(p => p.Products)
-               .WithMany(p => p.Packages)
-               .UsingEntity(
-                   j =>
-                   {
-                       j.HasOne(typeof(Product))
-                           .WithMany()
-                           .HasForeignKey("ProductId")
-                           .OnDelete(DeleteBehavior.Restrict);
-                       j.HasOne(typeof(Package))
-                           .WithMany()
-                           .HasForeignKey("PackageId")
-                           .OnDelete(DeleteBehavior.Restrict);
-                   }
-               );
-
-            modelBuilder.Entity<Student>()
-                .Property(s => s.City)
-                .HasConversion(
-                city => city.ToString().Replace("_", " "),
-                city => (City)Enum.Parse(typeof(City), city.Replace(" ", "_")));
-
-            modelBuilder.Entity<Canteen>()
-                .Property(c => c.City)
-                .HasConversion(
-                city => city.ToString().Replace("_", " "), 
-                city => (City)Enum.Parse(typeof(City), city.Replace(" ", "_"))
-                );
-
-
+            .HasMany(p => p.Products)
+            .WithMany(p => p.Packages);
 
             // Seeding Canteens
             var canteenId1 = Guid.NewGuid();
@@ -75,14 +47,14 @@ namespace DontWasteFood.Infrastructure.Data
             modelBuilder.Entity<Canteen>().HasData(
                 new Canteen
                 {
-                    CanteenId = canteenId1,
+                    Id = canteenId1,
                     City = City.Breda,
                     CanteenLocation = "LA",
                     HotMealsOffer = true,
                 },
                  new Canteen
                  {
-                     CanteenId = canteenId2,
+                     Id = canteenId2,
                      City = City.Den_Bosch,
                      CanteenLocation = "DB",
                      HotMealsOffer = true,
@@ -96,7 +68,7 @@ namespace DontWasteFood.Infrastructure.Data
             modelBuilder.Entity<CanteenWorker>().HasData(
                 new CanteenWorker
                 {
-                    CanteenWorkerId = canteenWorkerId1,
+                    Id = canteenWorkerId1,
                     Name = "John Doe",
                     EmployeeNumber = "1234567",
                     IdentityUserId = canteenWorkerId1.ToString(),
@@ -105,7 +77,7 @@ namespace DontWasteFood.Infrastructure.Data
                 },
                 new CanteenWorker
                 {
-                    CanteenWorkerId = canteenWorkerId2,
+                    Id = canteenWorkerId2,
                     Name = "Jan Jansen",
                     EmployeeNumber = "7654321",
                     CanteenId = canteenId1
@@ -118,7 +90,7 @@ namespace DontWasteFood.Infrastructure.Data
 
             var student1 = new Student
             {
-                StudentId = studentId1,
+                Id = studentId1,
                 Name = "Esmée Stam",
                 StudentNumber = "2196911",
                 EmailAddress = "el.stam@student.avans.nl",
@@ -131,7 +103,7 @@ namespace DontWasteFood.Infrastructure.Data
 
             var student2 = new Student
             {
-                StudentId = studentId2,
+                Id = studentId2,
                 Name = "Jane Doe",
                 StudentNumber = "2176034",
                 EmailAddress = "j.doe@student.avans.nl",
@@ -156,69 +128,69 @@ namespace DontWasteFood.Infrastructure.Data
             modelBuilder.Entity<Product>().HasData(
                 new Product
                 {
-                    ProductId = productId1,
+                    Id = productId1,
                     Name = "Amstel",
                     IsAlcoholic = true,
                     PhotoUrl = "/images/amstel.jpg"
                 },
                 new Product
                 {
-                    ProductId = productId2,
+                    Id = productId2,
                     Name = "Broodje gezond",
                     IsAlcoholic = false,
                     PhotoUrl = "/images/broodje-gezond.jpg"
                 },
                 new Product
                 {
-                    ProductId = productId3,
+                    Id = productId3,
                     Name = "Cola",
-                    IsAlcoholic = true,
+                    IsAlcoholic = false,
                     PhotoUrl = "/images/cola.jpg"
                 },
                 new Product
                 {
-                    ProductId = productId4,
+                    Id = productId4,
                     Name = "Fanta",
                     IsAlcoholic = false,
                     PhotoUrl = "/images/fanta.png"
                 },
                 new Product
                 {
-                    ProductId = productId5,
+                    Id = productId5,
                     Name = "Fristi",
                     IsAlcoholic = false,
                     PhotoUrl = "/images/fristi.png"
                 },
                 new Product
                 {
-                    ProductId = productId6,
+                    Id = productId6,
                     Name = "Gevulde Koek",
                     IsAlcoholic = false,
                     PhotoUrl = "/images/gevulde-koek.jpg"
                 },
                 new Product
                 {
-                    ProductId = productId7,
+                    Id = productId7,
                     Name = "Panini Salami",
                     IsAlcoholic = false,
                     PhotoUrl = "/images/panini-salami.jpg"
                 },
                 new Product
                 {
-                    ProductId = productId8,
+                    Id = productId8,
                     Name = "Saucijzenbroodje",
                     IsAlcoholic = false,
                     PhotoUrl = "/images/saucijzenbroodje.png"
                 },
                 new Product
                 {
-                    ProductId = productId9,
+                    Id = productId9,
                     Name = "Spa Blauw",
                     IsAlcoholic = false,
                     PhotoUrl = "/images/spa-blauw.jpg"
                 }, new Product
                 {
-                    ProductId = productId10,
+                    Id = productId10,
                     Name = "Stroopwafel",
                     IsAlcoholic = false,
                     PhotoUrl = "/images/stroopwafel.jpg"
@@ -233,7 +205,7 @@ namespace DontWasteFood.Infrastructure.Data
             modelBuilder.Entity<Package>().HasData(
                 new Package
                 {
-                    PackageId = packageId1,
+                    Id = packageId1,
                     Name = "Gevulde Koek met Fristi",
                     DateOfPickUp = new DateTime(2024, 12, 30),
                     TimeOfPickUp = new DateTime(2024, 12, 30, 16, 0, 0),
@@ -245,7 +217,7 @@ namespace DontWasteFood.Infrastructure.Data
                 },
                 new Package
                 {
-                    PackageId = packageId2,
+                    Id = packageId2,
                     Name = "Amstel & Stroopwafel",
                     DateOfPickUp = new DateTime(2024, 12, 13),
                     TimeOfPickUp = new DateTime(2024, 12, 13, 13, 0, 0),
@@ -257,7 +229,7 @@ namespace DontWasteFood.Infrastructure.Data
                 },
                 new Package
                 {
-                    PackageId = packageId3,
+                    Id = packageId3,
                     Name = "Broodje Gezond",
                     DateOfPickUp = new DateTime(2024, 12, 14),
                     TimeOfPickUp = new DateTime(2024, 12, 14, 11, 0, 0),
@@ -269,7 +241,7 @@ namespace DontWasteFood.Infrastructure.Data
                 },
                 new Package
                 {
-                    PackageId = packageId4,
+                    Id = packageId4,
                     Name = "Panini Salami",
                     DateOfPickUp = new DateTime(2024, 12, 20),
                     TimeOfPickUp = new DateTime(2024, 12, 20, 15, 0, 0),
@@ -283,24 +255,26 @@ namespace DontWasteFood.Infrastructure.Data
 
             //Seeding PackageProducts
             modelBuilder.Entity<Package>()
-               .HasMany(p => p.Products)
-               .WithMany(p => p.Packages)
-               .UsingEntity(j => j.HasData(
-                   // Gevulde Koek met Fristi
-                   new { PackagesPackageId = packageId1, ProductsProductId = productId6 },
-                   new { PackagesPackageId = packageId1, ProductsProductId = productId5 },
+                .HasMany(p => p.Products)
+                .WithMany(p => p.Packages)
+                .UsingEntity(
+                    j => j.HasData(
+                    // Gevulde Koek met Fristi
+                    new { PackagesId = packageId1, ProductsId = productId6 },
+                    new { PackagesId = packageId1, ProductsId = productId5 },
 
-                   // Amstel & Stroopwafel
-                   new { PackagesPackageId = packageId2, ProductsProductId = productId1 },
-                   new { PackagesPackageId = packageId2, ProductsProductId = productId10 },
+                    // Amstel & Stroopwafel
+                    new { PackagesId = packageId2, ProductsId = productId1 },
+                    new { PackagesId = packageId2, ProductsId = productId10 },
 
-                   // Broodje Gezond
-                   new { PackagesPackageId = packageId3, ProductsProductId = productId2 },
+                    // Broodje Gezond
+                    new { PackagesId = packageId3, ProductsId = productId2 },
 
-                   // Panini Salami
-                   new { PackagesPackageId = packageId4, ProductsProductId = productId7 }
-               ));
-        
+                    // Panini Salami
+                    new { PackagesId = packageId4, ProductsId = productId7 }
+                ));
+
+
             base.OnModelCreating(modelBuilder);
         }
     }

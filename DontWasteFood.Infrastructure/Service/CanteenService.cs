@@ -16,6 +16,18 @@ namespace DontWasteFood.Infrastructure.Service
         private readonly ICanteenRepository _canteenRepository = canteenRepository;
         private readonly ICanteenWorkerRepository _canteenWorkerRepository = canteenWorkerRepository;
 
+        public Canteen? GetCanteenOfCanteenWorker(Guid canteenWorkerId)
+        {
+            var canteenWorker = _canteenWorkerRepository.getUserById(canteenWorkerId);
+            if (canteenWorker == null)
+            {
+                throw new Exception("Canteen worker not found");
+            }
+
+            var canteen = _canteenRepository.FindById(canteenWorker.CanteenId);
+            return canteen;
+        }
+
         public ICollection<Package> GetPackagesForCanteen(Guid canteenWorkerId)
         {
             var canteenWorker = _canteenWorkerRepository.getUserById(canteenWorkerId);
