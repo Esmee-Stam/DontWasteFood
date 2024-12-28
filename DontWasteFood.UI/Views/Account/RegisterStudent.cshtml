@@ -1,4 +1,5 @@
-﻿@model StudentViewModel
+﻿@using DontWasteFood.Domain.Enums
+@model StudentViewModel
 @{
     ViewData["Title"] = "Aanmelden";
     Layout = "_Layout";
@@ -39,49 +40,53 @@
                             <div class="form-group mb-3">
                                 <label asp-for="Name">Naam:</label>
                                 <input type="text" class="form-control" asp-for="Name" placeholder="Voer je naam in" />
-                                <span asp-validation-for="Name" class="text-danger"></span> <!-- Validatiefout hier -->
+                                <span asp-validation-for="Name" class="text-danger"></span> 
                             </div>
                             <div class="form-group mb-3">
                                 <label asp-for="DateOfBirth">Geboortedatum:</label>
                                 <input type="date" class="form-control" asp-for="DateOfBirth" max="@DateTime.Now.ToString("yyyy-MM-dd")" />
-                                <span asp-validation-for="DateOfBirth" class="text-danger"></span> <!-- Validatiefout hier -->
+                                <span asp-validation-for="DateOfBirth" class="text-danger"></span> 
                             </div>
                             <div class="form-group mb-3">
                                 <label asp-for="PhoneNumber">Telefoonnummer:</label>
                                 <input type="tel" class="form-control" asp-for="PhoneNumber" placeholder="Voer je telefoonnummer in" />
-                                <span asp-validation-for="PhoneNumber" class="text-danger"></span> <!-- Validatiefout hier -->
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span> 
                             </div>
                             <div class="form-group mb-3">
                                 <label asp-for="StudentNumber">Studentennummer:</label>
                                 <input type="text" class="form-control" asp-for="StudentNumber" placeholder="Voer je studentnummer in" />
-                                <span asp-validation-for="StudentNumber" class="text-danger"></span> <!-- Validatiefout hier -->
+                                <span asp-validation-for="StudentNumber" class="text-danger"></span> 
                             </div>
                             <div class="form-group mb-3">
-                                <label asp-for="StudyCity">Studiestad:</label>
-                                <select class="form-control" asp-for="StudyCity">
-                                    <option value="">Selecteer een studiestad</option>
-                                    <option value="Breda">Breda</option>
-                                    <option value="Den Bosch">Den Bosch</option>
-                                    <option value="Tilburg">Tilburg</option>
-                                </select>
-                                <span asp-validation-for="StudyCity" class="text-danger"></span> <!-- Validatiefout hier -->
+                                <label asp-for="City">Studiestad:</label>
+                                @{
+                                    var items = Html.GetEnumSelectList<City>()
+                                    .Select(item => new SelectListItem
+                                    {
+                                        Value = item.Value,
+                                        Text = item.Text.Replace("_", " ")
+                                    })
+                                    .ToList();
+                                }
+                                <select asp-for="City" asp-items="items" class="form-control"></select>
+                                <span asp-validation-for="City" class="text-danger"></span> 
                             </div>
 
                             <h2>Inloggegevens:</h2>
                             <div class="form-group mb-3">
                                 <label asp-for="EmailAddress">Emailadres:</label>
                                 <input type="email" class="form-control" asp-for="EmailAddress" placeholder="Voer je emailadres in" />
-                                <span asp-validation-for="EmailAddress" class="text-danger"></span> <!-- Validatiefout hier -->
+                                <span asp-validation-for="EmailAddress" class="text-danger"></span> 
                             </div>
                             <div class="form-group mb-3">
                                 <label asp-for="Password">Wachtwoord:</label>
                                 <input type="password" class="form-control" asp-for="Password" placeholder="Voer je wachtwoord in" />
-                                <span asp-validation-for="Password" class="text-danger"></span> <!-- Validatiefout hier -->
+                                <span asp-validation-for="Password" class="text-danger"></span> 
                             </div>
                             <div class="form-group mb-3">
                                 <label asp-for="PasswordConfirmation">Bevestig wachtwoord:</label>
                                 <input type="password" class="form-control" asp-for="PasswordConfirmation" placeholder="Bevestig je wachtwoord" />
-                                <span asp-validation-for="PasswordConfirmation" class="text-danger"></span> <!-- Validatiefout hier -->
+                                <span asp-validation-for="PasswordConfirmation" class="text-danger"></span> 
                             </div>
 
                             <div class="d-flex justify-content-end align-items-center mt-3">

@@ -1,0 +1,79 @@
+﻿@model List<PackageViewModel>
+@{
+    ViewData["Title"] = "Andere kantines";
+    Layout = "_Layout";
+}
+
+<partial name="_CanteenWorkerMenu" />
+
+<div class="icon-container mt-5 pt-5">
+    <div class="d-flex justify-content-center">
+        <div class="card mb-2 mt-2 shadow">
+            <div class="card-header">
+                <h2>Andere kantines</h2>
+            </div>
+
+            <div class="card-body">
+                <div class="d-flex justify-content-end mb-3">
+                    <a type="button" class="btn" asp-controller="CanteenWorker" asp-action="Overview">Terug</a>
+                </div>
+
+                @if(Model == null || Model.Count == 0) {
+                    <div class="alert alert-info" role="alert">
+                        Momenteel zijn er nog geen maaltijdpakketten beschikbaar.
+                    </div>
+                }
+                else {
+                    @foreach (var package in Model) {
+                        <div class="box me-auto ms-auto card-title position-relative">
+                            <div class="row detail-row mt-2">
+                                <div class="col-6 detail-label"><h2>Naam:</h2></div>
+                                <div class="col-6 detail-value text-right"><h2>@package.Name</h2></div>
+                            </div>
+                        </div>
+
+                        <div class="details-box mx-auto">
+                            <div class="row detail-row mb-1">
+                                <div class="col-6 detail-label"><strong>Datum:</strong></div>
+                                <div class="col-6 detail-value"><p>@package.DateOfPickUp.ToString("dd-MM-yyyy")</p></div>
+                            </div>
+                            <div class="row detail-row mb-1">
+                                <div class="col-6 detail-label"><strong>Maaltijdtype:</strong></div>
+                                <div class="col-6 detail-value"><p>@package.MealType.ToString().Replace("_", " ")</p></div>
+                            </div>
+                            <div class="row detail-row mb-1">
+                                <div class="col-6 detail-label"><strong>Locatie:</strong></div>
+                                <div class="col-6 detail-value"><p>@package.Location</p></div>
+                            </div>
+                            <div class="row detail-row mb-1">
+                                <div class="col-6 detail-label"><strong>Stad:</strong></div>
+                                <div class="col-6 detail-value"><p>@package.City.ToString().Replace("_", " ")</p></div>
+                            </div>
+                            <div class="row detail-row mb-1">
+                                <div class="col-6 detail-label"><strong>18+ indicatie:</strong></div>
+                                <div class="col-6 detail-value">
+                                    <p>@(package.Is18Plus ? "Ja" : "Nee")</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="box mx-auto">
+                            <div class="row detail-row mt-2">
+                                <div class="col-6 detail-label"><h3>Prijs:</h3></div>
+                                <div class="col-6 detail-value text-right"><h3>€ @package.Price</h3></div>
+                            </div>
+                        </div>
+
+                        <div class="box mx-auto">
+                            <div class="row detail-row justify-content-end align-content-end mb-5 me-1">
+                                <a type="button" class="btn" asp-controller="Package" asp-action="Detail" asp-route-id="@package.PackageId">Details</a>
+
+                            </div>
+                        </div>
+
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,266 @@
+﻿using DontWasteFood.Domain.Enums;
+using DontWasteFood.Domain.Models;
+using DontWasteFood.DomainServices.IRepository;
+using DontWasteFood.DomainServices.IService;
+using DontWasteFood.UI.Helpers;
+using DontWasteFood.UI.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+
+namespace DontWasteFood.UI.Controllers
+{
+    [Authorize]
+    public class PackageController : Controller
+    {
+        private readonly IPackageRepository _packageRepository;
+        private readonly IProductRepository _productRepository;
+        private readonly ICanteenService _canteenService;
+        private readonly UserManager<IdentityUser> _userManager;
+
+        public PackageController(
+            IPackageRepository packageRepository,
+            IProductRepository productRepository,
+            ICanteenService canteenService,
+            UserManager<IdentityUser> userManager)
+        {
+            _packageRepository = packageRepository;
+            _productRepository = productRepository;
+            _canteenService = canteenService;
+            _userManager = userManager;
+        }
+
+        [HttpGet]
+        public IActionResult Detail(Guid id)
+        {
+            var package = _packageRepository.GetPackageById(id);
+            if (package == null)
+            {
+                Console.WriteLine("Package not found");
+                return NotFound();
+            }
+
+            if (!package.Products.Any())
+            {
+                Console.WriteLine("No products found in the package");
+                return NotFound();
+            }
+
+            var model = PackageHelper.ConvertToPackageWithProductsViewModel(package, package.Products.ToList());
+            return View(model);
+        }
+
+        [HttpGet]
+        [Authorize(Roles = nameof(UserRole.Kantinemedewerker))]
+        public IActionResult PackageForm(Guid? id)
+        {
+            var canteen = GetCurrentCanteen();
+            if (canteen == null)
+            {
+                ModelState.AddModelError("Canteen", "Canteen not found");
+                return View("Error");
+            }
+
+            if (id != null)
+            {
+                var package = _packageRepository.GetPackageById(id.Value);
+                if (package == null)
+                {
+                    return NotFound();
+                }
+
+                if (!IsUserAuthorizedForPackage(canteen, package))
+                {
+                    ModelState.AddModelError("Unauthorized", "Je hebt geen toegang tot deze locatie.");
+                    return RedirectToAction("OtherCanteen", "CanteenWorker");
+                }
+
+                var products = GetAllProducts();
+                var model = PackageHelper.ConvertToPackageWithSelectedProducts(package, products);
+                return View(model);
+            }
+            else
+            {
+                var products = GetAllProducts();
+
+                var model = new PackageViewModel
+                {
+                    Name = string.Empty,
+                    MealType = MealType.Anders,
+                    DateOfPickUp = DateTime.Now,
+                    Price = 0m,
+                    TimeOfPickUp = DateTime.Today.Add(DateTime.Now.TimeOfDay),
+                    Location = canteen.CanteenLocation,
+                    City = canteen.City,
+                    Products = products.Select(product => new ProductViewModel
+                    {
+                        ProductId = product.Id,
+                        Name = product.Name
+                    }).ToList()
+                };
+
+                return View(model);
+            }
+        }
+
+        [HttpPost]
+        [Authorize(Roles = nameof(UserRole.Kantinemedewerker))]
+        public IActionResult PackageForm(Guid? id, PackageViewModel model)
+        {
+            if (id != null)
+            {
+                var package = _packageRepository.GetPackageById(id.Value);
+                if (package == null)
+                {
+                    return NotFound();
+                }
+
+                var products = _productRepository
+                    .GetAll()
+                    .Where(p => model.SelectedProducts.Contains(p.Id))
+                    .ToList();
+
+                UpdatePackageFromModel(package, model, products);
+                _packageRepository.Update(package);
+                return RedirectToAction("MyCanteen", "CanteenWorker");
+            }
+            else
+            {
+                if (!ModelState.IsValid)
+                {
+                    model.Products = GetAllProducts()
+                        .Select(product => new ProductViewModel
+                        {
+                            ProductId = product.Id,
+                            Name = product.Name,
+                            IsAlcoholic = product.IsAlcoholic,
+                            Photo = product.PhotoUrl
+                        }).ToList();
+
+                    return View(model);
+                }
+
+                var canteen = GetCurrentCanteen();
+                model.Location = canteen!.CanteenLocation;
+                model.City = canteen.City;
+
+                if (!ValidatePickupDate(model.DateOfPickUp))
+                {
+                    return View(model);
+                }
+
+                var products = _productRepository
+                    .GetAll()
+                    .Where(p => model.SelectedProducts.Contains(p.Id))
+                    .ToList();
+
+                var package = CreateNewPackage(model, canteen, products);
+                _packageRepository.Add(package);
+                return RedirectToAction("MyCanteen", "CanteenWorker");
+            }
+        }
+
+        [HttpPost]
+        [Authorize(Roles = nameof(UserRole.Kantinemedewerker))]
+        public IActionResult Delete(Guid id)
+        {
+            var package = _packageRepository.GetPackageById(id);
+            if (package == null)
+            {
+                return NotFound();
+            }
+
+            var success = _packageRepository.Delete(package);
+            if (!success)
+            {
+                ModelState.AddModelError(string.Empty, "An error occurred while deleting the package.");
+                return View("Error");
+            }
+            return RedirectToAction("MyCanteen", "CanteenWorker");
+        }
+
+        private Guid? GetCurrentCanteenWorkerId()
+        {
+            var canteenWorkerId = _userManager.GetUserId(User);
+            if (canteenWorkerId == null)
+            {
+                return null;
+            }
+
+            return Guid.Parse(canteenWorkerId);
+        }
+
+        private Canteen? GetCurrentCanteen()
+        {
+            var canteenWorkerId = GetCurrentCanteenWorkerId();
+            if (canteenWorkerId == null)
+            {
+                return null;
+            }
+
+            return _canteenService.GetCanteenOfCanteenWorker(canteenWorkerId.Value);
+        }
+
+        private bool IsUserAuthorizedForPackage(Canteen canteen, Package package)
+        {
+            return package.Canteen?.CanteenLocation == canteen?.CanteenLocation &&
+                   package.Canteen?.City == canteen?.City;
+        }
+
+        private bool ValidatePickupDate(DateTime date)
+        {
+            if (date < DateTime.Now.Date)
+            {
+                ModelState.AddModelError("DateOfPickUp", "De opgegeven datum kan niet in het verleden liggen.");
+                return false;
+            }
+
+            if (date > DateTime.Now.AddDays(2))
+            {
+                ModelState.AddModelError("DateOfPickUp", "De opgegeven datum kan niet meer dan 2 dagen vooruit zijn.");
+                return false;
+            }
+
+            return true;
+        }
+
+        private List<Product> GetAllProducts()
+        {
+            return _productRepository.GetAll().ToList();
+        }
+
+        private void UpdatePackageFromModel(Package package, PackageViewModel model, List<Product> products)
+        {
+            package.Name = model.Name;
+            package.DateOfPickUp = model.DateOfPickUp;
+            package.TimeOfPickUp = model.TimeOfPickUp;
+            package.MealType = model.MealType;
+            package.Is18Plus = model.Is18Plus;
+            package.Price = model.Price;
+            package.Products = products;
+            package.Is18PlusStatus();
+        }
+
+        private Package CreateNewPackage(PackageViewModel model, Canteen canteen, List<Product> products)
+        {
+            var package = new Package
+            {
+                Name = model.Name,
+                DateOfPickUp = model.DateOfPickUp,
+                TimeOfPickUp = model.TimeOfPickUp,
+                MealType = model.MealType,
+                Is18Plus = model.Is18Plus,
+                Price = model.Price,
+                CanteenId = canteen.Id,
+                Canteen = canteen
+            };
+
+            foreach (var product in products)
+            {
+                package.AddProduct(product);
+            }
+
+            return package;
+        }
+    }
+}

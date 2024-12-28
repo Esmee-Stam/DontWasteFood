@@ -14,9 +14,16 @@ namespace DontWasteFood.Infrastructure.Repository
 
         }
 
+        public Student? getUserByEmail(string email)
+        {
+            return _dbContext.Students.FirstOrDefault(s => s.EmailAddress == email);
+        }
+
         public Student? getUserById(Guid id)
         {
             return _dbContext.Students.FirstOrDefault(s => s.IdentityUserId == id.ToString());
         }
+
+
     }
 }

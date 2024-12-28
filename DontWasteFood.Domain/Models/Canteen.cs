@@ -1,14 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using DontWasteFood.Domain.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace DontWasteFood.Domain.Models
 {
     public class Canteen
     {
         [Key]
-        public Guid CanteenId { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
-        public required string City { get; set; }
+        public City City { get; set; }
 
         [Required]
         public required string CanteenLocation { get; set; } 

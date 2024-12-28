@@ -14,7 +14,7 @@ namespace DontWasteFood.UI.Models
         public required string EmployeeNumber { get; set; }
 
         [Required(ErrorMessage = "Stad is verplicht.")]
-        public required string City { get; set; }
+        public required City City { get; set; }
 
         [Required(ErrorMessage = "Gebouw van kantine is verplicht.")]
         public required string CanteenLocation { get; set; }

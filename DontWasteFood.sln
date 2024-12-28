@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontWasteFood.UI", "DontWas
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontWasteFood.DomainServices", "DontWasteFood.DomainServices\DontWasteFood.DomainServices.csproj", "{10CA51F2-BDF4-449E-9141-6FDFF6E984C6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontWasteFood.UI.Test", "DontWasteFood.UI.Test\DontWasteFood.UI.Test.csproj", "{571F7538-D380-4B6E-BD47-9284697465AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontWasteFood.GraphQL", "DontWasteFood.GraphQL\DontWasteFood.GraphQL.csproj", "{E8EB5D6A-1FE1-4134-BC8C-CD4C05E53697}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{10CA51F2-BDF4-449E-9141-6FDFF6E984C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10CA51F2-BDF4-449E-9141-6FDFF6E984C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10CA51F2-BDF4-449E-9141-6FDFF6E984C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{571F7538-D380-4B6E-BD47-9284697465AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{571F7538-D380-4B6E-BD47-9284697465AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{571F7538-D380-4B6E-BD47-9284697465AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{571F7538-D380-4B6E-BD47-9284697465AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8EB5D6A-1FE1-4134-BC8C-CD4C05E53697}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8EB5D6A-1FE1-4134-BC8C-CD4C05E53697}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8EB5D6A-1FE1-4134-BC8C-CD4C05E53697}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8EB5D6A-1FE1-4134-BC8C-CD4C05E53697}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -87,11 +87,11 @@ namespace DontWasteFood.UI.Controllers
                     await _userManager.AddToRoleAsync(user, role);
                     var student = new Student
                     {
-                        StudentId = Guid.NewGuid(),
+                        Id = Guid.NewGuid(),
                         Name = model.Name,
                         StudentNumber = model.StudentNumber,
                         EmailAddress = model.EmailAddress,
-                        City = model.StudyCity,
+                        City = model.City,
                         IdentityUserId = user.Id
                     };
 
@@ -138,12 +138,12 @@ namespace DontWasteFood.UI.Controllers
                 {
                     await _userManager.AddToRoleAsync(user, role);
 
-                    var canteen = _canteenRepository.findByLocation(model.City, model.CanteenLocation);
+                    var canteen = _canteenRepository.FindByLocation(model.City, model.CanteenLocation);
                     if(canteen == null)
                     {
                         canteen = new Canteen
                         {
-                            CanteenId = Guid.NewGuid(),
+                            Id = Guid.NewGuid(),
                             CanteenLocation = model.CanteenLocation,
                             City = model.City
                         };
@@ -152,11 +152,11 @@ namespace DontWasteFood.UI.Controllers
 
                     var canteenWorker = new CanteenWorker
                     {
-                        CanteenWorkerId = Guid.NewGuid(),
+                        Id = Guid.NewGuid(),
                         Name = model.Name,
                         EmployeeNumber = model.EmployeeNumber,
                         IdentityUserId = user.Id,
-                        CanteenId = canteen.CanteenId,
+                        CanteenId = canteen.Id,
                         Canteen = canteen
                     };
 
