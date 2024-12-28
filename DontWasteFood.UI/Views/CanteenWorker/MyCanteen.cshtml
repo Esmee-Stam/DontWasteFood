@@ -1,6 +1,6 @@
 ﻿@model List<PackageViewModel>
 @{
-    ViewData["Title"] = "Andere kantines";
+    ViewData["Title"] = "Mijn kantine";
     Layout = "_Layout";
 }
 
@@ -18,6 +18,12 @@
                     <a type="button" class="btn" asp-controller="CanteenWorker" asp-action="Overview">Terug</a>
                 </div>
 
+                <div class="d-flex icon-container justify-content-end mt-2 mb-0 me-5">
+                    <a asp-controller="Package" asp-action="PackageForm" class="icon-link">
+                        <i class="bi bi-plus-circle"></i>
+                    </a>
+                </div>
+
                 @if(Model == null || Model.Count == 0) {
                     <div class="alert alert-info" role="alert">
                         Momenteel zijn er nog geen maaltijdpakketten beschikbaar.
@@ -26,20 +32,35 @@
                 else {
                     @foreach (var package in Model) {
                         <div class="box me-auto ms-auto card-title position-relative">
+                           
                             <div class="row detail-row mt-2">
                                 <div class="col-6 detail-label"><h2>Naam:</h2></div>
                                 <div class="col-6 detail-value text-right"><h2>@package.Name</h2></div>
                             </div>
                         </div>
 
-                        <div class="details-box mx-auto">
+                        <div class="details-box mx-auto position-relative">
+                            <a asp-action="PackageForm" asp-controller="Package" asp-route-id="@package.PackageId" class="icon-link position-absolute top-0 end-0 me-5 mt-2">
+                                <i class="bi bi-pencil-square"></i>
+                            </a>
+
+
+                            <form asp-controller="Package" asp-action="Delete" method="post" style="display:inline;">
+                                <input type="hidden" name="id" value="@package.PackageId" />
+                                <button type="submit" class="icon-link position-absolute top-0 end-0 mt-2" style="border: none; background: none; cursor: pointer;">
+                                    <i class="bi bi-trash-fill"></i>
+                                </button>
+                            </form>
+
+
+
                             <div class="row detail-row mb-1">
                                 <div class="col-6 detail-label"><strong>Datum:</strong></div>
                                 <div class="col-6 detail-value"><p>@package.DateOfPickUp.ToString("dd-MM-yyyy")</p></div>
                             </div>
                             <div class="row detail-row mb-1">
                                 <div class="col-6 detail-label"><strong>Maaltijdtype:</strong></div>
-                                <div class="col-6 detail-value"><p>@package.MealType</p></div>
+                                <div class="col-6 detail-value"><p>@package.MealType.ToString().Replace("_", " ")</p></div>
                             </div>
                             <div class="row detail-row mb-1">
                                 <div class="col-6 detail-label"><strong>Locatie:</strong></div>

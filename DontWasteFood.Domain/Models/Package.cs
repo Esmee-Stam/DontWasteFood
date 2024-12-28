@@ -46,8 +46,13 @@ namespace DontWasteFood.Domain.Models
             Products.Add(product);
             Is18PlusStatus();
         }
+        public void RemoveProduct(Product product)
+        {
+            Products.Remove(product);
+            Is18PlusStatus();
+        }
 
-        private void Is18PlusStatus()
+        public void Is18PlusStatus()
         {
             Is18Plus = Products.Any(p => p.IsAlcoholic);
         }

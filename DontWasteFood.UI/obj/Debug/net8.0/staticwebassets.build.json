@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "xgyVAT3H/mdttZUVCL5/7kZiX/IpAC+vzsTX2DJ/Ko4=",
+  "Hash": "KzSh2hFhgr6PI8cKbWojMdQaPhh+F9EU+aNJIwgKXvs=",
   "Source": "DontWasteFood.UI",
   "BasePath": "_content/DontWasteFood.UI",
   "Mode": "Default",
@@ -94,8 +94,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "bj5id0v4le",
-      "Integrity": "efa8ROosIJfNOSfIPApTFQWd41FBmlqTYOd1+azySx8=",
+      "Fingerprint": "6rk025avxg",
+      "Integrity": "7sA1aepDnOHS0F97qaEI0Vm4VKCu1exv52xPl6+y0Eo=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\styles.css"
@@ -1676,7 +1676,7 @@
       ]
     },
     {
-      "Route": "css/styles.bj5id0v4le.css",
+      "Route": "css/styles.6rk025avxg.css",
       "AssetFile": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.UI\\wwwroot\\css\\styles.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -1686,7 +1686,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5056"
+          "Value": "5089"
         },
         {
           "Name": "Content-Type",
@@ -1694,11 +1694,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"efa8ROosIJfNOSfIPApTFQWd41FBmlqTYOd1+azySx8=\""
+          "Value": "\"7sA1aepDnOHS0F97qaEI0Vm4VKCu1exv52xPl6+y0Eo=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 20 Nov 2024 17:51:47 GMT"
+          "Value": "Fri, 27 Dec 2024 13:27:20 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1708,7 +1708,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "bj5id0v4le"
+          "Value": "6rk025avxg"
         },
         {
           "Name": "label",
@@ -1716,7 +1716,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-efa8ROosIJfNOSfIPApTFQWd41FBmlqTYOd1+azySx8="
+          "Value": "sha256-7sA1aepDnOHS0F97qaEI0Vm4VKCu1exv52xPl6+y0Eo="
         }
       ]
     },
@@ -1731,7 +1731,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5056"
+          "Value": "5089"
         },
         {
           "Name": "Content-Type",
@@ -1739,11 +1739,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"efa8ROosIJfNOSfIPApTFQWd41FBmlqTYOd1+azySx8=\""
+          "Value": "\"7sA1aepDnOHS0F97qaEI0Vm4VKCu1exv52xPl6+y0Eo=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 20 Nov 2024 17:51:47 GMT"
+          "Value": "Fri, 27 Dec 2024 13:27:20 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1753,7 +1753,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-efa8ROosIJfNOSfIPApTFQWd41FBmlqTYOd1+azySx8="
+          "Value": "sha256-7sA1aepDnOHS0F97qaEI0Vm4VKCu1exv52xPl6+y0Eo="
         }
       ]
     },
@@ -1780,7 +1780,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 27 Dec 2024 11:07:10 GMT"
+          "Value": "Fri, 27 Dec 2024 11:51:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1817,7 +1817,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 27 Dec 2024 11:07:10 GMT"
+          "Value": "Fri, 27 Dec 2024 11:51:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1862,7 +1862,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 27 Dec 2024 11:07:10 GMT"
+          "Value": "Fri, 27 Dec 2024 11:51:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1907,7 +1907,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 27 Dec 2024 11:07:10 GMT"
+          "Value": "Fri, 27 Dec 2024 11:51:37 GMT"
         },
         {
           "Name": "Cache-Control",

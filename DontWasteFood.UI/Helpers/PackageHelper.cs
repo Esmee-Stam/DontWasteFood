@@ -20,7 +20,7 @@ namespace DontWasteFood.UI.Helpers
             }).ToList();
         }
 
-        public static PackageViewModel ConvertToPackageWithProdcutsViewModel(Package package, List<Product> products)
+        public static PackageViewModel ConvertToPackageWithProductsViewModel(Package package, List<Product> products)
         {
             return new PackageViewModel
             {
@@ -40,6 +40,28 @@ namespace DontWasteFood.UI.Helpers
                     IsAlcoholic = product.IsAlcoholic,
                     Photo = product.PhotoUrl
                 }).ToList()
+            };
+        }
+
+        public static PackageViewModel ConvertToPackageWithSelectedProducts(Package package, List<Product> products)
+        {
+            return new PackageViewModel
+            {
+                PackageId = package.Id,
+                Name = package.Name,
+                MealType = package.MealType,
+                Price = package.Price,
+                DateOfPickUp = package.DateOfPickUp,
+                TimeOfPickUp = package.TimeOfPickUp,
+                Location = package.Canteen!.CanteenLocation,
+                City = package.Canteen!.City,
+                Is18Plus = package.Is18Plus,
+                Products = products.Select(product => new ProductViewModel
+                {
+                    ProductId = product.Id,
+                    Name = product.Name
+                }).ToList(),
+                SelectedProducts = package.Products.Select(p => p.Id).ToList()
             };
         }
 

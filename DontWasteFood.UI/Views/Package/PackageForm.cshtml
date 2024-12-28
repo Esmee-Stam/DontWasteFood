@@ -1,0 +1,142 @@
+﻿@using DontWasteFood.Domain.Enums
+@{
+    ViewData["Title"] = "Maaltijdpakket formulier";
+    Layout = "_Layout";
+}
+
+
+
+<partial name="_CanteenWorkerMenu" />
+
+@model PackageViewModel
+<div class="container mt-5 pt-5">
+    <div class="d-flex justify-content-center">
+        <div class="card mb-2 mt-2 shadow">
+            <div class="card-header text-center">
+                <h2>Maaltijdpakket formulier</h2>
+            </div>
+
+            <form method="post" asp-action="PackageForm">
+
+                <div class="card-body">
+
+                    <div class="d-flex justify-content-end mb-3">
+                        <a type="button" class="btn" asp-controller="CanteenWorker" asp-action="MyCanteen">Terug</a>
+                    </div>
+
+                    <h2 class="mb-3">Voer hier de gegevens in:</h2>
+                    <!--Name-->
+                    <div class="row mb-3">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <label asp-for="Name" class="card-text">Beschrijvende naam:</label>
+                            <input 
+                                class="form-control" 
+                                placeholder="Beschrijvende naam"
+                                type="text"
+                                asp-for="Name"/>
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <!--Mealtype-->
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <label asp-for="MealType" class="card-text">Type van de maaltijd:</label>
+                            <select class="form-control" asp-for="MealType">
+                                
+                                @foreach (var mealType in Enum.GetValues(typeof(MealType)))
+                                {
+                                    <option value="@mealType">@mealType.ToString()!.Replace("_", " ")</option>
+                                }))
+                            </select>
+                            <span asp-validation-for="MealType" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <!--Price-->
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <label asp-for="Price">Prijs:</label>
+                            <input 
+                                class="form-control"
+                                type="number"
+                                asp-for="Price"
+                                step="0.01" />
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!--Location-->
+                    <h2 class="mt-3">Locatie:</h2>
+                    <div class="row mb-3">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <label asp-for="Location" class ="card-text">Gebouw van de kantine:</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Gebouw"
+                                asp-for="Location"
+                                
+                                />
+                            <span asp-validation-for="Location" class="text-danger"></span>
+
+                        </div>
+
+                        <!--City-->
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <label asp-for="City" class="card-text">Stad:</label>
+                            <input type="text"
+                                   class="form-control"
+                                   placeholder="Stad"
+                                   asp-for="City"
+                                   />
+                            <span asp-validation-for="City" class="text-danger"></span>
+
+                        </div>
+                    </div>
+
+                    <h2 class="mt-3">Ophaaldatum en -tijdstip:</h2>
+                    <div class="row mb-3">
+                        <!--Date Of PickUp-->
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <label asp-for="DateOfPickUp" class ="card-text">Datum van ophalen:</label>
+                            <input
+                                type="date"
+                                asp-for="DateOfPickUp"
+                                class="form-control"
+                                min="@DateTime.Now.ToString("yyyy-MM-dd")"/>
+                            <span asp-validation-for="DateOfPickUp" class="text-danger"></span>
+                        </div>
+
+                        <!--Time Of PickUp-->
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <label asp-for="TimeOfPickUp" class="card-text">Tijd van ophalen:</label>
+                            <input 
+                                type="time"
+                                value="@Model.TimeOfPickUp.ToString("HH:mm")"
+                                asp-for="TimeOfPickUp"
+                                class="form-control"
+                                   />
+                            <span asp-validation-for="TimeOfPickUp" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <h2 class="mt-3">Producten:</h2>
+                    <div class="row mb-3">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <label class="card-text" asp-for="SelectedProducts">Kies hier de product(en):</label>
+                            <select id="productSelect" class="form-control" asp-for="SelectedProducts">
+                                @foreach (var product in Model.Products)
+                                {
+                                    <option value="@product.ProductId">@product.Name</option>
+                                }
+                            </select>
+                            <span asp-validation-for="SelectedProducts" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end align-items-center mt-3">
+                        <button class="btn" type="submit">Opslaan</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

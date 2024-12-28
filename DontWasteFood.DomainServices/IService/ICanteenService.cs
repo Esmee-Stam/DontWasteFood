@@ -8,5 +8,7 @@ namespace DontWasteFood.DomainServices.IService
         ICollection<Package> GetPackagesForCanteen(Guid canteenWorkerId);
 
         ICollection<Package> GetPackagesForOtherCanteen(Guid canteenWorkerId);
+
+        Canteen? GetCanteenOfCanteenWorker(Guid canteenWorkerId);
     }
 }

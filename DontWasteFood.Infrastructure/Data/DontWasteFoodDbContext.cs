@@ -144,7 +144,7 @@ namespace DontWasteFood.Infrastructure.Data
                 {
                     Id = productId3,
                     Name = "Cola",
-                    IsAlcoholic = true,
+                    IsAlcoholic = false,
                     PhotoUrl = "/images/cola.jpg"
                 },
                 new Product
