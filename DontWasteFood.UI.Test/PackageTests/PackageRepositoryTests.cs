@@ -364,6 +364,54 @@ namespace DontWasteFood.UI.Test.PackageTests
             //Assert
             Assert.False(canReserve);
         }
+
+        [Fact]
+        public void Student_Can_See_Products_In_Package()
+        {
+            // Arrange
+            var packageRepo = Substitute.For<IPackageRepository>();
+            
+            var products = new List<Product>
+            {
+                new Product
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Broodje gezond",
+                    IsAlcoholic = false
+                },
+                new Product
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Panini kaas & ham",
+                    IsAlcoholic = false
+                },
+       
+            };
+
+            var package = new Package
+            {
+                Id = Guid.NewGuid(),
+                Name = "Lunchpakket",
+                DateOfPickUp = DateTime.Now,
+                TimeOfPickUp = DateTime.Now.AddHours(1),
+                Price = 15.0m,
+                MealType = MealType.Anders,
+                Products = products
+            };
+
+            packageRepo.GetPackageById(package.Id).Returns(package);
+
+            // Act
+            var result = packageRepo.GetPackageById(package.Id);
+
+            // Assert
+            Assert.NotNull(result);  
+            Assert.Equal(2, result.Products.Count); 
+            Assert.Contains(result.Products, p => p.Name == "Broodje gezond");  
+            Assert.Contains(result.Products, p => p.Name == "Panini kaas & ham");  
+            
+        }
+
     }
 }
 
