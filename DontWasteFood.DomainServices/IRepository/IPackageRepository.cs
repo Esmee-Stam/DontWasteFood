@@ -18,6 +18,7 @@ namespace DontWasteFood.DomainServices.IRepository
 
         bool Delete(Package package);
 
+        public Package? GetReservationsByDateForStudent(Guid studentId, DateTime dateOfPickUp);
 
     }
 }

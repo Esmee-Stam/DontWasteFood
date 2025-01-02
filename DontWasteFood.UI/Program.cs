@@ -31,16 +31,14 @@ builder.Services.AddSession(s =>
     s.Cookie.HttpOnly = true;
     s.Cookie.Name = "CookieName";
     s.Cookie.IsEssential = false;
-    s.Cookie.SecurePolicy = CookieSecurePolicy.Always;  // Alleen versturen via HTTPS
+    s.Cookie.SecurePolicy = CookieSecurePolicy.Always;
 });
 
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {
     options.CheckConsentNeeded = context => true;
-    options.MinimumSameSitePolicy = SameSiteMode.Lax; // Lax is vaak goed voor de meeste gevallen
+    options.MinimumSameSitePolicy = SameSiteMode.Lax;
 });
-
-
 
 builder.Services.AddScoped<ICanteenWorkerRepository, CanteenWorkerRepository>();
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
@@ -49,6 +47,7 @@ builder.Services.AddScoped<IPackageRepository, PackageRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IPackageService, PackageService>();
 builder.Services.AddScoped<ICanteenService, CanteenService>();
+builder.Services.AddScoped<IReservationService, ReservationService>();
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 {

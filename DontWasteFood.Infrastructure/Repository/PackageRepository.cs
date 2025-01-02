@@ -68,16 +68,23 @@ namespace DontWasteFood.Infrastructure.Repository
                 .FirstOrDefault(p => p.Id == id);
         }
 
+        public Package? GetReservationsByDateForStudent(Guid studentId, DateTime dateOfPickUp)
+        {
+           return _dbContext.Packages.Include(p => p.ReservedBy).FirstOrDefault(p => p.StudentId == studentId && p.DateOfPickUp == dateOfPickUp);
+        }
+
         public bool Update(Package package)
         {
-            if (package.ReservedBy != null && package.StudentId != null)
-            {
-                return false;
-            }
+            //if (package.ReservedBy != null && package.StudentId != null)
+            //{
+            //    return false;
+            //}
 
             _dbContext.Packages.Update(package);
             _dbContext.SaveChanges();
             return true;
         }
+
+
     }
 }
