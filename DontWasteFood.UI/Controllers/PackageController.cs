@@ -2,6 +2,7 @@
 using DontWasteFood.Domain.Models;
 using DontWasteFood.DomainServices.IRepository;
 using DontWasteFood.DomainServices.IService;
+using DontWasteFood.Infrastructure.Service;
 using DontWasteFood.UI.Helpers;
 using DontWasteFood.UI.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -151,7 +152,7 @@ namespace DontWasteFood.UI.Controllers
                     .ToList();
 
                 var package = CreateNewPackage(model, canteen, products);
-                _packageRepository.Add(package);
+                _packageService.AddPackage(package);
                 return RedirectToAction("MyCanteen", "CanteenWorker");
             }
         }
@@ -166,12 +167,8 @@ namespace DontWasteFood.UI.Controllers
                 return NotFound();
             }
 
-            var success = _packageRepository.Delete(package);
-            if (!success)
-            {
-                ModelState.AddModelError(string.Empty, "An error occurred while deleting the package.");
-                return View("Error");
-            }
+            _packageService.DeletePackage(package);
+           
             return RedirectToAction("MyCanteen", "CanteenWorker");
         }
 

@@ -10,7 +10,7 @@
     <div class="d-flex justify-content-center">
         <div class="card mb-2 mt-2 shadow">
             <div class="card-header">
-                <h2>Andere kantines</h2>
+                <h2>Mijn kantine</h2>
             </div>
 
             <div class="card-body">
@@ -40,20 +40,20 @@
                         </div>
 
                         <div class="details-box mx-auto position-relative">
-                            <a asp-action="PackageForm" asp-controller="Package" asp-route-id="@package.PackageId" class="icon-link position-absolute top-0 end-0 me-5 mt-2">
-                                <i class="bi bi-pencil-square"></i>
-                            </a>
+                            @if(package.ReservedBy == null) {
+                                <a asp-action="PackageForm" asp-controller="Package" asp-route-id="@package.PackageId" class="icon-link position-absolute top-0 end-0 me-5 mt-2">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
 
+                                <form asp-controller="Package" asp-action="Delete" method="post" style="display:inline;">
+                                    <input type="hidden" name="id" value="@package.PackageId" />
+                                    <button type="submit" class="icon-link position-absolute top-0 end-0 mt-2" style="border: none; background: none; cursor: pointer;">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </button>
+                                </form>
 
-                            <form asp-controller="Package" asp-action="Delete" method="post" style="display:inline;">
-                                <input type="hidden" name="id" value="@package.PackageId" />
-                                <button type="submit" class="icon-link position-absolute top-0 end-0 mt-2" style="border: none; background: none; cursor: pointer;">
-                                    <i class="bi bi-trash-fill"></i>
-                                </button>
-                            </form>
-
-
-
+                            } 
+                          
                             <div class="row detail-row mb-1">
                                 <div class="col-6 detail-label"><strong>Datum:</strong></div>
                                 <div class="col-6 detail-value"><p>@package.DateOfPickUp.ToString("dd-MM-yyyy")</p></div>
