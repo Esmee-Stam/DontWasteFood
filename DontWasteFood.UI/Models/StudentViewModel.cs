@@ -9,6 +9,7 @@ namespace DontWasteFood.UI.Models
         public required string Name { get; set; }
 
         [Required(ErrorMessage = "Geboortedatum is verplicht.")]
+        [DataType(DataType.Date)]
         public DateTime DateOfBirth { get; set; }
 
         [Required(ErrorMessage = "Studentennummer is verplicht.")]
@@ -29,12 +30,11 @@ namespace DontWasteFood.UI.Models
         [DataType(DataType.Password)]
         public required string Password { get; set; }
 
-        [Required(ErrorMessage = "Bevesting wachtwoord is verplicht.")]
+        [Required(ErrorMessage = "Bevestig wachtwoord is verplicht.")]
         [Compare("Password", ErrorMessage = "Wachtwoorden komen niet overeen.")]
         [DataType(DataType.Password)]
         public required string PasswordConfirmation { get; set; }
         public UserRole Role { get; set; }
         public string ReturnUrl = "/";
-
     }
 }

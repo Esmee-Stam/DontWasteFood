@@ -48,6 +48,7 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IPackageService, PackageService>();
 builder.Services.AddScoped<ICanteenService, CanteenService>();
 builder.Services.AddScoped<IReservationService, ReservationService>();
+builder.Services.AddScoped<IStudentService, StudentService>();
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 {

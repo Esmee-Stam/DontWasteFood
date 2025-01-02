@@ -2,6 +2,7 @@
 using DontWasteFood.Domain.Models;
 using DontWasteFood.DomainServices;
 using DontWasteFood.DomainServices.IRepository;
+using DontWasteFood.DomainServices.IService;
 using DontWasteFood.UI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -15,12 +16,14 @@ namespace DontWasteFood.UI.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IStudentService _studentService;
         private readonly IStudentRepository _studentRepository;
         private readonly ICanteenWorkerRepository _canteenWorkerRepository;
         private readonly ICanteenRepository _canteenRepository;
 
         public AccountController(UserManager<IdentityUser> userManager, 
             SignInManager<IdentityUser> signInManager,
+            IStudentService studentService,
             RoleManager<IdentityRole> roleManager,
             IStudentRepository studentRepository,
             ICanteenWorkerRepository canteenWorkerRepository,
@@ -29,6 +32,7 @@ namespace DontWasteFood.UI.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
+            _studentService = studentService;
             _studentRepository = studentRepository;
             _canteenWorkerRepository = canteenWorkerRepository;
             _canteenRepository = canteenRepository;
@@ -67,8 +71,17 @@ namespace DontWasteFood.UI.Controllers
                 return View(model);
             }
 
+            if ((DateTime.Now - model.DateOfBirth).TotalDays / 365 < 16)
+            {
+                ModelState.AddModelError("DateOfBirth", "Je moet minimaal 16 jaar oud zijn.");
+                return View(model);
+
+            }
+
+            
             if (ModelState.IsValid)
             {
+                
                 var role = UserRole.Student.ToString();
                 if (!await _roleManager.RoleExistsAsync(role))
                 {
@@ -96,7 +109,7 @@ namespace DontWasteFood.UI.Controllers
                     };
 
                     student.UpdateDateOfBirth(model.DateOfBirth);
-                    _studentRepository.Add(student);
+                    _studentService.AddStudent(student);
                     return RedirectToAction("Login", "Account");
                 }
 
