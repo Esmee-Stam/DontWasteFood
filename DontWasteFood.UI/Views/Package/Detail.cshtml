@@ -4,7 +4,12 @@
     Layout = "_Layout";
 }
 
-<partial name="_StudentMenu" />
+@if(User.IsInRole("Student")) {
+    <partial name="_StudentMenu" />
+} else {
+    <partial name="_CanteenWorkerMenu" />
+
+}
 
 <div class="container mt-5 pt-5">
     <div class="d-flex justify-content-center">
@@ -15,7 +20,15 @@
 
             <div class="card-body">
                 <div class="d-flex justify-content-end mb-3">
-                    <a type="button" class="btn" asp-controller="Student" asp-action="Overview">Terug</a>   
+                    @if (User.IsInRole("Student"))
+                    {
+                        <a type="button" class="btn" asp-controller="Student" asp-action="Overview">Terug</a>
+                    } 
+                    else 
+                    {
+                        <a type="button" class="btn" asp-controller="CanteenWorker" asp-action="Overview">Terug</a>
+
+                    }
                 </div>
                 <div class="box me-auto ms-auto card-title">
                     <div class="row detail-row mt-2">
@@ -61,24 +74,31 @@
 
                 <div class="box mx-auto">
 
-                        @if (Model.ReservedBy != null)
+                    @if (Model.ReservedBy != null)
+                    {
+                        <div class="row detail-row mt-2">
+                            <span><strong>Gereserveerd door: @Model.ReservedBy</strong></span>
+                        </div>
+                    }
+                    else
+                    {
+                        @if (User.IsInRole("Student"))
                         {
                             <div class="row detail-row mt-2">
-
-                            <span><strong>Gereserveerd door: @Model.ReservedBy</strong></span>
+                                <form asp-controller="Package" asp-action="Reservation" method="post">
+                                    <input type="hidden" name="packageId" value="@Model.PackageId" />
+                                    <button type="submit" class="btn btn-primary">Reserveer</button>
+                                </form>
                             </div>
                         }
                         else
                         {
-                        <div class="row detail-row mt-2">
-                            <form asp-controller="Package" asp-action="Reservation" method="post">
-                                <input type="hidden" name="packageId" value="@Model.PackageId" />
-                                <button type="submit" class="btn btn-primary">Reserveer</button>
-                            </form>
-                        </div>
-
-
+                            <div class="row detail-row mt-2">
+                                <span><strong>Alleen studenten kunnen reserveren.</strong></span>
+                            </div>
                         }
+                    }
+
                    
                 </div>
 

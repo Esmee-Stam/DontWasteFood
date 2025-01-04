@@ -52,9 +52,8 @@ namespace DontWasteFood.Domain.Models
             Is18Plus = Products.Any(p => p.IsAlcoholic);
         }
 
-        public bool CanBeReserved(Student? student)
+        public bool CanBeReserved(Student? student = null)
         {
-            student = null;
             if(Is18Plus)
             {
                 Student? reservedStudent = null;
