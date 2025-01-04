@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Geen Toegang";
+    Layout = "_Layout";
+}
+
+<div class="container mt-5 pt-5">
+    <div class="d-flex justify-content-center">
+        <div class="card mb-2 mt-2 shadow">
+            <div class="card-header text-center">
+                <h2>Geen toegang!</h2>
+            </div>
+            
+            <div class="card-body">
+                <div class="d-flex justify-content-end align-items-center mt-3 mb-5">
+                    @if (User.IsInRole("Kantinemedewerker")) {
+                        <a type="button" class="btn btn-primary" asp-controller="CanteenWorker" asp-action="Overview">Terug</a>
+                    }
+                    else {
+                        <a type="button" class="btn btn-primary" asp-controller="Student" asp-action="Overview">Terug</a>
+                    }
+                </div>
+
+                <div class="container text-center py-5">
+                    <h1 class="display-3 text-danger">404 - Pagina niet gevonden</h1>
+                    <p class="lead text-center">De pagina die je zoekt bestaat niet of je hebt geen toegang tot de pagina.</p>
+                    <img src="~/images/logo.png" alt="Logo" class="img-fluid mb-4 mt-3" style="width:30%; height: 60%;">
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

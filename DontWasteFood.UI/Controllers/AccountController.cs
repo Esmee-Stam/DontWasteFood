@@ -11,32 +11,19 @@ using Microsoft.AspNetCore.Mvc;
 namespace DontWasteFood.UI.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController(UserManager<IdentityUser> userManager,
+        SignInManager<IdentityUser> signInManager,
+        IStudentService studentService,
+        RoleManager<IdentityRole> roleManager,
+        ICanteenWorkerRepository canteenWorkerRepository,
+        ICanteenRepository canteenRepository) : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly IStudentService _studentService;
-        private readonly IStudentRepository _studentRepository;
-        private readonly ICanteenWorkerRepository _canteenWorkerRepository;
-        private readonly ICanteenRepository _canteenRepository;
-
-        public AccountController(UserManager<IdentityUser> userManager, 
-            SignInManager<IdentityUser> signInManager,
-            IStudentService studentService,
-            RoleManager<IdentityRole> roleManager,
-            IStudentRepository studentRepository,
-            ICanteenWorkerRepository canteenWorkerRepository,
-            ICanteenRepository canteenRepository)
-        {
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _roleManager = roleManager;
-            _studentService = studentService;
-            _studentRepository = studentRepository;
-            _canteenWorkerRepository = canteenWorkerRepository;
-            _canteenRepository = canteenRepository;
-        }
+        private readonly UserManager<IdentityUser> _userManager = userManager;
+        private readonly SignInManager<IdentityUser> _signInManager = signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager = roleManager;
+        private readonly IStudentService _studentService = studentService;
+        private readonly ICanteenWorkerRepository _canteenWorkerRepository = canteenWorkerRepository;
+        private readonly ICanteenRepository _canteenRepository = canteenRepository;
 
         [HttpGet]
         [AllowAnonymous]
@@ -238,7 +225,10 @@ namespace DontWasteFood.UI.Controllers
             return RedirectToAction("Login", "Account"); 
         }
 
-
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
     }
 }
 
