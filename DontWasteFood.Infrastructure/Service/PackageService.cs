@@ -12,12 +12,30 @@ namespace DontWasteFood.Infrastructure.Service
         private readonly IStudentRepository _studentRepository = studentRepository;
         private readonly IProductRepository _productRepository = productRepository;
 
+        public bool AddPackage(Package package)
+        {
+            if(package.DateOfPickUp > DateTime.Now.AddDays(2))
+            {
+                return false;   
+            }
+           _packageRepository.Add(package);
+            return true;
+        }
+
         public void UpdatePackage(Package package)
         {
             if(package.ReservedBy == null && package.StudentId == null)
             {
                 _packageRepository.Update(package);
                 
+            }
+        }
+
+        public void DeletePackage(Package package)
+        {
+            if(package.ReservedBy == null && package.StudentId == null)
+            {
+                _packageRepository.Delete(package);
             }
         }
 

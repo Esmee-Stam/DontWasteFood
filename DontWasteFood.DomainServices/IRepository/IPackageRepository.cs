@@ -14,9 +14,9 @@ namespace DontWasteFood.DomainServices.IRepository
 
         void Add(Package package);
 
-        bool Update(Package package);
+        void Update(Package package);
 
-        bool Delete(Package package);
+        void Delete(Package package);
 
         public Package? GetReservationsByDateForStudent(Guid studentId, DateTime dateOfPickUp);
 

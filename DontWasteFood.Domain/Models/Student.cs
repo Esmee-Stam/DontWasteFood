@@ -54,22 +54,23 @@ namespace DontWasteFood.Domain.Models
 
         public Student() { }
 
-        public void UpdateDateOfBirth(DateTime newDateOfBirth)
+        public bool UpdateDateOfBirth(DateTime newDateOfBirth)
         {
             if (newDateOfBirth == DateTime.Now)
             {
-                throw new Exception("Birth of date must not be in the future");
+                return false;
             }
 
             if (!Is16Yearsold(newDateOfBirth))
             {
-                throw new Exception("Student must be 16 years old to register");
+                return false;
             }
 
             DateOfBirth = newDateOfBirth;
+            return true;
         }
 
-        private bool Is16Yearsold(DateTime dateOfBirth)
+        public bool Is16Yearsold(DateTime dateOfBirth)
         {
             return (DateTime.Now - dateOfBirth).TotalDays / 365 >= 16;
         }

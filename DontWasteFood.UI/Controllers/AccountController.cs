@@ -2,6 +2,7 @@
 using DontWasteFood.Domain.Models;
 using DontWasteFood.DomainServices;
 using DontWasteFood.DomainServices.IRepository;
+using DontWasteFood.DomainServices.IService;
 using DontWasteFood.UI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -10,29 +11,19 @@ using Microsoft.AspNetCore.Mvc;
 namespace DontWasteFood.UI.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController(UserManager<IdentityUser> userManager,
+        SignInManager<IdentityUser> signInManager,
+        IStudentService studentService,
+        RoleManager<IdentityRole> roleManager,
+        ICanteenWorkerRepository canteenWorkerRepository,
+        ICanteenRepository canteenRepository) : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly IStudentRepository _studentRepository;
-        private readonly ICanteenWorkerRepository _canteenWorkerRepository;
-        private readonly ICanteenRepository _canteenRepository;
-
-        public AccountController(UserManager<IdentityUser> userManager, 
-            SignInManager<IdentityUser> signInManager,
-            RoleManager<IdentityRole> roleManager,
-            IStudentRepository studentRepository,
-            ICanteenWorkerRepository canteenWorkerRepository,
-            ICanteenRepository canteenRepository)
-        {
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _roleManager = roleManager;
-            _studentRepository = studentRepository;
-            _canteenWorkerRepository = canteenWorkerRepository;
-            _canteenRepository = canteenRepository;
-        }
+        private readonly UserManager<IdentityUser> _userManager = userManager;
+        private readonly SignInManager<IdentityUser> _signInManager = signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager = roleManager;
+        private readonly IStudentService _studentService = studentService;
+        private readonly ICanteenWorkerRepository _canteenWorkerRepository = canteenWorkerRepository;
+        private readonly ICanteenRepository _canteenRepository = canteenRepository;
 
         [HttpGet]
         [AllowAnonymous]
@@ -67,8 +58,17 @@ namespace DontWasteFood.UI.Controllers
                 return View(model);
             }
 
+            if ((DateTime.Now - model.DateOfBirth).TotalDays / 365 < 16)
+            {
+                ModelState.AddModelError("DateOfBirth", "Je moet minimaal 16 jaar oud zijn.");
+                return View(model);
+
+            }
+
+            
             if (ModelState.IsValid)
             {
+                
                 var role = UserRole.Student.ToString();
                 if (!await _roleManager.RoleExistsAsync(role))
                 {
@@ -96,7 +96,7 @@ namespace DontWasteFood.UI.Controllers
                     };
 
                     student.UpdateDateOfBirth(model.DateOfBirth);
-                    _studentRepository.Add(student);
+                    _studentService.AddStudent(student);
                     return RedirectToAction("Login", "Account");
                 }
 
@@ -225,7 +225,10 @@ namespace DontWasteFood.UI.Controllers
             return RedirectToAction("Login", "Account"); 
         }
 
-
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
     }
 }
 

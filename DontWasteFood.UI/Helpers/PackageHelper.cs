@@ -16,6 +16,7 @@ namespace DontWasteFood.UI.Helpers
                 Location = package.Canteen!.CanteenLocation,
                 City = package.Canteen!.City,
                 Is18Plus = package.Is18Plus,
+                ReservedBy = package.ReservedBy?.Name,
                 Price = package.Price
             }).ToList();
         }

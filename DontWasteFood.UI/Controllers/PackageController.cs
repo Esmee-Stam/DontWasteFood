@@ -2,6 +2,7 @@
 using DontWasteFood.Domain.Models;
 using DontWasteFood.DomainServices.IRepository;
 using DontWasteFood.DomainServices.IService;
+using DontWasteFood.Infrastructure.Service;
 using DontWasteFood.UI.Helpers;
 using DontWasteFood.UI.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -32,14 +33,7 @@ namespace DontWasteFood.UI.Controllers
             var package = _packageRepository.GetPackageById(id);
             if (package == null)
             {
-                Console.WriteLine("Package not found");
-                return NotFound();
-            }
-
-            if (!package.Products.Any())
-            {
-                Console.WriteLine("No products found in the package");
-                return NotFound();
+                return RedirectToAction("AccessDenied", "Account");
             }
 
             var model = PackageHelper.ConvertToPackageWithProductsViewModel(package, package.Products.ToList());
@@ -50,11 +44,12 @@ namespace DontWasteFood.UI.Controllers
         [Authorize(Roles = nameof(UserRole.Kantinemedewerker))]
         public IActionResult PackageForm(Guid? id)
         {
+            
             var canteen = GetCurrentCanteen();
             if (canteen == null)
             {
-                ModelState.AddModelError("Canteen", "Canteen not found");
-                return View("Error");
+                return RedirectToAction("AccessDenied", "Account");
+
             }
 
             if (id != null)
@@ -62,12 +57,17 @@ namespace DontWasteFood.UI.Controllers
                 var package = _packageRepository.GetPackageById(id.Value);
                 if (package == null)
                 {
-                    return NotFound();
+                    return RedirectToAction("OtherCanteen", "CanteenWorker");
+
+                }
+
+                if (package.ReservedBy != null)
+                {
+                    return RedirectToAction("AccessDenied", "Account");
                 }
 
                 if (!IsUserAuthorizedForPackage(canteen, package))
                 {
-                    ModelState.AddModelError("Unauthorized", "Je hebt geen toegang tot deze locatie.");
                     return RedirectToAction("OtherCanteen", "CanteenWorker");
                 }
 
@@ -108,7 +108,8 @@ namespace DontWasteFood.UI.Controllers
                 var package = _packageRepository.GetPackageById(id.Value);
                 if (package == null)
                 {
-                    return NotFound();
+                    return RedirectToAction("MyCanteen", "CanteenWorker");
+
                 }
 
                 var products = _productRepository
@@ -151,7 +152,7 @@ namespace DontWasteFood.UI.Controllers
                     .ToList();
 
                 var package = CreateNewPackage(model, canteen, products);
-                _packageRepository.Add(package);
+                _packageService.AddPackage(package);
                 return RedirectToAction("MyCanteen", "CanteenWorker");
             }
         }
@@ -163,15 +164,11 @@ namespace DontWasteFood.UI.Controllers
             var package = _packageRepository.GetPackageById(id);
             if (package == null)
             {
-                return NotFound();
+                return RedirectToAction("AccessDenied", "Account");
             }
 
-            var success = _packageRepository.Delete(package);
-            if (!success)
-            {
-                ModelState.AddModelError(string.Empty, "An error occurred while deleting the package.");
-                return View("Error");
-            }
+            _packageService.DeletePackage(package);
+           
             return RedirectToAction("MyCanteen", "CanteenWorker");
         }
 
@@ -182,13 +179,15 @@ namespace DontWasteFood.UI.Controllers
             var package = _packageRepository.GetPackageById(packageId);
             if (package == null)
             {
-                return NotFound();
+                return RedirectToAction("AccessDenied", "Account");
+
             }
 
             var studentId = _userManager.GetUserId(User);
             if (studentId == null)
             {
-                return NotFound();
+                return RedirectToAction("AccessDenied", "Account");
+
             }
 
             var result = _reservationService.ReservePackage(packageId, Guid.Parse(studentId));

@@ -24,6 +24,5 @@ namespace DontWasteFood.Infrastructure.Repository
             return _dbContext.Students.FirstOrDefault(s => s.IdentityUserId == id.ToString());
         }
 
-
     }
 }
