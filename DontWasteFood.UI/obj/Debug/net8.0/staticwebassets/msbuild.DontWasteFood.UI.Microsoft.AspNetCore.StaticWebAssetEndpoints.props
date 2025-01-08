@@ -16,25 +16,25 @@
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\styles.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"6rk025avxg"},{"Name":"integrity","Value":"sha256-7sA1aepDnOHS0F97qaEI0Vm4VKCu1exv52xPl6\u002By0Eo="},{"Name":"label","Value":"_content/DontWasteFood.UI/css/styles.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"5089"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u00227sA1aepDnOHS0F97qaEI0Vm4VKCu1exv52xPl6\u002By0Eo=\u0022"},{"Name":"Last-Modified","Value":"Tue, 31 Dec 2024 12:03:33 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"5089"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u00227sA1aepDnOHS0F97qaEI0Vm4VKCu1exv52xPl6\u002By0Eo=\u0022"},{"Name":"Last-Modified","Value":"Sat, 04 Jan 2025 14:54:22 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/DontWasteFood.UI/css/styles.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\styles.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-7sA1aepDnOHS0F97qaEI0Vm4VKCu1exv52xPl6\u002By0Eo="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"5089"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u00227sA1aepDnOHS0F97qaEI0Vm4VKCu1exv52xPl6\u002By0Eo=\u0022"},{"Name":"Last-Modified","Value":"Tue, 31 Dec 2024 12:03:33 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"5089"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u00227sA1aepDnOHS0F97qaEI0Vm4VKCu1exv52xPl6\u002By0Eo=\u0022"},{"Name":"Last-Modified","Value":"Sat, 04 Jan 2025 14:54:22 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/DontWasteFood.UI/DontWasteFood.UI.bundle.scp.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\DontWasteFood.UI.h2ol1sovur.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-GT7A3gsolHwJM1krydiX8I9Y4b2V\u002B0qfKeFCkCNRE0g="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1134"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022GT7A3gsolHwJM1krydiX8I9Y4b2V\u002B0qfKeFCkCNRE0g=\u0022"},{"Name":"Last-Modified","Value":"Sat, 04 Jan 2025 13:34:05 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1134"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022GT7A3gsolHwJM1krydiX8I9Y4b2V\u002B0qfKeFCkCNRE0g=\u0022"},{"Name":"Last-Modified","Value":"Wed, 08 Jan 2025 18:30:51 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/DontWasteFood.UI/DontWasteFood.UI.h2ol1sovur.bundle.scp.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\DontWasteFood.UI.h2ol1sovur.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"h2ol1sovur"},{"Name":"integrity","Value":"sha256-GT7A3gsolHwJM1krydiX8I9Y4b2V\u002B0qfKeFCkCNRE0g="},{"Name":"label","Value":"_content/DontWasteFood.UI/DontWasteFood.UI.bundle.scp.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1134"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022GT7A3gsolHwJM1krydiX8I9Y4b2V\u002B0qfKeFCkCNRE0g=\u0022"},{"Name":"Last-Modified","Value":"Sat, 04 Jan 2025 13:34:05 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1134"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022GT7A3gsolHwJM1krydiX8I9Y4b2V\u002B0qfKeFCkCNRE0g=\u0022"},{"Name":"Last-Modified","Value":"Wed, 08 Jan 2025 18:30:51 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/DontWasteFood.UI/favicon.61n19gt1b8.ico">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\favicon.ico'))</AssetFile>

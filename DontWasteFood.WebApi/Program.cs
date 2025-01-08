@@ -1,7 +1,9 @@
 using DontWasteFood.DomainServices;
 using DontWasteFood.DomainServices.IRepository;
+using DontWasteFood.DomainServices.IService;
 using DontWasteFood.Infrastructure.Data;
 using DontWasteFood.Infrastructure.Repository;
+using DontWasteFood.Infrastructure.Service;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,6 +13,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 builder.Services.AddScoped<ICanteenWorkerRepository, CanteenWorkerRepository>();
 builder.Services.AddScoped<IPackageRepository, PackageRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<ICanteenRepository, CanteenRepository>();
+builder.Services.AddScoped<IReservationService, ReservationService>();
+builder.Services.AddScoped<IPackageService, PackageService>();
 
 
 var connectionString = string.Empty;

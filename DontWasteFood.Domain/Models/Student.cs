@@ -1,5 +1,6 @@
 ﻿using DontWasteFood.Domain.Enums;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace DontWasteFood.Domain.Models
 {
@@ -30,6 +31,7 @@ namespace DontWasteFood.Domain.Models
 
         public string? IdentityUserId { get; set; }
 
+        [JsonIgnore]
         public ICollection<Package> Packages { get; set; } = new List<Package>();
 
         public Student(Guid id, string name, DateTime dateOfBirth, string studentNumber, string emailAddress, City city)

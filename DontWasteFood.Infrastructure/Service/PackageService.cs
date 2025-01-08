@@ -39,9 +39,9 @@ namespace DontWasteFood.Infrastructure.Service
             }
         }
 
-        ICollection<Package>? IPackageService.GetAllReservedPackagesByUserId(string email)
+        ICollection<Package>? IPackageService.GetAllReservedPackagesByUserId(Guid studentId)
         {
-            var student = _studentRepository.getUserByEmail(email);
+            var student = _studentRepository.getUserById(studentId);
 
             if (student == null)
             {
