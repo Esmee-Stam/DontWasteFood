@@ -70,9 +70,12 @@
                         }
                         else
                         {
-                            <div class="row detail-row mt-2 ms-1">
-                            <button type="submit" class="btn">Reserveer</button>
-                            </div>
+                        <div class="row detail-row mt-2">
+                            <form asp-controller="Package" asp-action="Reservation" method="post">
+                                <input type="hidden" name="packageId" value="@Model.PackageId" />
+                                <button type="submit" class="btn btn-primary">Reserveer</button>
+                            </form>
+                        </div>
 
 
                         }

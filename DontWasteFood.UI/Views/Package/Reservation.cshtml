@@ -1,0 +1,73 @@
+﻿@model PackageViewModel
+@{
+    ViewData["Title"] = "Reservering";
+    Layout = "_Layout";
+}
+
+<partial name="_StudentMenu" />
+<div class="container mt-5 pt-5">
+    <div class="d-flex justify-content-center">
+        <div class="card mb-2 mt-2 shadow">
+            <div class="card-header text-center">
+                @if (ViewBag.ErrorMessage != null)
+                {
+                    <h2>Geen reservering mogelijk!</h2>
+                }
+                else
+                {
+                    <h2>@Model.Name is succesvol gereserveerd!</h2>
+                }
+            </div>
+
+            <div class="card-body">
+                @if (ViewBag.ErrorMessage != null)
+                {
+                    <div class="alert alert-info" role="alert">
+                        @ViewBag.ErrorMessage
+                    </div>
+
+                    <div class="d-flex justify-content-end align-items-center mt-3 mb-5">
+                        <a type="button" class="btn btn-primary" asp-controller="Student" asp-action="Recommend">Terug</a>
+                    </div>
+                }
+                else
+                {
+
+                    <div class="details-box mx-auto">
+                        <div class="row detail-row mb-1">
+                            <div class="col-6 detail-label"><strong>Datum:</strong></div>
+                            <div class="col-6 detail-value"><p>@Model.DateOfPickUp.ToString("dd-MM-yyyy")</p></div>
+                        </div>
+                        <div class="row detail-row mb-1">
+                            <div class="col-6 detail-label"><strong>Maaltijdtype:</strong></div>
+                            <div class="col-6 detail-value"><p>@Model.MealType.ToString().Replace("_", " ")</p></div>
+                        </div>
+                        <div class="row detail-row mb-1">
+                            <div class="col-6 detail-label"><strong>Locatie:</strong></div>
+                            <div class="col-6 detail-value"><p>@Model.Location</p></div>
+                        </div>
+                        <div class="row detail-row mb-1">
+                            <div class="col-6 detail-label"><strong>Stad:</strong></div>
+                            <div class="col-6 detail-value"><p>@Model.City.ToString().Replace("_", " ")</p></div>
+                        </div>
+                        <div class="row detail-row mb-1">
+                            <div class="col-6 detail-label"><strong>18+ indicatie:</strong></div>
+                            <div class="col-6 detail-value"><p>@(Model.Is18Plus ? "Ja" : "Nee")</p></div>
+                        </div>
+                    </div>
+
+                    <div class="box mx-auto">
+                        <div class="row detail-row mt-2">
+                            <div class="col-6 detail-label"><h3>Prijs:</h3></div>
+                            <div class="col-6 detail-value text-right"><h3>€ @Model.Price</h3></div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end align-items-center mt-3 mb-5">
+                        <a type="button" class="btn btn-success" asp-controller="Package" asp-action="Detail" asp-route-id="@Model.PackageId">Details</a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

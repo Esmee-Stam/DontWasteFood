@@ -52,18 +52,36 @@ namespace DontWasteFood.Domain.Models
             Is18Plus = Products.Any(p => p.IsAlcoholic);
         }
 
-        public bool CanBeReserved()
+        public bool CanBeReserved(Student? student)
         {
-            if (Is18Plus && ReservedBy != null)
+            student = null;
+            if(Is18Plus)
             {
-                var studentAge = (DateTime.Now - ReservedBy.DateOfBirth).TotalDays / 365;
+                Student? reservedStudent = null;
+
+                if (student != null)
+                {
+                    reservedStudent = student;
+                } 
+                else
+                {
+                    reservedStudent = ReservedBy;
+                }
+
+                if (reservedStudent == null)
+                {
+                    return false;
+                }
+
+                var studentAge = (DateOfPickUp - reservedStudent.DateOfBirth).TotalDays / 365;
                 if (studentAge < 18)
                 {
-                    return false; 
+                    return false;
                 }
             }
 
-            return ReservedBy == null && TimeOfPickUp > DateTime.Now;
+
+            return ReservedBy == null && DateOfPickUp > DateTime.Now;
 
         }
 

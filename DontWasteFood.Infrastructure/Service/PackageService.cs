@@ -12,6 +12,15 @@ namespace DontWasteFood.Infrastructure.Service
         private readonly IStudentRepository _studentRepository = studentRepository;
         private readonly IProductRepository _productRepository = productRepository;
 
+        public void UpdatePackage(Package package)
+        {
+            if(package.ReservedBy == null && package.StudentId == null)
+            {
+                _packageRepository.Update(package);
+                
+            }
+        }
+
         ICollection<Package>? IPackageService.GetAllReservedPackagesByUserId(string email)
         {
             var student = _studentRepository.getUserByEmail(email);

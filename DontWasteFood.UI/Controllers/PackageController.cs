@@ -11,24 +11,20 @@ using Microsoft.AspNetCore.Mvc;
 namespace DontWasteFood.UI.Controllers
 {
     [Authorize]
-    public class PackageController : Controller
+    public class PackageController(
+        IPackageRepository packageRepository,
+        IPackageService packageService,
+        IProductRepository productRepository,
+        ICanteenService canteenService,
+        IReservationService reservationService,
+        UserManager<IdentityUser> userManager) : Controller
     {
-        private readonly IPackageRepository _packageRepository;
-        private readonly IProductRepository _productRepository;
-        private readonly ICanteenService _canteenService;
-        private readonly UserManager<IdentityUser> _userManager;
-
-        public PackageController(
-            IPackageRepository packageRepository,
-            IProductRepository productRepository,
-            ICanteenService canteenService,
-            UserManager<IdentityUser> userManager)
-        {
-            _packageRepository = packageRepository;
-            _productRepository = productRepository;
-            _canteenService = canteenService;
-            _userManager = userManager;
-        }
+        private readonly IPackageRepository _packageRepository = packageRepository;
+        private readonly IPackageService _packageService = packageService;
+        private readonly IProductRepository _productRepository = productRepository;
+        private readonly ICanteenService _canteenService = canteenService;
+        private readonly IReservationService _reservationService = reservationService;
+        private readonly UserManager<IdentityUser> _userManager = userManager;
 
         [HttpGet]
         public IActionResult Detail(Guid id)
@@ -121,7 +117,7 @@ namespace DontWasteFood.UI.Controllers
                     .ToList();
 
                 UpdatePackageFromModel(package, model, products);
-                _packageRepository.Update(package);
+                _packageService.UpdatePackage(package);
                 return RedirectToAction("MyCanteen", "CanteenWorker");
             }
             else
@@ -177,6 +173,47 @@ namespace DontWasteFood.UI.Controllers
                 return View("Error");
             }
             return RedirectToAction("MyCanteen", "CanteenWorker");
+        }
+
+        [HttpPost]
+        [Authorize(Roles = nameof(UserRole.Student))]
+        public IActionResult Reservation(Guid packageId)
+        {
+            var package = _packageRepository.GetPackageById(packageId);
+            if (package == null)
+            {
+                return NotFound();
+            }
+
+            var studentId = _userManager.GetUserId(User);
+            if (studentId == null)
+            {
+                return NotFound();
+            }
+
+            var result = _reservationService.ReservePackage(packageId, Guid.Parse(studentId));
+
+            if (!result)
+            {
+                if (package.Is18Plus)
+                {
+                    ViewBag.ErrorMessage = "Je moet 18 jaar of ouder zijn om dit maaltijdpakket te reserveren.";
+                }
+                else if (package.ReservedBy != null)
+                {
+                    ViewBag.ErrorMessage = "Helaas, dit maaltijdpakket is al gereserveerd. Kies een ander pakket of probeer het later opnieuw.";
+                }
+
+
+                else
+                {
+                    ViewBag.ErrorMessage = "Je hebt al een reservering gemaakt op deze afhaaldag. Bekijk andere maaltijdpakketten of probeer het opnieuw.";
+                }
+            }
+
+
+            var model = PackageHelper.ConvertToPackageWithProductsViewModel(package, package.Products.ToList());
+            return View(model);
         }
 
         private Guid? GetCurrentCanteenWorkerId()
