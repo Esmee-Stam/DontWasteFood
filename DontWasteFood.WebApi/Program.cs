@@ -1,3 +1,4 @@
+using DontWasteFood.Domain.Enums;
 using DontWasteFood.DomainServices;
 using DontWasteFood.DomainServices.IRepository;
 using DontWasteFood.DomainServices.IService;
@@ -6,6 +7,8 @@ using DontWasteFood.Infrastructure.Repository;
 using DontWasteFood.Infrastructure.Service;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,7 +43,12 @@ builder.Services.AddDbContext<AuthDbContext>(options =>
     options.UseSqlServer(connectionString);
 });
 
-builder.Services.AddAuthorization();
+builder.Services.AddAuthorization(policyBuilder =>
+{
+    policyBuilder.AddPolicy(UserRole.CanteenWorker.ToString(), policy => policy.RequireRole(UserRole.CanteenWorker.ToString()));
+    policyBuilder.AddPolicy(UserRole.Student.ToString(), policy => policy.RequireRole(UserRole.Student.ToString()));
+});
+
 builder.Services.AddIdentityApiEndpoints<IdentityUser>(options =>
 {
     options.User.RequireUniqueEmail = true;
@@ -55,7 +63,12 @@ builder.Services.AddIdentityApiEndpoints<IdentityUser>(options =>
 })
     .AddEntityFrameworkStores<AuthDbContext>();
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+    });
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

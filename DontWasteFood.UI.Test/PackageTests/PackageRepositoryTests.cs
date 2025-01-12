@@ -370,7 +370,7 @@ namespace DontWasteFood.UI.Test.PackageTests
         {
             // Arrange
             var packageRepo = Substitute.For<IPackageRepository>();
-            
+
             var products = new List<Product>
             {
                 new Product
@@ -385,7 +385,7 @@ namespace DontWasteFood.UI.Test.PackageTests
                     Name = "Panini kaas & ham",
                     IsAlcoholic = false
                 },
-       
+
             };
 
             var package = new Package
@@ -405,11 +405,11 @@ namespace DontWasteFood.UI.Test.PackageTests
             var result = packageRepo.GetPackageById(package.Id);
 
             // Assert
-            Assert.NotNull(result);  
-            Assert.Equal(2, result.Products.Count); 
-            Assert.Contains(result.Products, p => p.Name == "Broodje gezond");  
-            Assert.Contains(result.Products, p => p.Name == "Panini kaas & ham");  
-            
+            Assert.NotNull(result);
+            Assert.Equal(2, result.Products.Count);
+            Assert.Contains(result.Products, p => p.Name == "Broodje gezond");
+            Assert.Contains(result.Products, p => p.Name == "Panini kaas & ham");
+
         }
 
     }

@@ -9,6 +9,9 @@ namespace DontWasteFood.DomainServices.IRepository
         IQueryable<Package> GetAllAsync();
 
         ICollection<Package> GetAllAvailablePackages();
+        IQueryable<Package> GetAllAvailablePackages(string? city, string? mealType);
+
+
 
         Package? GetPackageById(Guid id);
 

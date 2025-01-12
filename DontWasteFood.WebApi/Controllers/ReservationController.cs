@@ -1,4 +1,5 @@
-﻿using DontWasteFood.Domain.Models;
+﻿using DontWasteFood.Domain.Enums;
+using DontWasteFood.Domain.Models;
 using DontWasteFood.DomainServices.IService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -6,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DontWasteFood.WebApi.Controllers
 {
-    [Authorize]
+    [Authorize(Policy = nameof(UserRole.Student))]
     [Route("api/[controller]")]
     [ApiController]
     public class ReservationController(IReservationService reservationService, IPackageService packageService) : ControllerBase

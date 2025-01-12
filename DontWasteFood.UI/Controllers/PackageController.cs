@@ -41,7 +41,7 @@ namespace DontWasteFood.UI.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = nameof(UserRole.Kantinemedewerker))]
+        [Authorize(Roles = nameof(UserRole.CanteenWorker))]
         public IActionResult PackageForm(Guid? id)
         {
             
@@ -100,7 +100,7 @@ namespace DontWasteFood.UI.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = nameof(UserRole.Kantinemedewerker))]
+        [Authorize(Roles = nameof(UserRole.CanteenWorker))]
         public IActionResult PackageForm(Guid? id, PackageViewModel model)
         {
             if (id != null)
@@ -158,7 +158,7 @@ namespace DontWasteFood.UI.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = nameof(UserRole.Kantinemedewerker))]
+        [Authorize(Roles = nameof(UserRole.CanteenWorker))]
         public IActionResult Delete(Guid id)
         {
             var package = _packageRepository.GetPackageById(id);
