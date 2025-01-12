@@ -18,6 +18,7 @@ namespace DontWasteFood.Domain.Models
         [Required]
         public bool HotMealsOffer { get; set; }
 
+        [JsonIgnore]
         public ICollection<CanteenWorker> CanteenWorkers { get; set; } = new List<CanteenWorker>(); 
     }
 }

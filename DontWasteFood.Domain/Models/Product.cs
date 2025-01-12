@@ -16,6 +16,7 @@ namespace DontWasteFood.Domain.Models
 
         public string? PhotoUrl { get; set; }
 
+        [JsonIgnore]
         public ICollection<Package> Packages { get; set; } = new List<Package>();
     }
 }

@@ -31,6 +31,7 @@ namespace DontWasteFood.Domain.Models
 
         public string? IdentityUserId { get; set; }
 
+        [JsonIgnore]
         public ICollection<Package> Packages { get; set; } = new List<Package>();
 
         public Student(Guid id, string name, DateTime dateOfBirth, string studentNumber, string emailAddress, City city)
