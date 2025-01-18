@@ -7,7 +7,6 @@ using DontWasteFood.Infrastructure.Repository;
 using DontWasteFood.Infrastructure.Service;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);

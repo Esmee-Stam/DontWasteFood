@@ -54,37 +54,24 @@ namespace DontWasteFood.WebApi.Controllers
         [HttpPut("{packageId}")]
         public IActionResult UpdatePackage(Guid packageId, [FromBody] Package package)
         {
-            var currentPackage = _packageRepository.GetPackageById(packageId);
-
-            if (currentPackage == null)
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId == null)
             {
                 return NotFound();
             }
 
-            
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (userId == null)
-            {
-                return Unauthorized();
-            }
-
             var canteenWorker = _canteenWorkerRepository.getUserById(Guid.Parse(userId));
-
             if (canteenWorker == null)
             {
                 return Unauthorized();
             }
 
             package.CanteenId = canteenWorker.CanteenId;
+            package.Canteen = canteenWorker.Canteen;
 
-            currentPackage.Name = package.Name;
-            currentPackage.DateOfPickUp = package.DateOfPickUp;
-            currentPackage.TimeOfPickUp = package.TimeOfPickUp;
-            currentPackage.Price = package.Price;
-            currentPackage.MealType = package.MealType;
-            currentPackage.Products = package.Products;
-            _packageService.UpdatePackage(currentPackage);
+            _packageService.UpdatePackage(packageId, package);
             return Ok(package);
+
         }
 
         [Authorize(Policy = nameof(UserRole.CanteenWorker))]

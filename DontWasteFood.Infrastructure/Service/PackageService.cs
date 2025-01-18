@@ -6,8 +6,8 @@ using DontWasteFood.DomainServices.IService;
 namespace DontWasteFood.Infrastructure.Service
 {
     public class PackageService(IPackageRepository packageRepository,
-                IStudentRepository studentRepository,
-                IProductRepository productRepository) : IPackageService
+                    IStudentRepository studentRepository,
+                    IProductRepository productRepository) : IPackageService
     {
         private readonly IPackageRepository _packageRepository = packageRepository;
         private readonly IStudentRepository _studentRepository = studentRepository;
@@ -21,27 +21,50 @@ namespace DontWasteFood.Infrastructure.Service
                 return false;
             }
 
-            
-            package.Products = package.Products.Select(p =>
+            var products = package.Products
+                .Select(p => _productRepository.GetProductById(p.Id))
+                .Where(p => p != null)
+                .ToList();
+
+            if (!products.Any())
             {
-                var existingProduct = _productRepository.GetProductById(p.Id);
-                if (existingProduct != null)
-                {
-                    return existingProduct;
-                }
-                return p;
-            }).ToList();
+                return false;
+            }
+
+            package.Products = products!;
 
             package.Is18PlusStatus();
+
             _packageRepository.Add(package);
+
             return true;
         }
 
-        public void UpdatePackage(Package package)
+        public void UpdatePackage(Guid packageId, Package package)
         {
             if (package.ReservedBy == null && package.StudentId == null)
             {
-                _packageRepository.Update(package);
+                var currentPackage = _packageRepository.GetPackageById(packageId);
+                if (currentPackage == null)
+                {
+                    throw new Exception("Package not found");
+                }
+
+                var currentProducts = package.Products
+                    .Select(p => _productRepository.GetProductById(p.Id))
+                    .Where(p => p != null)
+                    .ToList();
+
+                currentPackage.Name = package.Name;
+                currentPackage.DateOfPickUp = package.DateOfPickUp;
+                currentPackage.TimeOfPickUp = package.TimeOfPickUp;
+                currentPackage.Price = package.Price;
+                currentPackage.MealType = package.MealType;
+                currentPackage.Products = currentProducts!;
+
+                currentPackage.Is18PlusStatus();
+
+                _packageRepository.Update(currentPackage);
             }
         }
 
