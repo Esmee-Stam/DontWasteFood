@@ -192,8 +192,7 @@ namespace DontWasteFood.UI.Controllers
 
             var result = _reservationService.ReservePackage(packageId, Guid.Parse(studentId));
 
-            if (!result)
-            {
+            
                 if (package.Is18Plus)
                 {
                     ViewBag.ErrorMessage = "Je moet 18 jaar of ouder zijn om dit maaltijdpakket te reserveren.";
@@ -208,7 +207,7 @@ namespace DontWasteFood.UI.Controllers
                 {
                     ViewBag.ErrorMessage = "Je hebt al een reservering gemaakt op deze afhaaldag. Bekijk andere maaltijdpakketten of probeer het opnieuw.";
                 }
-            }
+            
 
 
             var model = PackageHelper.ConvertToPackageWithProductsViewModel(package, package.Products.ToList());

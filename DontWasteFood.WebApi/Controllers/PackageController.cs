@@ -1,5 +1,6 @@
 ﻿using DontWasteFood.Domain.Enums;
 using DontWasteFood.Domain.Models;
+using DontWasteFood.DomainServices;
 using DontWasteFood.DomainServices.IRepository;
 using DontWasteFood.DomainServices.IService;
 using DontWasteFood.Infrastructure.Service;
@@ -12,23 +13,32 @@ namespace DontWasteFood.WebApi.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class PackageController(IPackageRepository packageRepository, IPackageService packageService) : ControllerBase
+    public class PackageController(IPackageRepository packageRepository, IPackageService packageService, ICanteenWorkerRepository canteenWorkerRepository, ICanteenService canteenService) : ControllerBase
     {
         private readonly IPackageRepository _packageRepository = packageRepository;
         private readonly IPackageService _packageService = packageService;
+        private readonly ICanteenWorkerRepository _canteenWorkerRepository = canteenWorkerRepository;
+        private readonly ICanteenService _canteenService = canteenService;
 
-        //[Authorize(Policy = nameof(UserRole.Student))]
-        //[HttpGet]
-        //public ICollection<Package> GetAvailablePackages()
-        //{
-        //    return _packageRepository.GetAllAvailablePackages();
-        //}
-
+      
         [Authorize(Policy = nameof(UserRole.CanteenWorker))]
         [HttpPost]
         public IActionResult AddPackage([FromBody] Package package)
         {
-           
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId == null)
+            {
+                return Unauthorized();
+            }
+
+            var canteenWorker = _canteenWorkerRepository.getUserById(Guid.Parse(userId));
+
+            if (canteenWorker == null)
+            {
+                return Unauthorized();
+            }
+
+            package.CanteenId = canteenWorker.CanteenId;
 
             if (package.Id == Guid.Empty)
             {
@@ -42,29 +52,38 @@ namespace DontWasteFood.WebApi.Controllers
 
         [Authorize(Policy = nameof(UserRole.CanteenWorker))]
         [HttpPut("{packageId}")]
-        public IActionResult UpdatePackage(Guid packageId, [FromBody] Package updatedPackage)
+        public IActionResult UpdatePackage(Guid packageId, [FromBody] Package package)
         {
-            var package = _packageRepository.GetPackageById(packageId);
-            if (package == null)
+            var currentPackage = _packageRepository.GetPackageById(packageId);
+
+            if (currentPackage == null)
             {
                 return NotFound();
             }
 
-            if (package.ReservedBy != null && package.StudentId != null)
+            
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId == null)
             {
-                return BadRequest("Package cannot be updated");
+                return Unauthorized();
             }
 
-            package.Id = new Guid();
-            package.Name = updatedPackage.Name;
-            package.DateOfPickUp = updatedPackage.DateOfPickUp;
-            package.TimeOfPickUp = updatedPackage.TimeOfPickUp;
-            package.MealType = updatedPackage.MealType;
-            package.Price = updatedPackage.Price;
-            package.CanteenId = updatedPackage.CanteenId;
-            package.Products = updatedPackage.Products;
+            var canteenWorker = _canteenWorkerRepository.getUserById(Guid.Parse(userId));
 
-            _packageService.UpdatePackage(package);
+            if (canteenWorker == null)
+            {
+                return Unauthorized();
+            }
+
+            package.CanteenId = canteenWorker.CanteenId;
+
+            currentPackage.Name = package.Name;
+            currentPackage.DateOfPickUp = package.DateOfPickUp;
+            currentPackage.TimeOfPickUp = package.TimeOfPickUp;
+            currentPackage.Price = package.Price;
+            currentPackage.MealType = package.MealType;
+            currentPackage.Products = package.Products;
+            _packageService.UpdatePackage(currentPackage);
             return Ok(package);
         }
 
@@ -96,6 +115,21 @@ namespace DontWasteFood.WebApi.Controllers
 
         }
 
+        [HttpGet("{packageId}")]
+        public IActionResult GetPackageById(Guid packageId)
+        {
+            var package = _packageRepository.GetPackageById(packageId);
+
+            return Ok(package);
+        }
+
+        [Authorize(Policy = nameof(UserRole.CanteenWorker))]
+        [HttpGet("Canteen/{canteenId}")]
+        public IActionResult GetPackagesForCanteen(Guid canteenId)
+        {
+            var packages = _canteenService.GetPackagesForCanteen(canteenId);
+            return Ok(packages);
+        }
 
     }
 }

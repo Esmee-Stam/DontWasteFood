@@ -6,6 +6,7 @@ namespace DontWasteFood.DomainServices.IRepository
     {
         List<Product> GetAll();
         Product? GetProductById(Guid id);
+        Product? GetProductByName(string name);
        
     }
 }

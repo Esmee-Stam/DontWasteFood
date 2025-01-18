@@ -28,20 +28,17 @@ namespace DontWasteFood.Infrastructure.Service
             return canteen;
         }
 
-        public ICollection<Package> GetPackagesForCanteen(Guid canteenWorkerId)
+        public ICollection<Package> GetPackagesForCanteen(Guid canteenId)
         {
-            var canteenWorker = _canteenWorkerRepository.getUserById(canteenWorkerId);
-            if (canteenWorker == null)
+            var canteen = _canteenRepository.FindById(canteenId);
+            if (canteen == null)
             {
-                throw new Exception("Canteen worker not found");
+                throw new Exception("Canteen not found");
             }
-
-            var canteenLocation = _canteenRepository.FindById(canteenWorker.CanteenId)?.CanteenLocation;
-            var canteenCity = _canteenRepository.FindById(canteenWorker.CanteenId)?.City;
 
             var packages = _packageRepository
                 .GetAll()
-                .Where(p => p.Canteen!.CanteenLocation == canteenLocation && p.Canteen!.City == canteenCity)
+                .Where(p => p.Canteen!.CanteenLocation == canteen.CanteenLocation && p.Canteen!.City == canteen.City)
                 .OrderBy(p => p.DateOfPickUp)
                 .ThenBy(p => p.TimeOfPickUp)
                 .ToList();
@@ -49,20 +46,18 @@ namespace DontWasteFood.Infrastructure.Service
             return packages;
         }
 
-        public ICollection<Package> GetPackagesForOtherCanteen(Guid canteenWorkerId)
+        public ICollection<Package> GetPackagesForOtherCanteen(Guid canteenId)
         {
-            var canteenWorker = _canteenWorkerRepository.getUserById(canteenWorkerId);
-            if (canteenWorker == null)
+            var canteen = _canteenRepository.FindById(canteenId);
+            if (canteen == null)
             {
-                throw new Exception("Canteen worker not found");
+                throw new Exception("Canteen not found");
             }
 
-            var canteenLocation = _canteenRepository.FindById(canteenWorker.CanteenId)?.CanteenLocation;
-            var canteenCity = _canteenRepository.FindById(canteenWorker.CanteenId)?.City;
-
+  
             var packages = _packageRepository
                 .GetAll()
-                .Where(p => p.Canteen!.CanteenLocation != canteenLocation && p.Canteen!.City != canteenCity)
+                .Where(p => p.Canteen!.CanteenLocation != canteen.CanteenLocation && p.Canteen!.City != canteen.City)
                 .OrderBy(p => p.DateOfPickUp)
                 .ThenBy(p => p.TimeOfPickUp)
                 .ToList();

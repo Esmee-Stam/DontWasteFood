@@ -20,6 +20,7 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICanteenRepository, CanteenRepository>();
 builder.Services.AddScoped<IReservationService, ReservationService>();
 builder.Services.AddScoped<IPackageService, PackageService>();
+builder.Services.AddScoped<ICanteenService, CanteenService>();
 
 
 var connectionString = string.Empty;
