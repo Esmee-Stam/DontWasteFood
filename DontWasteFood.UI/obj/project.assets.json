@@ -4262,6 +4262,8 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "DontWasteFood.Domain >= 1.0.0",
+      "DontWasteFood.DomainServices >= 1.0.0",
       "DontWasteFood.Infrastructure >= 1.0.0",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 8.0.10",
       "Microsoft.EntityFrameworkCore.Design >= 8.0.10",
@@ -4300,6 +4302,12 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
+            "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.DomainServices\\DontWasteFood.DomainServices.csproj": {
+              "projectPath": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.DomainServices\\DontWasteFood.DomainServices.csproj"
+            },
+            "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.Domain\\DontWasteFood.Domain.csproj": {
+              "projectPath": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.Domain\\DontWasteFood.Domain.csproj"
+            },
             "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.Infrastructure\\DontWasteFood.Infrastructure.csproj": {
               "projectPath": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.Infrastructure\\DontWasteFood.Infrastructure.csproj"
             }

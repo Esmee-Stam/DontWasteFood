@@ -21,5 +21,12 @@ namespace DontWasteFood.Infrastructure.Repository
                 .Include(p => p.Packages)
                 .FirstOrDefault(p => p.Id == id);
         }
+
+        public Product? GetProductByName(string name)
+        {
+            return _dbContext.Products
+                .Include(p => p.Packages)
+                .FirstOrDefault(p => p.Name == name);
+        }
     }
 }

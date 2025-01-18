@@ -9,42 +9,48 @@ namespace DontWasteFood.Infrastructure.Service
         private readonly IPackageRepository _packageRepository = packageRepository;
         private readonly IStudentRepository _studentRepository = studentRepository;
 
-        public bool ReservePackage(Guid packageId, Guid studentId)
+        public Package? ReservePackage(Guid packageId, Guid studentId)
         {
             var package = _packageRepository.GetPackageById(packageId);
 
             if (package == null)
             {
-                return false;
+                return null;
             }
 
             if (package.ReservedBy != null)
             {
-                return false;
+                return null;
             }
 
             var student = _studentRepository.getUserById(studentId);
 
             if (student == null)
             {
-                return false;
+                return null;
             }
 
             var existingReservation = _packageRepository.GetReservationsByDateForStudent(studentId, package.DateOfPickUp);
-            if (existingReservation != null) {
-                return false;
+            if (existingReservation != null)
+            {
+                return null;
             }
 
             if (!package.CanBeReserved(student))
             {
-                return false;
+                return null;
+            }
+
+            if (package.ReservedBy != null)
+            {
+               throw new Exception("Package is already reserved");
             }
 
             package.ReservedBy = student;
             package.StudentId = student.Id;
             _packageRepository.Update(package);
 
-            return true;
+            return package;
         }
     }
 }

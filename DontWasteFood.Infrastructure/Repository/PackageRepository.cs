@@ -1,4 +1,5 @@
-﻿using DontWasteFood.Domain.Models;
+﻿using DontWasteFood.Domain.Enums;
+using DontWasteFood.Domain.Models;
 using DontWasteFood.DomainServices.IRepository;
 using DontWasteFood.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -29,33 +30,12 @@ namespace DontWasteFood.Infrastructure.Repository
         }
 
 
-        //public void Add(Package package)
-        //{
-        //    if(package.DateOfPickUp > DateTime.Now.AddDays(2))
-        //    {
-        //        throw new Exception("The package can only be added 2 days in advance");
-        //    }
-        //    _dbContext.Packages.Add(package);
-        //    _dbContext.SaveChanges();
-        //}
-
-        //public bool Delete(Package package)
-        //{
-        //    if(package.ReservedBy != null && package.StudentId != null)
-        //    {
-        //        return false;
-        //    }
-
-        //    _dbContext.Packages.Remove(package);
-        //    _dbContext.SaveChanges();
-        //    return true;
-        //}
-
         public IEnumerable<Package> GetAll()
         {
             return _dbContext.Packages
                 .Include(p => p.ReservedBy)
                 .Include(p => p.Canteen)
+                .Include(p => p.Products)
                 .ToList();
 
         }
@@ -92,18 +72,32 @@ namespace DontWasteFood.Infrastructure.Repository
         {
             return _dbContext.Packages.Include(p => p.ReservedBy).FirstOrDefault(p => p.StudentId == studentId && p.DateOfPickUp == dateOfPickUp);
         }
+        public IQueryable<Package> GetAllAvailablePackages(string? city, string? mealType)
+        {
+            var query = _dbContext.Packages
+                .Include(p => p.ReservedBy)
+                .Include(p => p.Canteen)
+                .Include(p => p.Products)
+                .Where(p => p.ReservedBy == null);
 
-        //public bool Update(Package package)
-        //{
-        //    //if (package.ReservedBy != null && package.StudentId != null)
-        //    //{
-        //    //    return false;
-        //    //}
+            if (!string.IsNullOrEmpty(city))
+            {
+                if (Enum.TryParse<City>(city, out var cityEnum))
+                {
+                    query = query.Where(p => p.Canteen != null && p.Canteen.City == cityEnum);
+                }
+            }
 
-        //    _dbContext.Packages.Update(package);
-        //    _dbContext.SaveChanges();
-        //    return true;
-        //}
+            if (!string.IsNullOrEmpty(mealType))
+            {
+                if (Enum.TryParse<MealType>(mealType, out var mealTypeEnum))
+                {
+                    query = query.Where(p => p.MealType == mealTypeEnum);
+                }
+            }
+
+            return query;
+        }
 
 
     }

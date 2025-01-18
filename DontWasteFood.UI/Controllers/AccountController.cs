@@ -121,7 +121,7 @@ namespace DontWasteFood.UI.Controllers
 
             if (ModelState.IsValid)
             {
-                var role = UserRole.Kantinemedewerker.ToString();
+                var role = UserRole.CanteenWorker.ToString();
                 if (!await _roleManager.RoleExistsAsync(role))
                 {
                     await _roleManager.CreateAsync(new IdentityRole(role));
@@ -203,7 +203,7 @@ namespace DontWasteFood.UI.Controllers
                         {
                             return RedirectToAction("Overview", "Student");
                         }
-                        else if (roles.Contains(UserRole.Kantinemedewerker.ToString()))
+                        else if (roles.Contains(UserRole.CanteenWorker.ToString()))
                         {
                             return RedirectToAction("Overview", "Canteenworker");
                         }
