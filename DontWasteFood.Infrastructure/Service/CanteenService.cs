@@ -18,10 +18,10 @@ namespace DontWasteFood.Infrastructure.Service
 
         public Canteen? GetCanteenOfCanteenWorker(Guid canteenWorkerId)
         {
-            var canteenWorker = _canteenWorkerRepository.getUserById(canteenWorkerId);
+            var canteenWorker = _canteenWorkerRepository.GetUserById(canteenWorkerId);
             if (canteenWorker == null)
             {
-                throw new Exception("Canteen worker not found");
+                return null;
             }
 
             var canteen = _canteenRepository.FindById(canteenWorker.CanteenId);
@@ -33,12 +33,12 @@ namespace DontWasteFood.Infrastructure.Service
             var canteen = _canteenRepository.FindById(canteenId);
             if (canteen == null)
             {
-                throw new Exception("Canteen not found");
+                return new List<Package>();
             }
 
             var packages = _packageRepository
-                .GetAll()
-                .Where(p => p.Canteen!.CanteenLocation == canteen.CanteenLocation && p.Canteen!.City == canteen.City)
+                .GetAllAsync()
+                .Where(p => p.Canteen!.Id == canteen.Id)
                 .OrderBy(p => p.DateOfPickUp)
                 .ThenBy(p => p.TimeOfPickUp)
                 .ToList();
@@ -51,13 +51,13 @@ namespace DontWasteFood.Infrastructure.Service
             var canteen = _canteenRepository.FindById(canteenId);
             if (canteen == null)
             {
-                throw new Exception("Canteen not found");
+                return new List<Package>();
             }
 
   
             var packages = _packageRepository
-                .GetAll()
-                .Where(p => p.Canteen!.CanteenLocation != canteen.CanteenLocation && p.Canteen!.City != canteen.City)
+                .GetAllAsync()
+                .Where(p => p.Canteen!.Id != canteen.Id)
                 .OrderBy(p => p.DateOfPickUp)
                 .ThenBy(p => p.TimeOfPickUp)
                 .ToList();

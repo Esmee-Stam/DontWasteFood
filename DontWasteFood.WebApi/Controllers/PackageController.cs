@@ -31,7 +31,7 @@ namespace DontWasteFood.WebApi.Controllers
                 return Unauthorized();
             }
 
-            var canteenWorker = _canteenWorkerRepository.getUserById(Guid.Parse(userId));
+            var canteenWorker = _canteenWorkerRepository.GetUserById(Guid.Parse(userId));
 
             if (canteenWorker == null)
             {
@@ -60,7 +60,7 @@ namespace DontWasteFood.WebApi.Controllers
                 return NotFound();
             }
 
-            var canteenWorker = _canteenWorkerRepository.getUserById(Guid.Parse(userId));
+            var canteenWorker = _canteenWorkerRepository.GetUserById(Guid.Parse(userId));
             if (canteenWorker == null)
             {
                 return Unauthorized();
@@ -78,7 +78,7 @@ namespace DontWasteFood.WebApi.Controllers
         [HttpDelete("{packageId}")]
         public IActionResult DeletePackage(Guid packageId)
         {
-            var package = _packageRepository.GetPackageById(packageId);
+            var package = _packageRepository.GetPackageByIdAsync(packageId).Result;
 
             if (package == null)
             {
@@ -105,7 +105,7 @@ namespace DontWasteFood.WebApi.Controllers
         [HttpGet("{packageId}")]
         public IActionResult GetPackageById(Guid packageId)
         {
-            var package = _packageRepository.GetPackageById(packageId);
+            var package = _packageRepository.GetPackageByIdAsync(packageId).Result;
 
             return Ok(package);
         }

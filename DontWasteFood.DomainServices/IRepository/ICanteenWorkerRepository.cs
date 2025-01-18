@@ -6,7 +6,9 @@ namespace DontWasteFood.DomainServices
     {
         void Add(CanteenWorker canteenWorker);
 
-        CanteenWorker? getUserById(Guid id);
+        CanteenWorker? GetUserById(Guid id);
+
+        CanteenWorker? GetUserByIdentityUserId(string identityUserId);
 
     }
 }

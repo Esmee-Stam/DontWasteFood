@@ -20,7 +20,7 @@
                 @if(!Model.Any()) {
                     <div class="alert alert-info" role="alert">
                         Je heeft nog geen reserveringen gemaakt.
-                        <a class="alert-link text-white" asp-controller="Package" asp-action="Recommend">Klik hier om pakketten te bekijken en een reservering te maken.</a>
+                        <a class="alert-link text-white" asp-controller="Student" asp-action="Recommend">Klik hier om pakketten te bekijken en een reservering te maken.</a>
                     </div>
                 } else {
                     @foreach (var package in Model) {

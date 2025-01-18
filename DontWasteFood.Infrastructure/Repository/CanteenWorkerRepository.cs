@@ -16,12 +16,20 @@ namespace DontWasteFood.Infrastructure.Repository
             _dbContext.SaveChanges();
         }
 
-        CanteenWorker? ICanteenWorkerRepository.getUserById(Guid id)
+        public CanteenWorker? GetUserById(Guid id)
+        {
+            return _dbContext.CanteenWorkers
+                 .Include(cw => cw.Canteen)
+                 .FirstOrDefault(cw => cw.Id.ToString().ToUpper() == id.ToString().ToUpper());
+
+        }
+
+        public CanteenWorker? GetUserByIdentityUserId(string identityUserId)
         {
             return _dbContext.CanteenWorkers
                 .Include(cw => cw.Canteen)
-                .FirstOrDefault(cw => cw.IdentityUserId == id.ToString());
-
+                .FirstOrDefault(cw => cw.IdentityUserId == identityUserId);
         }
+        
     }
 }

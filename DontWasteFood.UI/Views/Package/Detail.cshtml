@@ -85,7 +85,7 @@
                         @if (User.IsInRole("Student"))
                         {
                             <div class="row detail-row mt-2">
-                                <form asp-controller="Package" asp-action="Reservation" method="post">
+                                <form asp-controller="Reservation" asp-action="Reservation" method="post">
                                     <input type="hidden" name="packageId" value="@Model.PackageId" />
                                     <button type="submit" class="btn btn-primary">Reserveer</button>
                                 </form>

@@ -1,8 +1,8 @@
 ﻿using DontWasteFood.Domain.Enums;
 using DontWasteFood.Domain.Models;
+using DontWasteFood.DomainServices;
 using DontWasteFood.DomainServices.IRepository;
 using DontWasteFood.DomainServices.IService;
-using DontWasteFood.Infrastructure.Service;
 using DontWasteFood.UI.Helpers;
 using DontWasteFood.UI.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -12,29 +12,40 @@ using Microsoft.AspNetCore.Mvc;
 namespace DontWasteFood.UI.Controllers
 {
     [Authorize]
-    public class PackageController(
-        IPackageRepository packageRepository,
-        IPackageService packageService,
-        IProductRepository productRepository,
-        ICanteenService canteenService,
-        IReservationService reservationService,
-        UserManager<IdentityUser> userManager) : Controller
+    public class PackageController : Controller
     {
-        private readonly IPackageRepository _packageRepository = packageRepository;
-        private readonly IPackageService _packageService = packageService;
-        private readonly IProductRepository _productRepository = productRepository;
-        private readonly ICanteenService _canteenService = canteenService;
-        private readonly IReservationService _reservationService = reservationService;
-        private readonly UserManager<IdentityUser> _userManager = userManager;
+        private readonly IPackageRepository _packageRepository;
+        private readonly IPackageService _packageService;
+        private readonly IProductRepository _productRepository;
+        private readonly ICanteenService _canteenService;
+        private readonly IReservationService _reservationService;
+        private readonly ICanteenWorkerRepository _canteenWorkerRepository;
+        private readonly UserManager<IdentityUser> _userManager;
+
+        public PackageController(
+            IPackageRepository packageRepository,
+            IPackageService packageService,
+            IProductRepository productRepository,
+            ICanteenService canteenService,
+            IReservationService reservationService,
+            ICanteenWorkerRepository canteenWorkerRepository,
+            UserManager<IdentityUser> userManager)
+        {
+            _packageRepository = packageRepository;
+            _packageService = packageService;
+            _productRepository = productRepository;
+            _canteenService = canteenService;
+            _reservationService = reservationService;
+            _canteenWorkerRepository = canteenWorkerRepository;
+            _userManager = userManager;
+        }
 
         [HttpGet]
-        public IActionResult Detail(Guid id)
+        public async Task<IActionResult> Detail(Guid id)
         {
-            var package = _packageRepository.GetPackageById(id);
+            var package = await _packageRepository.GetPackageByIdAsync(id);
             if (package == null)
-            {
                 return RedirectToAction("AccessDenied", "Account");
-            }
 
             var model = PackageHelper.ConvertToPackageWithProductsViewModel(package, package.Products.ToList());
             return View(model);
@@ -42,31 +53,31 @@ namespace DontWasteFood.UI.Controllers
 
         [HttpGet]
         [Authorize(Roles = nameof(UserRole.CanteenWorker))]
-        public IActionResult PackageForm(Guid? id)
+        public async Task<IActionResult> PackageForm(Guid? id)
         {
-            
-            var canteen = GetCurrentCanteen();
-            if (canteen == null)
+            var loggedInUserId = _userManager.GetUserId(User);
+            if (loggedInUserId == null)
             {
                 return RedirectToAction("AccessDenied", "Account");
 
             }
 
+            var canteenWorker = _canteenWorkerRepository.GetUserByIdentityUserId(loggedInUserId);
+            if (canteenWorker == null)
+            {
+                return RedirectToAction("AccessDenied", "Account");
+            }
+
+            var canteen = _canteenService.GetCanteenOfCanteenWorker(canteenWorker.Id);
+            if (canteen == null)
+            {
+                return RedirectToAction("AccessDenied", "Account");
+            }
+
             if (id != null)
             {
-                var package = _packageRepository.GetPackageById(id.Value);
-                if (package == null)
-                {
-                    return RedirectToAction("OtherCanteen", "CanteenWorker");
-
-                }
-
-                if (package.ReservedBy != null)
-                {
-                    return RedirectToAction("AccessDenied", "Account");
-                }
-
-                if (!IsUserAuthorizedForPackage(canteen, package))
+                var package = await _packageRepository.GetPackageByIdAsync(id.Value);
+                if (package == null || package.ReservedBy != null || !IsUserAuthorizedForPackage(canteen, package))
                 {
                     return RedirectToAction("OtherCanteen", "CanteenWorker");
                 }
@@ -78,7 +89,6 @@ namespace DontWasteFood.UI.Controllers
             else
             {
                 var products = GetAllProducts();
-
                 var model = new PackageViewModel
                 {
                     Name = string.Empty,
@@ -94,146 +104,104 @@ namespace DontWasteFood.UI.Controllers
                         Name = product.Name
                     }).ToList()
                 };
-
                 return View(model);
             }
         }
 
         [HttpPost]
         [Authorize(Roles = nameof(UserRole.CanteenWorker))]
-        public IActionResult PackageForm(Guid? id, PackageViewModel model)
+        public async Task<IActionResult> PackageForm(Guid? id, PackageViewModel model)
         {
-            if (id != null)
+            if (!ModelState.IsValid)
             {
-                var package = _packageRepository.GetPackageById(id.Value);
-                if (package == null)
+                return View(model);
+            }
+
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return RedirectToAction("Login", "Account");
+
+            }
+
+            var canteenWorker = _canteenWorkerRepository.GetUserByIdentityUserId(user.Id);
+            if (canteenWorker == null)
+            {
+                return RedirectToAction("Login", "Account");
+
+            }
+
+            var selectedProducts = model.SelectedProducts
+                .Select(id => _productRepository.GetProductByIdAsync(id).Result)
+                .Where(product => product != null)
+                .ToList();
+
+            if (!selectedProducts.Any())
+            {
+                ModelState.AddModelError("SelectedProducts", "Geen producten geselecteerd.");
+                return View(model);
+            }
+
+            if (id == null)
+            {
+                var newPackage = new Package
                 {
-                    return RedirectToAction("MyCanteen", "CanteenWorker");
+                    Id = Guid.NewGuid(),
+                    Name = model.Name,
+                    DateOfPickUp = model.DateOfPickUp,
+                    TimeOfPickUp = model.TimeOfPickUp,
+                    Price = model.Price,
+                    MealType = model.MealType,
+                    CanteenId = canteenWorker.CanteenId,
+                    Products = selectedProducts!
+                };
 
+                var success = _packageService.AddPackage(newPackage);
+                if (!success)
+                {
+                    ModelState.AddModelError("", "Failed to add package. Ensure pickup date is within the allowed range.");
+                    return View(model);
                 }
-
-                var products = _productRepository
-                    .GetAll()
-                    .Where(p => model.SelectedProducts.Contains(p.Id))
-                    .ToList();
-
-                UpdatePackageFromModel(package, model, products);
-                _packageService.UpdatePackage(package);
-                return RedirectToAction("MyCanteen", "CanteenWorker");
             }
             else
             {
-                if (!ModelState.IsValid)
+                var updatedPackage = new Package
                 {
-                    model.Products = GetAllProducts()
-                        .Select(product => new ProductViewModel
-                        {
-                            ProductId = product.Id,
-                            Name = product.Name,
-                            IsAlcoholic = product.IsAlcoholic,
-                            Photo = product.PhotoUrl
-                        }).ToList();
+                    Id = id.Value,
+                    Name = model.Name,
+                    DateOfPickUp = model.DateOfPickUp,
+                    TimeOfPickUp = model.TimeOfPickUp,
+                    Price = model.Price,
+                    MealType = model.MealType,
+                    Products = selectedProducts!
+                };
 
+                try
+                {
+                    await _packageService.UpdatePackage(id.Value, updatedPackage);
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", $"Error updating package: {ex.Message}");
                     return View(model);
                 }
-
-                var canteen = GetCurrentCanteen();
-                model.Location = canteen!.CanteenLocation;
-                model.City = canteen.City;
-
-                if (!ValidatePickupDate(model.DateOfPickUp))
-                {
-                    return View(model);
-                }
-
-                var products = _productRepository
-                    .GetAll()
-                    .Where(p => model.SelectedProducts.Contains(p.Id))
-                    .ToList();
-
-                var package = CreateNewPackage(model, canteen, products);
-                _packageService.AddPackage(package);
-                return RedirectToAction("MyCanteen", "CanteenWorker");
-            }
-        }
-
-        [HttpPost]
-        [Authorize(Roles = nameof(UserRole.CanteenWorker))]
-        public IActionResult Delete(Guid id)
-        {
-            var package = _packageRepository.GetPackageById(id);
-            if (package == null)
-            {
-                return RedirectToAction("AccessDenied", "Account");
             }
 
-            _packageService.DeletePackage(package);
-           
             return RedirectToAction("MyCanteen", "CanteenWorker");
         }
 
         [HttpPost]
-        [Authorize(Roles = nameof(UserRole.Student))]
-        public IActionResult Reservation(Guid packageId)
+        [Authorize(Roles = nameof(UserRole.CanteenWorker))]
+        public async Task<IActionResult> Delete(Guid id)
         {
-            var package = _packageRepository.GetPackageById(packageId);
+            var package = await _packageRepository.GetPackageByIdAsync(id);
             if (package == null)
             {
-                return RedirectToAction("AccessDenied", "Account");
-
+               return RedirectToAction("AccessDenied", "Account");
             }
 
-            var studentId = _userManager.GetUserId(User);
-            if (studentId == null)
-            {
-                return RedirectToAction("AccessDenied", "Account");
-
-            }
-
-            var result = _reservationService.ReservePackage(packageId, Guid.Parse(studentId));
-
-            
-                if (package.Is18Plus)
-                {
-                    ViewBag.ErrorMessage = "Je moet 18 jaar of ouder zijn om dit maaltijdpakket te reserveren.";
-                }
-                else if (package.ReservedBy != null)
-                {
-                    ViewBag.ErrorMessage = "Helaas, dit maaltijdpakket is al gereserveerd. Kies een ander pakket of probeer het later opnieuw.";
-                }
-
-
-                else
-                {
-                    ViewBag.ErrorMessage = "Je hebt al een reservering gemaakt op deze afhaaldag. Bekijk andere maaltijdpakketten of probeer het opnieuw.";
-                }
-            
-
-
-            var model = PackageHelper.ConvertToPackageWithProductsViewModel(package, package.Products.ToList());
-            return View(model);
-        }
-
-        private Guid? GetCurrentCanteenWorkerId()
-        {
-            var canteenWorkerId = _userManager.GetUserId(User);
-            if (canteenWorkerId == null)
-            {
-                return null;
-            }
-
-            return Guid.Parse(canteenWorkerId);
-        }
-
-        private Canteen? GetCurrentCanteen()
-        {
-            var canteenWorkerId = GetCurrentCanteenWorkerId();
-            if (canteenWorkerId == null)
-            {
-                return null;
-            }
-
-            return _canteenService.GetCanteenOfCanteenWorker(canteenWorkerId.Value);
+            _packageService.DeletePackage(package);
+            return RedirectToAction("MyCanteen", "CanteenWorker");
         }
 
         private bool IsUserAuthorizedForPackage(Canteen canteen, Package package)
@@ -242,60 +210,9 @@ namespace DontWasteFood.UI.Controllers
                    package.Canteen?.City == canteen?.City;
         }
 
-        private bool ValidatePickupDate(DateTime date)
-        {
-            if (date < DateTime.Now.Date)
-            {
-                ModelState.AddModelError("DateOfPickUp", "De opgegeven datum kan niet in het verleden liggen.");
-                return false;
-            }
-
-            if (date > DateTime.Now.AddDays(2))
-            {
-                ModelState.AddModelError("DateOfPickUp", "De opgegeven datum kan niet meer dan 2 dagen vooruit zijn.");
-                return false;
-            }
-
-            return true;
-        }
-
         private List<Product> GetAllProducts()
         {
             return _productRepository.GetAll().ToList();
-        }
-
-        private void UpdatePackageFromModel(Package package, PackageViewModel model, List<Product> products)
-        {
-            package.Name = model.Name;
-            package.DateOfPickUp = model.DateOfPickUp;
-            package.TimeOfPickUp = model.TimeOfPickUp;
-            package.MealType = model.MealType;
-            package.Is18Plus = model.Is18Plus;
-            package.Price = model.Price;
-            package.Products = products;
-            package.Is18PlusStatus();
-        }
-
-        private Package CreateNewPackage(PackageViewModel model, Canteen canteen, List<Product> products)
-        {
-            var package = new Package
-            {
-                Name = model.Name,
-                DateOfPickUp = model.DateOfPickUp,
-                TimeOfPickUp = model.TimeOfPickUp,
-                MealType = model.MealType,
-                Is18Plus = model.Is18Plus,
-                Price = model.Price,
-                CanteenId = canteen.Id,
-                Canteen = canteen
-            };
-
-            foreach (var product in products)
-            {
-                package.AddProduct(product);
-            }
-
-            return package;
         }
     }
 }

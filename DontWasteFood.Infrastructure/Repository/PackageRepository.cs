@@ -10,36 +10,6 @@ namespace DontWasteFood.Infrastructure.Repository
     {
         private readonly DontWasteFoodDbContext _dbContext = dbContext;
 
-        public void Add(Package package)
-        {
-            _dbContext.Add(package);
-            _dbContext.SaveChanges();
-        }
-
-        public void Update(Package package)
-        {
-            _dbContext.Update(package);
-            _dbContext.SaveChanges();
-
-        }
-
-        public void Delete(Package package)
-        {
-            _dbContext.Remove(package);
-            _dbContext.SaveChanges();
-        }
-
-
-        public IEnumerable<Package> GetAll()
-        {
-            return _dbContext.Packages
-                .Include(p => p.ReservedBy)
-                .Include(p => p.Canteen)
-                .Include(p => p.Products)
-                .ToList();
-
-        }
-
         public IQueryable<Package> GetAllAsync()
         {
             return _dbContext.Packages
@@ -49,29 +19,13 @@ namespace DontWasteFood.Infrastructure.Repository
                 .AsQueryable();
         }
 
-        public ICollection<Package> GetAllAvailablePackages()
+        public async Task<Package?> GetReservationsByDateForStudent(Guid studentId, DateTime dateOfPickUp)
         {
-            return _dbContext.Packages
+            return await _dbContext.Packages
                 .Include(p => p.ReservedBy)
-                .Include(p => p.Canteen)
-                .Include(p => p.Products)
-                .Where(p => p.ReservedBy == null)
-                .ToList();
+                .FirstOrDefaultAsync(p => p.StudentId == studentId && p.DateOfPickUp == dateOfPickUp);
         }
 
-        public Package? GetPackageById(Guid id)
-        {
-            return _dbContext.Packages
-                 .Include(p => p.ReservedBy)
-                 .Include(p => p.Canteen)
-                 .Include(p => p.Products)
-                 .FirstOrDefault(p => p.Id == id);
-        }
-
-        public Package? GetReservationsByDateForStudent(Guid studentId, DateTime dateOfPickUp)
-        {
-            return _dbContext.Packages.Include(p => p.ReservedBy).FirstOrDefault(p => p.StudentId == studentId && p.DateOfPickUp == dateOfPickUp);
-        }
         public IQueryable<Package> GetAllAvailablePackages(string? city, string? mealType)
         {
             var query = _dbContext.Packages
@@ -99,6 +53,53 @@ namespace DontWasteFood.Infrastructure.Repository
             return query;
         }
 
+        public async Task<Package?> GetPackageByIdAsync(Guid id)
+        {
+            return await _dbContext.Packages
+                .Include(p => p.ReservedBy)
+                .Include(p => p.Canteen)
+                .Include(p => p.Products)
+                .FirstOrDefaultAsync(p => p.Id == id);
+        }
+
+        public async Task<Package> Add(Package package)
+        {
+            await _dbContext.Packages.AddAsync(package);
+            await _dbContext.SaveChangesAsync();
+            return package;
+        }
+
+        public async Task<Package> Update(Package package)
+        {
+             _dbContext.Update(package);
+            await _dbContext.SaveChangesAsync();
+            return package;
+        }
+
+        public async Task<Package> Delete(Package package)
+        {
+            _dbContext.Packages.Remove(package);
+            await _dbContext.SaveChangesAsync();
+            return package;
+        }
+
+
+        public async Task<bool> ReservePackageDirectlyAsync(Guid packageId, Guid studentId)
+        {
+            var package = await _dbContext.Packages
+                .FirstOrDefaultAsync(p => p.Id == packageId && p.ReservedBy == null);
+
+            if (package == null)
+            {
+                return false; 
+            }
+
+            package.StudentId = studentId;
+            package.ReservedBy = await _dbContext.Students.FindAsync(studentId);
+
+            await _dbContext.SaveChangesAsync();
+            return true; 
+        }
 
     }
 }
