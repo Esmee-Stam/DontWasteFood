@@ -1,4 +1,5 @@
 ﻿using DontWasteFood.Domain.Enums;
+using DontWasteFood.Domain.Models;
 using DontWasteFood.DomainServices;
 using DontWasteFood.DomainServices.IService;
 using DontWasteFood.UI.Helpers;
@@ -15,7 +16,7 @@ namespace DontWasteFood.UI.Controllers
         ICanteenService canteenService,
         UserManager<IdentityUser> userManager) : Controller
     {
-        private readonly ICanteenWorkerRepository _canteenRepository = canteenWorkerRepository;
+        private readonly ICanteenWorkerRepository _canteenWorkerRepository = canteenWorkerRepository;
         private readonly ICanteenService _canteenService = canteenService;
         private readonly UserManager<IdentityUser> _userManager = userManager;
 
@@ -23,7 +24,11 @@ namespace DontWasteFood.UI.Controllers
         public async Task<IActionResult> Overview()
         {
             var user = await _userManager.GetUserAsync(User);
-            var canteenWorker = _canteenRepository.getUserById(Guid.Parse(user!.Id));
+            if (user == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            var canteenWorker = _canteenWorkerRepository.GetUserByIdentityUserId(user.Id);
 
             var model = new AccountViewModel
             {
@@ -43,7 +48,15 @@ namespace DontWasteFood.UI.Controllers
                 return View(new List<PackageViewModel>());
             }
 
-            var packages = _canteenService.GetPackagesForCanteen(canteenWorkerId.Value);
+            var canteenWorker = _canteenWorkerRepository.GetUserById(canteenWorkerId.Value);
+            if (canteenWorker == null || canteenWorker.Canteen == null)
+            {
+                return View(new List<PackageViewModel>());
+            }
+
+            var canteen = canteenWorker.Canteen;
+
+            var packages = _canteenService.GetPackagesForCanteen(canteen.Id);
             var model = PackageHelper.ConvertToPackageViewModel(packages.ToList());
             return View(model);
         }
@@ -58,22 +71,38 @@ namespace DontWasteFood.UI.Controllers
                 return View(new List<PackageViewModel>());
             }
 
-            var packages = _canteenService.GetPackagesForOtherCanteen(canteenWorkerId.Value);
+            var canteenWorker = _canteenWorkerRepository.GetUserById(canteenWorkerId.Value);
+            if (canteenWorker == null || canteenWorker.Canteen == null)
+            {
+                return View(new List<PackageViewModel>());
+            }
+
+
+            var canteen = canteenWorker.Canteen;
+
+
+            var packages = _canteenService.GetPackagesForOtherCanteen(canteen.Id);
             var model = PackageHelper.ConvertToPackageViewModel(packages.ToList());
             return View(model);
         }
 
         private Guid? getIdOfCanteenWorker()
         {
-            var canteenWorkerId = _userManager.GetUserId(User);
-            if (canteenWorkerId == null)
+            var identityUser = _userManager.GetUserAsync(User).Result;
+            if (identityUser == null)
             {
                 return null;
             }
-            return Guid.Parse(canteenWorkerId);
+
+            var canteenWorker = _canteenWorkerRepository.GetUserByIdentityUserId(identityUser.Id);
+            if (canteenWorker == null)
+            {
+                return null;
+            }
+
+            return canteenWorker.Id;
 
         }
-
 
     }
 }

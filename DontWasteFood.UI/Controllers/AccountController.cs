@@ -7,6 +7,7 @@ using DontWasteFood.UI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace DontWasteFood.UI.Controllers
 {
@@ -85,6 +86,8 @@ namespace DontWasteFood.UI.Controllers
                 if (result.Succeeded)
                 {
                     await _userManager.AddToRoleAsync(user, role);
+                    await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.Role, UserRole.Student.ToString()));
+
                     var student = new Student
                     {
                         Id = Guid.NewGuid(),
@@ -137,6 +140,8 @@ namespace DontWasteFood.UI.Controllers
                 if (result.Succeeded)
                 {
                     await _userManager.AddToRoleAsync(user, role);
+                    await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.Role, UserRole.CanteenWorker.ToString()));
+
 
                     var canteen = _canteenRepository.FindByLocation(model.City, model.CanteenLocation);
                     if(canteen == null)

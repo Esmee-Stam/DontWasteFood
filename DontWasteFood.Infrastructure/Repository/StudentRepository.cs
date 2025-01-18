@@ -1,6 +1,8 @@
-﻿using DontWasteFood.Domain.Models;
+﻿using DontWasteFood.Domain.Enums;
+using DontWasteFood.Domain.Models;
 using DontWasteFood.DomainServices.IRepository;
 using DontWasteFood.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace DontWasteFood.Infrastructure.Repository
 {
@@ -19,10 +21,25 @@ namespace DontWasteFood.Infrastructure.Repository
             return _dbContext.Students.FirstOrDefault(s => s.EmailAddress == email);
         }
 
-        public Student? getUserById(Guid id)
+        public Student? GetUserById(Guid studentId)
         {
-            return _dbContext.Students.FirstOrDefault(s => s.IdentityUserId == id.ToString());
+            return _dbContext.Students
+                .SingleOrDefault(s => s.Id.ToString().ToUpper() == studentId.ToString().ToUpper());
         }
 
+        public City GetCity(Guid id)
+        {
+            var student = _dbContext.Students.FirstOrDefault(s => s.IdentityUserId == id.ToString());
+            if (student == null)
+            {
+                throw new InvalidOperationException($"Student with ID {id} not found.");
+            }
+            return student.City;
+        }
+
+        public Student? GetByIdentityId(string identityId)
+        {
+            return _dbContext.Students.FirstOrDefault(s => s.IdentityUserId == identityId);
+        }
     }
 }

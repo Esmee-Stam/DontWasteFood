@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DontWasteFood.UI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cd54dbebaed3032e3318d86e3eeaad012a3fa813")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0c71c1e1b01fcc19be412de897cd90ab2479b953")]
 [assembly: System.Reflection.AssemblyProductAttribute("DontWasteFood.UI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DontWasteFood.UI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

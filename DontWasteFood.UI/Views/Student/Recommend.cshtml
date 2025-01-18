@@ -19,25 +19,28 @@
                 </div>
                 <div class="col-md-3">
                     <div>
-                        <form>
+                        <form method="get" action="@Url.Action("Recommend")">
                             <h5>Stad:</h5>
                             @{
                                 var cityItems = Html.GetEnumSelectList<City>()
                                 .Select(item => new SelectListItem
                                 {
                                     Value = item.Value,
-                                    Text = item.Text.Replace("_", " ") 
+                                    Text = item.Text.Replace("_", " ")
                                 })
                                 .ToList();
+
+                                var defaultCity = ViewData["DefaultCity"] as string;
                             }
-                            @foreach(var item in cityItems)
+
+                            @foreach (var item in cityItems)
                             {
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="location" value="@item.Value" id="location@item.Value" />
-                                    <label class="form-check-label" for="location@item.Value">@item.Text</label>
+                                    <input class="form-check-input" type="radio" name="city" value="@item.Value" id="city@item.Value"
+                                    @(item.Value == defaultCity ? "checked" : "") />
+                                    <label class="form-check-label" for="city@item.Value">@item.Text</label>
                                 </div>
                             }
-                           
 
                             <h5 class="mt-3">Maaltijdtype</h5>
                             @{
@@ -48,18 +51,22 @@
                                     Text = item.Text.Replace("_", " ")
                                 })
                                 .ToList();
-                              }
+
+                            }
 
                             @foreach (var item in mealItems)
                             {
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="mealType" value="@item.Value" id="mealType@item.Value" />
+                                    <input class="form-check-input" type="radio" name="mealType" value="@item.Value" id="mealType@item.Value" />
                                     <label class="form-check-label" for="mealType@item.Value">@item.Text</label>
                                 </div>
                             }
-                            
+
                             <button type="submit" class="btn mt-3">Filteren</button>
                         </form>
+
+
+
                     </div>
                 </div>
 
@@ -88,7 +95,7 @@
                                 </div>
                                 <div class="row detail-row mb-1">
                                     <div class="col-6 detail-label"><strong>Maaltijdtype:</strong></div>
-                                    <div class="col-6 detail-value"><p>@package.MealType</p></div>
+                                    <div class="col-6 detail-value"><p>@package.MealType.ToString().Replace("_", " ")</p></div>
                                 </div>
                                 <div class="row detail-row mb-1">
                                     <div class="col-6 detail-label"><strong>Locatie:</strong></div>

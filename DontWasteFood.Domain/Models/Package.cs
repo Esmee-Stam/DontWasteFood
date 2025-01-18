@@ -54,35 +54,27 @@ namespace DontWasteFood.Domain.Models
 
         public bool CanBeReserved(Student? student = null)
         {
-            if(Is18Plus)
+            if (Is18Plus)
             {
-                Student? reservedStudent = null;
-
-                if (student != null)
-                {
-                    reservedStudent = student;
-                } 
-                else
-                {
-                    reservedStudent = ReservedBy;
-                }
+                Student? reservedStudent = student ?? ReservedBy;
 
                 if (reservedStudent == null)
                 {
                     return false;
                 }
 
-                var studentAge = (DateOfPickUp - reservedStudent.DateOfBirth).TotalDays / 365;
+                var studentAge = DateOfPickUp.Year - reservedStudent.DateOfBirth.Year;
+                if (DateOfPickUp < reservedStudent.DateOfBirth.AddYears(studentAge))
+                {
+                    studentAge--;
+                }
                 if (studentAge < 18)
                 {
                     return false;
                 }
             }
-
-
             return ReservedBy == null && DateOfPickUp > DateTime.Now;
 
         }
-
     }
 }

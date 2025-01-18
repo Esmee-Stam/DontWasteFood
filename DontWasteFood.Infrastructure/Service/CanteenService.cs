@@ -18,7 +18,7 @@ namespace DontWasteFood.Infrastructure.Service
 
         public Canteen? GetCanteenOfCanteenWorker(Guid canteenWorkerId)
         {
-            var canteenWorker = _canteenWorkerRepository.getUserById(canteenWorkerId);
+            var canteenWorker = _canteenWorkerRepository.GetUserById(canteenWorkerId);
             if (canteenWorker == null)
             {
                 throw new Exception("Canteen worker not found");
@@ -37,8 +37,8 @@ namespace DontWasteFood.Infrastructure.Service
             }
 
             var packages = _packageRepository
-                .GetAll()
-                .Where(p => p.Canteen!.CanteenLocation == canteen.CanteenLocation && p.Canteen!.City == canteen.City)
+                .GetAllAsync()
+                .Where(p => p.Canteen!.Id == canteen.Id)
                 .OrderBy(p => p.DateOfPickUp)
                 .ThenBy(p => p.TimeOfPickUp)
                 .ToList();
@@ -56,8 +56,8 @@ namespace DontWasteFood.Infrastructure.Service
 
   
             var packages = _packageRepository
-                .GetAll()
-                .Where(p => p.Canteen!.CanteenLocation != canteen.CanteenLocation && p.Canteen!.City != canteen.City)
+                .GetAllAsync()
+                .Where(p => p.Canteen!.Id != canteen.Id)
                 .OrderBy(p => p.DateOfPickUp)
                 .ThenBy(p => p.TimeOfPickUp)
                 .ToList();

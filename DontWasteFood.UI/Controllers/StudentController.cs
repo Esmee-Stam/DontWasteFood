@@ -6,6 +6,7 @@ using DontWasteFood.UI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace DontWasteFood.UI.Controllers
 {
@@ -14,17 +15,17 @@ namespace DontWasteFood.UI.Controllers
         IStudentRepository studentRepository,
         UserManager<IdentityUser> userManager,
         IPackageRepository packageRepository,
-        IPackageService packageService) : Controller
+        IReservationService reservationService) : Controller
     {
         private readonly IStudentRepository _studentRepository = studentRepository;
         private readonly UserManager<IdentityUser> _userManager = userManager;
         private readonly IPackageRepository _packageRepository = packageRepository;
-        private readonly IPackageService _packageService = packageService;
+        private readonly IReservationService _reservationService = reservationService;
 
         public async Task<IActionResult> Overview()
         {
             var user = await _userManager.GetUserAsync(User);
-            var student = _studentRepository.getUserById(Guid.Parse(user!.Id));
+            var student = _studentRepository.GetUserById(Guid.Parse(user!.Id));
             var model = new AccountViewModel
             {
                 Name = student != null ? student.Name : "Student",
@@ -39,13 +40,16 @@ namespace DontWasteFood.UI.Controllers
         public IActionResult Reservation()
         {
             var user = _userManager.GetUserAsync(User).Result;
+            var student = _studentRepository.GetByIdentityId(user!.Id);
 
-            if (user == null)
+            if (student == null)
             {
                 return View(new List<PackageViewModel>());
             }
 
-            var reservations = _packageService.GetAllReservedPackagesByUserId(Guid.Parse(user.Id));
+            var studentId = student.Id;
+          
+            var reservations = _reservationService.GetReservationsByStudentId(studentId);
 
             if (reservations == null)
             {
@@ -61,10 +65,28 @@ namespace DontWasteFood.UI.Controllers
 
         [HttpGet]
         [Authorize(Roles = nameof(UserRole.Student))]
-        public IActionResult Recommend()
+        public IActionResult Recommend(string city, string mealType)
         {
-            var packages = _packageRepository.GetAllAvailablePackages();
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId == null)
+            {
+                return View(new List<PackageViewModel>());
+            }
+
+            var studentCity = _studentRepository.GetCity(Guid.Parse(userId));
+            
+            if (string.IsNullOrEmpty(city))
+            {
+                city = studentCity.ToString();
+            }
+
+            var packages = _packageRepository.GetAllAvailablePackages(city, mealType);
+
             var model = PackageHelper.ConvertToPackageViewModel(packages.ToList());
+
+            ViewData["DefaultCity"] = city;
+            ViewData["DefaultMealType"] = mealType;
+
             return View(model);
         }
 

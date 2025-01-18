@@ -15,18 +15,12 @@ namespace DontWasteFood.Infrastructure.Repository
                 .ToList();
         }
 
-        public Product? GetProductById(Guid id)
+        public async Task<Product?> GetProductByIdAsync(Guid id)
         {
-            return _dbContext.Products
+            return await _dbContext.Products
                 .Include(p => p.Packages)
-                .FirstOrDefault(p => p.Id == id);
-        }
+                .FirstOrDefaultAsync(p => p.Id == id);
 
-        public Product? GetProductByName(string name)
-        {
-            return _dbContext.Products
-                .Include(p => p.Packages)
-                .FirstOrDefault(p => p.Name == name);
         }
     }
 }

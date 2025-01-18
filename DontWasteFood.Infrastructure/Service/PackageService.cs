@@ -6,8 +6,8 @@ using DontWasteFood.DomainServices.IService;
 namespace DontWasteFood.Infrastructure.Service
 {
     public class PackageService(IPackageRepository packageRepository,
-                    IStudentRepository studentRepository,
-                    IProductRepository productRepository) : IPackageService
+                        IStudentRepository studentRepository,
+                        IProductRepository productRepository) : IPackageService
     {
         private readonly IPackageRepository _packageRepository = packageRepository;
         private readonly IStudentRepository _studentRepository = studentRepository;
@@ -22,7 +22,7 @@ namespace DontWasteFood.Infrastructure.Service
             }
 
             var products = package.Products
-                .Select(p => _productRepository.GetProductById(p.Id))
+                .Select(p => _productRepository.GetProductByIdAsync(p.Id).Result)
                 .Where(p => p != null)
                 .ToList();
 
@@ -40,18 +40,18 @@ namespace DontWasteFood.Infrastructure.Service
             return true;
         }
 
-        public void UpdatePackage(Guid packageId, Package package)
+        public async Task UpdatePackage(Guid packageId, Package package)
         {
             if (package.ReservedBy == null && package.StudentId == null)
             {
-                var currentPackage = _packageRepository.GetPackageById(packageId);
+                var currentPackage = await _packageRepository.GetPackageByIdAsync(packageId);
                 if (currentPackage == null)
                 {
                     throw new Exception("Package not found");
                 }
 
                 var currentProducts = package.Products
-                    .Select(p => _productRepository.GetProductById(p.Id))
+                    .Select(p => _productRepository.GetProductByIdAsync(p.Id).Result)
                     .Where(p => p != null)
                     .ToList();
 
@@ -64,7 +64,7 @@ namespace DontWasteFood.Infrastructure.Service
 
                 currentPackage.Is18PlusStatus();
 
-                _packageRepository.Update(currentPackage);
+                await _packageRepository.Update(currentPackage);
             }
         }
 
@@ -76,18 +76,5 @@ namespace DontWasteFood.Infrastructure.Service
             }
         }
 
-        ICollection<Package>? IPackageService.GetAllReservedPackagesByUserId(Guid studentId)
-        {
-            var student = _studentRepository.getUserById(studentId);
-
-            if (student == null)
-            {
-                return null;
-            }
-
-            return _packageRepository.GetAll()
-                .Where(p => p.ReservedBy != null && p.ReservedBy.Id == student.Id)
-                .ToList();
-        }
     }
 }

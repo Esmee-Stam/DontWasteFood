@@ -62,18 +62,17 @@ namespace DontWasteFood.Infrastructure.Data
                     UserId = studentUser.Id
                 });
 
-            // Voeg handmatig de Id's toe aan de IdentityUserClaims
             builder.Entity<IdentityUserClaim<string>>().HasData(
                 new IdentityUserClaim<string>
                 {
-                    Id = 1, // Zet een unieke Id voor de claim
+                    Id = 1, 
                     UserId = canteenWorkerUser.Id,
                     ClaimType = ClaimTypes.Role,
                     ClaimValue = UserRole.CanteenWorker.ToString()
                 },
                 new IdentityUserClaim<string>
                 {
-                    Id = 2, // Zet een unieke Id voor de claim
+                    Id = 2, 
                     UserId = studentUser.Id,
                     ClaimType = ClaimTypes.Role,
                     ClaimValue = UserRole.Student.ToString()
