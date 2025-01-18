@@ -1,3 +1,4 @@
+using DontWasteFood.Domain.Enums;
 using DontWasteFood.DomainServices;
 using DontWasteFood.DomainServices.IRepository;
 using DontWasteFood.DomainServices.IService;
@@ -65,6 +66,11 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 .AddEntityFrameworkStores<AuthDbContext>()
 .AddDefaultTokenProviders();
 
+builder.Services.AddAuthorization(policyBuilder =>
+{
+    policyBuilder.AddPolicy(UserRole.CanteenWorker.ToString(), policy => policy.RequireRole(UserRole.CanteenWorker.ToString()));
+    policyBuilder.AddPolicy(UserRole.Student.ToString(), policy => policy.RequireRole(UserRole.Student.ToString()));
+});
 
 var app = builder.Build();
 

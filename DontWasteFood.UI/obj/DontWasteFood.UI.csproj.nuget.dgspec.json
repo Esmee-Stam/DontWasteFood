@@ -266,6 +266,12 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+              "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.DomainServices\\DontWasteFood.DomainServices.csproj": {
+                "projectPath": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.DomainServices\\DontWasteFood.DomainServices.csproj"
+              },
+              "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.Domain\\DontWasteFood.Domain.csproj": {
+                "projectPath": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.Domain\\DontWasteFood.Domain.csproj"
+              },
               "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.Infrastructure\\DontWasteFood.Infrastructure.csproj": {
                 "projectPath": "C:\\Users\\esmee\\source\\repos\\SSWF_IO_EsmeeStam\\DontWasteFood.Infrastructure\\DontWasteFood.Infrastructure.csproj"
               }

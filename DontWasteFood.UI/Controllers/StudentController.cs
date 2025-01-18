@@ -38,14 +38,14 @@ namespace DontWasteFood.UI.Controllers
         [Authorize(Roles = nameof(UserRole.Student))]
         public IActionResult Reservation()
         {
-            var studentEmail = _userManager.GetUserName(User);
+            var user = _userManager.GetUserAsync(User).Result;
 
-            if (studentEmail == null)
+            if (user == null)
             {
                 return View(new List<PackageViewModel>());
             }
 
-            var reservations = _packageService.GetAllReservedPackagesByUserId(studentEmail);
+            var reservations = _packageService.GetAllReservedPackagesByUserId(Guid.Parse(user.Id));
 
             if (reservations == null)
             {

@@ -1,8 +1,10 @@
-﻿namespace DontWasteFood.DomainServices.IService
+﻿using DontWasteFood.Domain.Models;
+
+namespace DontWasteFood.DomainServices.IService
 {
     public interface IReservationService
     {
 
-        bool ReservePackage(Guid packageId, Guid studentId);
+        Package? ReservePackage(Guid packageId, Guid studentId);
     }
 }

@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DontWasteFood.UI.Controllers
 {
-    [Authorize(Roles = nameof(UserRole.Kantinemedewerker))]
+    [Authorize(Roles = nameof(UserRole.CanteenWorker))]
     public class CanteenWorkerController(
         ICanteenWorkerRepository canteenWorkerRepository, 
         ICanteenService canteenService,
@@ -27,7 +27,7 @@ namespace DontWasteFood.UI.Controllers
 
             var model = new AccountViewModel
             {
-                Name = canteenWorker != null ? canteenWorker.Name : "Kantinemedewerker",
+                Name = canteenWorker != null ? canteenWorker.Name : "CanteenWorker",
             };
 
             return View(model);

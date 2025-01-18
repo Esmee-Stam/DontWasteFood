@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace DontWasteFood.Domain.Models
 {
@@ -13,8 +14,9 @@ namespace DontWasteFood.Domain.Models
         [Required]
         public bool IsAlcoholic { get; set; }
 
-        public string? PhotoUrl { get; set; }   
+        public string? PhotoUrl { get; set; }
 
+        [JsonIgnore]
         public ICollection<Package> Packages { get; set; } = new List<Package>();
     }
 }
