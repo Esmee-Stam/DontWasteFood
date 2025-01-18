@@ -21,7 +21,7 @@ namespace DontWasteFood.Infrastructure.Service
             var canteenWorker = _canteenWorkerRepository.GetUserById(canteenWorkerId);
             if (canteenWorker == null)
             {
-                throw new Exception("Canteen worker not found");
+                return null;
             }
 
             var canteen = _canteenRepository.FindById(canteenWorker.CanteenId);
@@ -33,7 +33,7 @@ namespace DontWasteFood.Infrastructure.Service
             var canteen = _canteenRepository.FindById(canteenId);
             if (canteen == null)
             {
-                throw new Exception("Canteen not found");
+                return new List<Package>();
             }
 
             var packages = _packageRepository
@@ -51,7 +51,7 @@ namespace DontWasteFood.Infrastructure.Service
             var canteen = _canteenRepository.FindById(canteenId);
             if (canteen == null)
             {
-                throw new Exception("Canteen not found");
+                return new List<Package>();
             }
 
   

@@ -47,7 +47,7 @@ namespace DontWasteFood.Infrastructure.Service
                 var currentPackage = await _packageRepository.GetPackageByIdAsync(packageId);
                 if (currentPackage == null)
                 {
-                    throw new Exception("Package not found");
+                    return;
                 }
 
                 var currentProducts = package.Products

@@ -35,7 +35,6 @@ namespace DontWasteFood.Infrastructure.Service
             var student = _studentRepository.GetUserById(studentId);
             if (student == null)
             {
-                Console.WriteLine($"Student with ID {studentId} not found.");
                 return null;
             }
 
