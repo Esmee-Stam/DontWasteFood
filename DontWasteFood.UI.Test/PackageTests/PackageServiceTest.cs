@@ -139,13 +139,84 @@ namespace DontWasteFood.UI.Test.PackageTests
 
             // Assert
             Assert.Single(reservedPackages);
-            Assert.All(reservedPackages, p => Assert.Equal(student.Id, p.StudentId));
+            Assert.All(reservedPackages, p => Assert.Equal(student.Id, p.ReservedBy?.Id));
             Assert.NotNull(reservedPackages);
         }
+
+        [Fact]
+        public void Student_Can_Filter_On_The_Available_Packages()
+        {
+            // Arrange
+            var packageRepo = Substitute.For<IPackageRepository>();
+
+            var packages = new List<Package>
+            {
+                new Package
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Broodpakket",
+                    MealType = MealType.Brood,
+                    DateOfPickUp = DateTime.Now,
+                    Price = 1.50M,
+                    ReservedBy = null,
+                    Canteen = new Canteen
+                    {
+                        Id = Guid.NewGuid(),
+                        CanteenLocation = "LA",
+                        City = City.Breda
+                    }
+                },
+                new Package
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Panini ham & kaas",
+                    MealType = MealType.Brood,
+                    DateOfPickUp = DateTime.Now,
+                    Price = 1.50M,
+                    ReservedBy = null,
+                    Canteen = new Canteen
+                    {
+                        Id = Guid.NewGuid(),
+                        CanteenLocation = "LA",
+                        City = City.Breda
+                    }
+                },
+                new Package
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Amstel bier",
+                    MealType = MealType.Drank,
+                    DateOfPickUp = DateTime.Now,
+                    Price = 1.75M,
+                    ReservedBy = null,
+                    Canteen = new Canteen
+                    {
+                        Id = Guid.NewGuid(),
+                        CanteenLocation = "TL",
+                        City = City.Tilburg
+                    }
+                }
+            }.AsQueryable();  
+
+            packageRepo.GetAllAvailablePackages(City.Breda.ToString(), MealType.Brood.ToString())
+            .Returns(packages.Where(p => p.Canteen != null && p.Canteen.City == City.Breda && p.MealType == MealType.Brood).AsQueryable());
+
+
+            // Act
+            var filterPackages = packageRepo.GetAllAvailablePackages(City.Breda.ToString(), MealType.Brood.ToString()).ToList();
+
+            // Assert
+            Assert.NotNull(filterPackages);  
+            Assert.Equal(2, filterPackages.Count());  
+            Assert.All(filterPackages, p => Assert.Equal(City.Breda.ToString(), p.Canteen?.City.ToString()));  
+            Assert.All(filterPackages, p => Assert.Equal(MealType.Brood.ToString(), p.MealType.ToString()));
+        }
+        
     }
 }
 
-        
+
+
 
 
 
