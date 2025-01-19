@@ -43,6 +43,7 @@ namespace DontWasteFood.Infrastructure.Data
             // Seeding Canteens
             var canteenId1 = Guid.NewGuid();
             var canteenId2 = Guid.NewGuid();
+            var canteenId3 = Guid.NewGuid();
 
             modelBuilder.Entity<Canteen>().HasData(
                 new Canteen
@@ -58,11 +59,20 @@ namespace DontWasteFood.Infrastructure.Data
                      City = City.Den_Bosch,
                      CanteenLocation = "DB",
                      HotMealsOffer = true,
+                 },
+                 new Canteen
+                 {
+                     Id = canteenId3,
+                     City = City.Tilburg,
+                     CanteenLocation = "TI",
+                     HotMealsOffer = false,
                  }
             );
 
-            var canteenWorkerId1 = Guid.Parse("4fdd4c4d-9cf0-4bfc-b9e4-df0329b7d77f");
+            var canteenWorkerId1 = Guid.NewGuid();
             var canteenWorkerId2 = Guid.NewGuid();
+            var canteenWorkerId3 = Guid.NewGuid();
+            var canteenWorkerId4 = Guid.NewGuid();
 
             //Seeding CanteenWorkers
             modelBuilder.Entity<CanteenWorker>().HasData(
@@ -71,7 +81,7 @@ namespace DontWasteFood.Infrastructure.Data
                     Id = canteenWorkerId1,
                     Name = "John Doe",
                     EmployeeNumber = "1234567",
-                    IdentityUserId = canteenWorkerId1.ToString(),
+                    IdentityUserId = "4fdd4c4d-9cf0-4bfc-b9e4-df0329b7d77f",
                     CanteenId = canteenId1
 
                 },
@@ -80,13 +90,34 @@ namespace DontWasteFood.Infrastructure.Data
                     Id = canteenWorkerId2,
                     Name = "Jan Jansen",
                     EmployeeNumber = "7654321",
+                    IdentityUserId = "1dbd6d2b-4efb-4b56-93bc-90799c9beea5",
+                    CanteenId = canteenId1
+                },
+
+                new CanteenWorker
+                {
+                    Id = canteenWorkerId3,
+                    Name = "Tim Timmermans",
+                    EmployeeNumber = "1234577",
+                    IdentityUserId = "b1c79773-6d4c-4605-9603-1cf695f0cda3",
+                    CanteenId = canteenId3
+
+                },
+                new CanteenWorker
+                {
+                    Id = canteenWorkerId4,
+                    Name = "Johan Jansen",
+                    EmployeeNumber = "7654322",
+                    IdentityUserId = "c49a1c5f-b9ad-49e9-8cb7-7fcb54b3b39a",
                     CanteenId = canteenId1
                 }
             );
 
             // Seeding Students
-            var studentId1 = Guid.Parse("a96fda13-9eee-4a49-94b7-ddf4c84ec61e");
+            var studentId1 = Guid.NewGuid();
             var studentId2 = Guid.NewGuid();
+            var studentId3 = Guid.NewGuid();
+            var studentId4 = Guid.NewGuid();
 
             var student1 = new Student
             {
@@ -94,12 +125,11 @@ namespace DontWasteFood.Infrastructure.Data
                 Name = "Esmée Stam",
                 StudentNumber = "2196911",
                 EmailAddress = "el.stam@student.avans.nl",
-                IdentityUserId = studentId1.ToString(),
+                IdentityUserId = "a96fda13-9eee-4a49-94b7-ddf4c84ec61e",
                 City = City.Breda,
 
             };
             student1.UpdateDateOfBirth(new DateTime(2004, 8, 31));
-
 
             var student2 = new Student
             {
@@ -107,10 +137,33 @@ namespace DontWasteFood.Infrastructure.Data
                 Name = "Jane Doe",
                 StudentNumber = "2176034",
                 EmailAddress = "j.doe@student.avans.nl",
+                IdentityUserId = "bbfe56c9-88c2-4a60-9479-18b16d8c4c9d",
                 City = City.Den_Bosch,
             };
             student2.UpdateDateOfBirth(new DateTime(2008, 3, 21));
-            modelBuilder.Entity<Student>().HasData(student1, student2);
+
+            var student3 = new Student
+            {
+                Id = studentId3,
+                Name = "Norah Jones",
+                StudentNumber = "2176035",
+                EmailAddress = "n.jones@student.avans.nl",
+                IdentityUserId = "ea05a0b1-ea38-4c51-bde9-13c6fbb4b61b",
+                City = City.Tilburg,
+            };
+            student3.UpdateDateOfBirth(new DateTime(2005, 4, 11));
+
+            var student4 = new Student
+            {
+                Id = studentId4,
+                Name = "Evie Smith",
+                StudentNumber = "2176036",
+                EmailAddress = "e.smith@student.avans.nl",
+                IdentityUserId = "c16e4b0b-d7b3-4845-a788-52411e76b5de",
+                City = City.Breda,
+            };
+            student4.UpdateDateOfBirth(new DateTime(2006, 5, 1));
+            modelBuilder.Entity<Student>().HasData(student1, student2, student3, student4);
 
             //Seeding Products
             var productId1 = Guid.NewGuid();
@@ -202,13 +255,16 @@ namespace DontWasteFood.Infrastructure.Data
             var packageId2 = Guid.NewGuid();
             var packageId3 = Guid.NewGuid();
             var packageId4 = Guid.NewGuid();
+            var packageId5 = Guid.NewGuid();
+            var packageId6 = Guid.NewGuid();
+            var packageId7 = Guid.NewGuid();
             modelBuilder.Entity<Package>().HasData(
                 new Package
                 {
                     Id = packageId1,
                     Name = "Gevulde Koek met Fristi",
-                    DateOfPickUp = new DateTime(2024, 12, 30),
-                    TimeOfPickUp = new DateTime(2024, 12, 30, 16, 0, 0),
+                    DateOfPickUp = new DateTime(2025, 1, 30),
+                    TimeOfPickUp = new DateTime(2025, 1, 30, 16, 0, 0),
                     Is18Plus = false,
                     Price = 5.00m,
                     MealType = MealType.Anders,
@@ -219,8 +275,8 @@ namespace DontWasteFood.Infrastructure.Data
                 {
                     Id = packageId2,
                     Name = "Amstel & Stroopwafel",
-                    DateOfPickUp = new DateTime(2024, 12, 13),
-                    TimeOfPickUp = new DateTime(2024, 12, 13, 13, 0, 0),
+                    DateOfPickUp = new DateTime(2025, 1, 31),
+                    TimeOfPickUp = new DateTime(2025, 1, 13, 13, 0, 0),
                     Is18Plus = true,
                     Price = 10.00m,
                     MealType = MealType.Drank,
@@ -231,8 +287,8 @@ namespace DontWasteFood.Infrastructure.Data
                 {
                     Id = packageId3,
                     Name = "Broodje Gezond",
-                    DateOfPickUp = new DateTime(2024, 12, 14),
-                    TimeOfPickUp = new DateTime(2024, 12, 14, 11, 0, 0),
+                    DateOfPickUp = new DateTime(2025, 1, 30),
+                    TimeOfPickUp = new DateTime(2025, 1, 30, 11, 0, 0),
                     Is18Plus = false,
                     Price = 3.00m,
                     MealType = MealType.Brood,
@@ -243,14 +299,39 @@ namespace DontWasteFood.Infrastructure.Data
                 {
                     Id = packageId4,
                     Name = "Panini Salami",
-                    DateOfPickUp = new DateTime(2024, 12, 20),
-                    TimeOfPickUp = new DateTime(2024, 12, 20, 15, 0, 0),
+                    DateOfPickUp = new DateTime(2025, 1, 30),
+                    TimeOfPickUp = new DateTime(2025, 1, 30, 15, 0, 0),
                     Is18Plus = false,
                     Price = 4.00m,
                     MealType = MealType.Brood,
                     StudentId = null,
                     CanteenId = canteenId2
+                },
+                new Package
+                {
+                    Id = packageId5,
+                    Name = "Fanta & Saucijzenbroodje",
+                    DateOfPickUp = new DateTime(2025, 1, 31),
+                    TimeOfPickUp = new DateTime(2025, 1, 31, 14, 0, 0),
+                    Is18Plus = false,
+                    Price = 4.50m,
+                    MealType = MealType.Drank,
+                    StudentId = null,
+                    CanteenId = canteenId3
+                },
+                new Package
+                {
+                    Id = packageId6,
+                    Name = "Spa Blauw & Panini Salami",
+                    DateOfPickUp = new DateTime(2025, 1, 31),
+                    TimeOfPickUp = new DateTime(2025, 1, 31, 16, 30, 0),
+                    Is18Plus = false,
+                    Price = 5.50m,
+                    MealType = MealType.Anders,
+                    StudentId = null,
+                    CanteenId = canteenId3
                 }
+
             );
 
             //Seeding PackageProducts
@@ -271,7 +352,13 @@ namespace DontWasteFood.Infrastructure.Data
                     new { PackagesId = packageId3, ProductsId = productId2 },
 
                     // Panini Salami
-                    new { PackagesId = packageId4, ProductsId = productId7 }
+                    new { PackagesId = packageId4, ProductsId = productId7 },
+
+                    // Fanta & Saucijzenbroodje
+                    new { PackagesId = packageId5, ProductsId = productId4 },
+
+                    // Spa Blauw & Panini Salami
+                    new { PackagesId = packageId6, ProductsId = productId9 }
                 ));
 
 
