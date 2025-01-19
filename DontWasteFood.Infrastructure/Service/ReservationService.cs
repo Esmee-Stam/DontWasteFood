@@ -20,7 +20,9 @@ namespace DontWasteFood.Infrastructure.Service
 
         public ICollection<Package> GetReservationsByStudentId(Guid studentId)
         {
-            var reservations = _packageRepository.GetAllAsync().Where(p => p.StudentId == studentId).ToList();
+            var reservations = _packageRepository.GetAllAsync()
+                .Where(p => p.ReservedBy!.Id == studentId)
+                .ToList();
             return reservations;
         }
 
