@@ -11,7 +11,6 @@ namespace DontWasteFood.Infrastructure.Service
         private readonly IPackageRepository _packageRepository = packageRepository;
         private readonly IProductRepository _productRepository = productRepository;
 
-
         public bool AddPackage(Package package)
         {
             if (package.DateOfPickUp > DateTime.Now.AddDays(2))
