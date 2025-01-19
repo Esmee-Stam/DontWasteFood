@@ -1,10 +1,9 @@
 using DontWasteFood.Domain.Enums;
 using DontWasteFood.Domain.Models;
+using DontWasteFood.DomainServices;
 using DontWasteFood.DomainServices.IRepository;
-using DontWasteFood.DomainServices.IService;
 using DontWasteFood.Infrastructure.Service;
 using NSubstitute;
-using System.Linq;
 
 namespace DontWasteFood.UI.Test.PackageTests
 {
@@ -142,6 +141,150 @@ namespace DontWasteFood.UI.Test.PackageTests
             Assert.All(reservedPackages, p => Assert.Equal(student.Id, p.ReservedBy?.Id));
             Assert.NotNull(reservedPackages);
         }
+
+        [Fact]
+        public void CanteenWorker_Can_View_Packages_In_Their_Own_Canteen()
+        {
+            // Arrange
+            var canteenRepo = Substitute.For<ICanteenRepository>();
+            var canteenWorkerRepo = Substitute.For<ICanteenWorkerRepository>();
+            var packageRepo = Substitute.For<IPackageRepository>();
+
+            var canteenWorkerId = new Guid("a91b0570-347b-4e67-9683-84586aac676b");
+            var canteenId = new Guid("6705cc03-63d4-4d57-8be5-ccc97aadd2f9");
+
+            canteenWorkerRepo.GetUserById(canteenWorkerId).Returns(new CanteenWorker
+            {
+                Id = canteenWorkerId,
+                Name = "John Doe",
+                EmployeeNumber = "12345678",
+                Canteen = new Canteen
+                {
+                    Id = canteenId,
+                    City = City.Breda,
+                    CanteenLocation = "LA"
+                }
+            });
+
+            canteenRepo.FindById(canteenId).Returns(new Canteen
+            {
+                Id = canteenId,
+                City = City.Breda,
+                CanteenLocation = "LA",
+            });
+
+            packageRepo.GetAllAsync().Returns(new List<Package>
+            {
+                new Package
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Broodpakket",
+                    MealType = MealType.Brood,
+                    DateOfPickUp = DateTime.Now,
+                    Price = 1.50M,
+                    ReservedBy = null,
+                    Canteen = new Canteen
+                    {
+                        Id = canteenId,
+                        City = City.Breda,
+                        CanteenLocation = "LA"
+                    }
+                },
+                new Package
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Warmemaaltijd",
+                    MealType = MealType.Warme_Maaltijd,
+                    DateOfPickUp = DateTime.Now,
+                    Price = 2.50M,
+                    ReservedBy = null,
+                    Canteen = new Canteen
+                    {
+                        Id = canteenId,
+                        City = City.Breda,
+                        CanteenLocation = "LA"
+                    }
+                }
+            }.AsQueryable());
+
+            // Act
+            var canteenPackages = new CanteenService(packageRepo, canteenRepo, canteenWorkerRepo).GetPackagesForCanteen(canteenId);
+
+            // Assert
+            Assert.NotNull(canteenPackages);
+            Assert.Equal(2, canteenPackages.Count());
+            Assert.All(canteenPackages, p => Assert.Equal(canteenId, p.Canteen?.Id));
+        }
+
+        [Fact]
+        public void CanteenWorker_Can_View_Packages_In_Other_Canteens()
+        {
+            // Arrange
+            var canteenRepo = Substitute.For<ICanteenRepository>();
+            var canteenWorkerRepo = Substitute.For<ICanteenWorkerRepository>();
+            var packageRepo = Substitute.For<IPackageRepository>();
+            var canteenWorkerId = new Guid("a91b0570-347b-4e67-9683-84586aac676b");
+            var canteenId = new Guid("6705cc03-63d4-4d57-8be5-ccc97aadd2f9");
+            canteenWorkerRepo.GetUserById(canteenWorkerId).Returns(new CanteenWorker
+            {
+                Id = canteenWorkerId,
+                Name = "John Doe",
+                EmployeeNumber = "12345678",
+                Canteen = new Canteen
+                {
+                    Id = canteenId,
+                    City = City.Breda,
+                    CanteenLocation = "LA"
+                }
+            });
+            canteenRepo.FindById(canteenId).Returns(new Canteen
+            {
+                Id = canteenId,
+                City = City.Breda,
+                CanteenLocation = "LA",
+            });
+            packageRepo.GetAllAsync().Returns(new List<Package>
+            {
+                new Package
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Broodpakket",
+                    MealType = MealType.Brood,
+                    DateOfPickUp = DateTime.Now,
+                    Price = 1.50M,
+                    ReservedBy = null,
+                    Canteen = new Canteen
+                    {
+                        Id = canteenId,
+                        City = City.Breda,
+                        CanteenLocation = "LA"
+                    }
+                },
+                new Package
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Warmemaaltijd",
+                    MealType = MealType.Warme_Maaltijd,
+                    DateOfPickUp = DateTime.Now,
+                    Price = 2.50M,
+                    ReservedBy = null,
+                    Canteen = new Canteen
+                    {
+                        Id = Guid.NewGuid(),
+                        City = City.Tilburg,
+                        CanteenLocation = "TL"
+                    }
+                }
+            }.AsQueryable());
+
+            // Act
+            var otherCanteenPackages = new CanteenService(packageRepo, canteenRepo, canteenWorkerRepo).GetPackagesForOtherCanteen(canteenId);
+            // Assert
+            Assert.NotNull(otherCanteenPackages);
+            Assert.Single(otherCanteenPackages);
+            Assert.All(otherCanteenPackages, p => Assert.NotEqual(canteenId, p.Canteen?.Id));
+        }
+
 
         [Fact]
         public async Task Package_With_Id_Should_Return_Correct_Details()
