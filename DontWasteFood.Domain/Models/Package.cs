@@ -68,13 +68,26 @@ namespace DontWasteFood.Domain.Models
                 {
                     studentAge--;
                 }
+                Console.WriteLine($"Final Age: {studentAge}");
+
                 if (studentAge < 18)
                 {
                     return false;
                 }
             }
-            return ReservedBy == null && DateOfPickUp > DateTime.Now;
 
+            if (ReservedBy != null)
+            {
+                return false;
+            }
+
+            if (DateOfPickUp <= DateTime.Now)
+            {
+                return false;
+            }
+
+            return true;
         }
+
     }
 }

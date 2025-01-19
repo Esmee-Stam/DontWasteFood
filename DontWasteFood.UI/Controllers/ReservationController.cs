@@ -43,7 +43,7 @@ namespace DontWasteFood.UI.Controllers
 
             if (result == null)
             {
-                ViewBag.ErrorMessage = "Er is een fout opgetreden bij je reservering. Probeer het opnieuw.";
+                ViewBag.ErrorMessage = "Momenteel is het pakket al gereserveed. Probeer het opnieuw.";
             }
             else
             {
