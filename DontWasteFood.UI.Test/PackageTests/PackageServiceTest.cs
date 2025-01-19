@@ -4,6 +4,7 @@ using DontWasteFood.DomainServices;
 using DontWasteFood.DomainServices.IRepository;
 using DontWasteFood.Infrastructure.Service;
 using NSubstitute;
+using System.Net.Mail;
 
 namespace DontWasteFood.UI.Test.PackageTests
 {
@@ -285,6 +286,124 @@ namespace DontWasteFood.UI.Test.PackageTests
             Assert.All(otherCanteenPackages, p => Assert.NotEqual(canteenId, p.Canteen?.Id));
         }
 
+        [Fact]
+        public async Task Student_Can_Reserve_A_Package()
+        {
+            // Arrange
+            var packageRepo = Substitute.For<IPackageRepository>();
+            var studentRepo = Substitute.For<IStudentRepository>();
+            var studentId = Guid.NewGuid();
+
+            var student = new Student
+            {
+                Id = studentId,
+                Name = "Jane Doe",
+                City = City.Breda,
+                StudentNumber = "12345678",
+                EmailAddress = "jane.doe@student.avans.nl",
+
+            };
+            student.UpdateDateOfBirth(new DateTime(2000, 1, 1));
+            studentRepo.GetUserById(studentId).Returns(student);
+
+            var package = new Package
+            {
+                Id = Guid.NewGuid(),
+                Name = "Broodpakket",
+                MealType = MealType.Brood,
+                DateOfPickUp = DateTime.Now.AddDays(1),
+                Price = 1.50M,
+                ReservedBy = null,
+                Canteen = new Canteen
+                {
+                    Id = Guid.NewGuid(),
+                    CanteenLocation = "LA",
+                    City = City.Breda
+                }
+            };
+
+            packageRepo.GetPackageByIdAsync(package.Id).Returns(package);
+
+            packageRepo.ReservePackageDirectlyAsync(package.Id, studentId).Returns(true);
+
+            var service = new ReservationService(packageRepo, studentRepo); 
+
+            // Act
+            var reservedPackage = await service.ReservePackageAsync(package.Id, studentId);
+
+            // Assert
+            Assert.NotNull(reservedPackage);
+            Assert.Equal(studentId, reservedPackage?.ReservedBy?.Id);
+        }
+
+        [Fact]
+        public async Task Student_Cannot_Reserve_More_Than_One_Package_Per_Day()
+        {
+            // Arrange 
+            var packageRepo = Substitute.For<IPackageRepository>();
+            var studentRepo = Substitute.For<IStudentRepository>();
+            var studentId = Guid.NewGuid();
+
+            var student = new Student
+            {
+                Id = studentId,
+                Name = "Jane Doe",
+                City = City.Breda,
+                StudentNumber = "12345678",
+                EmailAddress = "jane.doe@student.avans.nl",
+            };
+            student.UpdateDateOfBirth(new DateTime(2000, 1, 1));
+            studentRepo.GetUserById(studentId).Returns(student);
+
+            var firstPackage = new Package
+            {
+                Id = Guid.NewGuid(),
+                Name = "Broodpakket",
+                MealType = MealType.Brood,
+                DateOfPickUp = DateTime.Now.AddDays(1), 
+                Price = 1.50M,
+                ReservedBy = null,
+                Canteen = new Canteen
+                {
+                    Id = Guid.NewGuid(),
+                    CanteenLocation = "LA",
+                    City = City.Breda
+                }
+            };
+
+            var secondPackage = new Package
+            {
+                Id = Guid.NewGuid(),
+                Name = "Fruitpakket",
+                MealType = MealType.Anders,
+                DateOfPickUp = firstPackage.DateOfPickUp, 
+                Price = 2.00M,
+                ReservedBy = null,
+                Canteen = new Canteen
+                {
+                    Id = Guid.NewGuid(),
+                    CanteenLocation = "LA",
+                    City = City.Breda
+                }
+            };
+
+            packageRepo.GetPackageByIdAsync(firstPackage.Id).Returns(firstPackage);
+            packageRepo.GetPackageByIdAsync(secondPackage.Id).Returns(secondPackage);
+
+            packageRepo.ReservePackageDirectlyAsync(firstPackage.Id, studentId).Returns(true);
+            packageRepo.ReservePackageDirectlyAsync(secondPackage.Id, studentId).Returns(false);
+
+            var service = new ReservationService(packageRepo, studentRepo);
+
+            // Act
+            var reservedFirstPackage = await service.ReservePackageAsync(firstPackage.Id, studentId);
+            var reservedSecondPackage = await service.ReservePackageAsync(secondPackage.Id, studentId);
+
+            // Assert
+            Assert.NotNull(reservedFirstPackage);
+            Assert.Null(reservedSecondPackage);
+
+        }
 
         [Fact]
         public async Task Package_With_Id_Should_Return_Correct_Details()
@@ -316,7 +435,7 @@ namespace DontWasteFood.UI.Test.PackageTests
                     }
                 }
             };
-            packageRepo.GetPackageByIdAsync(packageId).Returns(Task.FromResult<Package?>(package));
+            packageRepo.GetPackageByIdAsync(packageId).Returns(package);
 
             // Act
             var packageDetails = await packageRepo.GetPackageByIdAsync(packageId);
