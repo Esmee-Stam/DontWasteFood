@@ -8,9 +8,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IPackageRepository, PackageRepository>();
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<DontWasteFoodDbContext>(options => options.UseSqlServer(connectionString));
+var connectionString = string.Empty;
 
+if (builder.Environment.IsDevelopment())
+{
+    connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+}
+else
+{
+    connectionString = Environment.GetEnvironmentVariable("DONT_WASTE_FOOD_API_CONNSTR");
+}
 builder.Services
     .AddGraphQLServer()
     .AddQueryType<PackageQueries>();
