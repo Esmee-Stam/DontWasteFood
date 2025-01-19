@@ -4,12 +4,12 @@ using DontWasteFood.DomainServices;
 using DontWasteFood.DomainServices.IRepository;
 using DontWasteFood.Infrastructure.Service;
 using NSubstitute;
-using System.Net.Mail;
 
 namespace DontWasteFood.UI.Test.PackageTests
 {
     public class PackageServiceTest
     {
+        // Use case 1
         [Fact]
         public void Student_Can_View_All_Available_Packages()
         {
@@ -143,6 +143,7 @@ namespace DontWasteFood.UI.Test.PackageTests
             Assert.NotNull(reservedPackages);
         }
 
+        // Use case 2
         [Fact]
         public void CanteenWorker_Can_View_Packages_In_Their_Own_Canteen()
         {
@@ -286,6 +287,439 @@ namespace DontWasteFood.UI.Test.PackageTests
             Assert.All(otherCanteenPackages, p => Assert.NotEqual(canteenId, p.Canteen?.Id));
         }
 
+        // Use case 3
+        [Fact]
+        public void Add_Package_Should_Be_A_Succes()
+        {
+            var packageRepo = Substitute.For<IPackageRepository>();
+            var productRepo = Substitute.For<IProductRepository>();
+
+            var productId = Guid.NewGuid();
+            var products = new List<Product>
+            {
+                new Product {
+                    Id = productId,
+                    Name = "Panini",
+                    IsAlcoholic = false
+                }
+            };
+
+            var addPackage = new Package
+            {
+                Id = Guid.NewGuid(),
+                Name = "BroodPakket",
+                DateOfPickUp = DateTime.Now.AddDays(1),
+                TimeOfPickUp = DateTime.Now,
+                MealType = MealType.Brood,
+                Canteen = new Canteen
+                {
+                    Id = Guid.NewGuid(),
+                    City = City.Breda,
+                    CanteenLocation = "LD"
+                },
+                Products = products,
+                ReservedBy = null
+            };
+            productRepo.GetProductByIdAsync(productId).Returns(products.FirstOrDefault(p => p.Id == productId));
+
+            var service = new PackageService(packageRepo, productRepo);
+
+            // Act
+            var result = service.AddPackage(addPackage);
+
+            // Assert
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void Add_Package_Should_Return_False_If_DateOfPickUp_Is_Too_Far_In_The_Future()
+        {
+            var packageRepo = Substitute.For<IPackageRepository>();
+            var productRepo = Substitute.For<IProductRepository>();
+
+            var productId = Guid.NewGuid();
+            var products = new List<Product>
+            {
+                new Product {
+                    Id = productId,
+                    Name = "Panini",
+                    IsAlcoholic = false
+                }
+            };
+
+            var addPackage = new Package
+            {
+                Id = Guid.NewGuid(),
+                Name = "BroodPakket",
+                DateOfPickUp = DateTime.Now.AddDays(5),
+                TimeOfPickUp = DateTime.Now,
+                MealType = MealType.Brood,
+                Price = 1.50m,
+                Canteen = new Canteen
+                {
+                    Id = Guid.NewGuid(),
+                    City = City.Breda,
+                    CanteenLocation = "LD"
+                },
+                Products = products,
+                ReservedBy = null
+            };
+            productRepo.GetProductByIdAsync(productId).Returns(products.FirstOrDefault(p => p.Id == productId));
+
+            var service = new PackageService(packageRepo, productRepo);
+
+            // Act
+            var result = service.AddPackage(addPackage);
+
+            // Assert
+            Assert.False(result);
+        }
+
+        [Fact]
+        public async Task Update_Package_Should_Update_With_No_Reservation()
+        {
+            var packageRepo = Substitute.For<IPackageRepository>();
+            var productRepo = Substitute.For<IProductRepository>();
+            var productId = Guid.NewGuid();
+            var packageId = Guid.NewGuid();
+
+            var products = new List<Product> { new Product { Id = productId, Name = "Product 1", IsAlcoholic = false } };
+
+            var package = new Package
+            {
+                Id = packageId,
+                Name = "Package 1",
+                Canteen = new Canteen
+                {
+                    Id = Guid.NewGuid(),
+                    City = City.Breda,
+                    CanteenLocation = "LD"
+                },
+                MealType = MealType.Anders,
+                ReservedBy = null,
+                Price = 1.50m,
+                Products = products,
+            };
+
+            packageRepo.GetPackageByIdAsync(packageId).Returns(package);
+            productRepo.GetProductByIdAsync(productId).Returns(products.FirstOrDefault(p => p.Id == productId));
+
+            var service = new PackageService(packageRepo, productRepo);
+
+            // Act
+            await service.UpdatePackage(packageId, package);
+
+            // Assert
+            var updatedPackage = await packageRepo.GetPackageByIdAsync(packageId);
+            Assert.NotNull(updatedPackage);
+            Assert.Null(updatedPackage.ReservedBy);
+            Assert.Equal(package.Name, updatedPackage.Name);
+            Assert.Equal(package.MealType, updatedPackage.MealType);
+            Assert.Equal(package.Price, updatedPackage.Price);
+            Assert.Equal(package.Products.Count, updatedPackage.Products.Count);
+
+        }
+
+        [Fact]
+        public async Task Update_Package_Should_Not_Update_With_A_Reservation()
+        {
+            var packageRepo = Substitute.For<IPackageRepository>();
+            var productRepo = Substitute.For<IProductRepository>();
+            var productId = Guid.NewGuid();
+            var packageId = Guid.NewGuid();
+
+            var products = new List<Product> { new Product { Id = productId, Name = "Product 1", IsAlcoholic = false } };
+
+            var package = new Package
+            {
+                Id = packageId,
+                Name = "Package 1",
+                Canteen = new Canteen
+                {
+                    Id = Guid.NewGuid(),
+                    City = City.Breda,
+                    CanteenLocation = "LD"
+                },
+                MealType = MealType.Anders,
+                ReservedBy = new Student
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "John Doe",
+                    StudentNumber = "12345678",
+                    EmailAddress = "j.doe@student.avans.nl",
+                    City = City.Breda
+                },
+                Price = 1.50m,
+                Products = products,
+            };
+
+            packageRepo.GetPackageByIdAsync(packageId).Returns(package);
+            productRepo.GetProductByIdAsync(productId).Returns(products.FirstOrDefault(p => p.Id == productId));
+
+            var service = new PackageService(packageRepo, productRepo);
+
+            // Act
+            await service.UpdatePackage(packageId, package);
+
+            // Assert
+            var updatedPackage = await packageRepo.GetPackageByIdAsync(packageId);
+            Assert.NotNull(updatedPackage);
+            Assert.Equal(package.ReservedBy.Id, updatedPackage.ReservedBy?.Id); 
+            Assert.Equal(package.Name, updatedPackage.Name);
+            Assert.Equal(package.MealType, updatedPackage.MealType);
+            Assert.Equal(package.Price, updatedPackage.Price);
+            Assert.Equal(package.Products.Count, updatedPackage.Products.Count);
+
+        }
+
+        [Fact]
+        public void Delete_Package_Without_A_Reservation()
+        {
+            var packageRepo = Substitute.For<IPackageRepository>();
+            var productRepo = Substitute.For<IProductRepository>();
+            var packageId = Guid.NewGuid();
+            var package = new Package
+            {
+                Id = packageId,
+                Name = "Package 1",
+                Canteen = new Canteen
+                {
+                    Id = Guid.NewGuid(),
+                    City = City.Breda,
+                    CanteenLocation = "LD"
+                },
+                MealType = MealType.Anders,
+                ReservedBy = null,
+                Price = 1.50m,
+                Products = new List<Product>
+                {
+                    new Product
+                    {
+                        Id = Guid.NewGuid(),
+                        Name = "Product 1",
+                        IsAlcoholic = false
+                    }
+                }
+            };
+            packageRepo.GetPackageByIdAsync(packageId).Returns(package);
+            var service = new PackageService(packageRepo, productRepo);
+
+            // Act
+            service.DeletePackage(package);
+
+            // Assert
+            packageRepo.Received().Delete(package);
+        }
+
+        [Fact]
+        public void Delete_Package_With_A_Reservation_Should_Not_Be_Deleted()
+        {
+            var packageRepo = Substitute.For<IPackageRepository>();
+            var productRepo = Substitute.For<IProductRepository>();
+            var packageId = Guid.NewGuid();
+            var package = new Package
+            {
+                Id = packageId,
+                Name = "Package 1",
+                Canteen = new Canteen
+                {
+                    Id = Guid.NewGuid(),
+                    City = City.Breda,
+                    CanteenLocation = "LD"
+                },
+                MealType = MealType.Anders,
+                ReservedBy = new Student
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "John Doe",
+                    StudentNumber = "12345678",
+                    EmailAddress = "j.doe@student.avans.nl",
+                    City = City.Breda
+                },
+                Price = 1.50m,
+                Products = new List<Product>
+                {
+                    new Product
+                    {
+                        Id = Guid.NewGuid(),
+                        Name = "Product 1",
+                        IsAlcoholic = false
+                    }
+                }
+            };
+            packageRepo.GetPackageByIdAsync(packageId).Returns(package);
+            var service = new PackageService(packageRepo, productRepo);
+
+            // Act
+            service.DeletePackage(package);
+
+            // Assert
+            packageRepo.DidNotReceive().Delete(package);
+        }
+
+        // Use case 4
+        [Fact]
+        public static void Add_Package_Should_Set_18PlusStatus_If_Package_Contains_Alcohol()
+        {
+            // Assert
+            var packageRepo = Substitute.For<IPackageRepository>();
+            var productRepo = Substitute.For<IProductRepository>();
+
+            var productId = Guid.NewGuid();
+            var products = new List<Product>
+                {
+                    new Product {
+                        Id = productId,
+                        Name = "Amstel Bier",
+                        IsAlcoholic = true
+                    }
+                };
+
+            var addPackage = new Package
+            {
+                Id = Guid.NewGuid(),
+                Name = "Amstel Bier",
+                DateOfPickUp = DateTime.Now.AddDays(1),
+                TimeOfPickUp = DateTime.Now,
+                MealType = MealType.Drank,
+                Price = 20.0m,
+                Canteen = new Canteen
+                {
+                    Id = Guid.NewGuid(),
+                    City = City.Breda,
+                    CanteenLocation = "LD"
+                },
+                Products = products,
+                ReservedBy = null
+            };
+
+            addPackage.Is18PlusStatus();
+
+            productRepo.GetProductByIdAsync(productId).Returns(products.FirstOrDefault(p => p.Id == productId));
+
+            var service = new PackageService(packageRepo, productRepo);
+
+            // Act
+            var result = service.AddPackage(addPackage);
+
+            // Assert
+            Assert.True(result);
+            Assert.True(addPackage.Is18Plus);
+        }
+
+        [Fact]
+        public async Task Student_Can_Reserve_A_Package_If_18Plus()
+        {
+            // Arrange
+            var packageRepo = Substitute.For<IPackageRepository>();
+            var studentRepo = Substitute.For<IStudentRepository>();
+            var productRepo = Substitute.For<IProductRepository>();
+            var studentId = Guid.NewGuid();
+            var productId = Guid.NewGuid();
+            var packageId = Guid.NewGuid();
+
+            var student = new Student
+            {
+                Id = studentId,
+                Name = "Jane Doe",
+                City = City.Breda,
+                StudentNumber = "12345678",
+                EmailAddress = "jane.doe@student.avans.nl",
+            };
+            student.UpdateDateOfBirth(new DateTime(2005, 1, 1)); 
+            studentRepo.GetUserById(studentId).Returns(student);
+
+
+            var package = new Package
+            {
+                Id = packageId,
+                Name = "Broodpakket",
+                MealType = MealType.Brood,
+                DateOfPickUp = DateTime.Now.AddDays(1), 
+                Price = 1.50M,
+                Is18Plus = true,
+                ReservedBy = null,
+                Canteen = new Canteen
+                {
+                    Id = Guid.NewGuid(),
+                    CanteenLocation = "LA",
+                    City = City.Breda
+                },
+                Products = new List<Product> { new Product { Id = productId, Name = "Amstel Bier", IsAlcoholic = true } }
+            };
+
+            packageRepo.GetPackageByIdAsync(package.Id).Returns(package);
+            productRepo.GetProductByIdAsync(productId).Returns(package.Products.FirstOrDefault(p => p.Id == productId));
+
+            packageRepo.ReservePackageDirectlyAsync(package.Id, studentId).Returns(true);
+
+            var service = new ReservationService(packageRepo, studentRepo);
+
+            // Act
+            var reservedPackage = await service.ReservePackageAsync(package.Id, studentId);
+
+            // Assert
+            Assert.NotNull(reservedPackage);
+            Assert.Equal(studentId, reservedPackage?.ReservedBy?.Id);
+            Assert.True(reservedPackage?.Is18Plus);
+            Assert.True(reservedPackage?.ReservedBy?.Is18Plus(package.DateOfPickUp)); 
+        }
+
+        [Fact]
+        public async Task Student_Can_Not_Reserve_A_Package_If_18Plus()
+        {
+            // Arrange
+            var packageRepo = Substitute.For<IPackageRepository>();
+            var studentRepo = Substitute.For<IStudentRepository>();
+            var productRepo = Substitute.For<IProductRepository>();
+            var studentId = Guid.NewGuid();
+            var productId = Guid.NewGuid();
+            var packageId = Guid.NewGuid();
+
+            var student = new Student
+            {
+                Id = studentId,
+                Name = "Jane Doe",
+                City = City.Breda,
+                StudentNumber = "12345678",
+                EmailAddress = "jane.doe@student.avans.nl",
+            };
+            student.UpdateDateOfBirth(new DateTime(2009, 1, 1)); 
+            studentRepo.GetUserById(studentId).Returns(student);
+
+            var package = new Package
+            {
+                Id = packageId,
+                Name = "Broodpakket",
+                MealType = MealType.Brood,
+                DateOfPickUp = DateTime.Now.AddDays(1),
+                Price = 1.50M,
+                Is18Plus = true,
+                ReservedBy = null,
+                Canteen = new Canteen
+                {
+                    Id = Guid.NewGuid(),
+                    CanteenLocation = "LA",
+                    City = City.Breda
+                },
+                Products = new List<Product> { new Product { Id = productId, Name = "Amstel Bier", IsAlcoholic = true } }
+            };
+
+            packageRepo.GetPackageByIdAsync(package.Id).Returns(package);
+            productRepo.GetProductByIdAsync(productId).Returns(package.Products.FirstOrDefault(p => p.Id == productId));
+
+            packageRepo.ReservePackageDirectlyAsync(package.Id, studentId).Returns(true);
+
+            var service = new ReservationService(packageRepo, studentRepo);
+
+            // Act
+            var reservedPackage = await service.ReservePackageAsync(package.Id, studentId);
+
+            // Assert
+            Assert.Null(reservedPackage);
+        }
+
+        // Use case 5
         [Fact]
         public async Task Student_Can_Reserve_A_Package()
         {
@@ -405,6 +839,7 @@ namespace DontWasteFood.UI.Test.PackageTests
 
         }
 
+        // Use case 6
         [Fact]
         public async Task Package_With_Id_Should_Return_Correct_Details()
         {
@@ -454,6 +889,60 @@ namespace DontWasteFood.UI.Test.PackageTests
             Assert.Single(packageDetails?.Products!);
         }
 
+        // Use case 7
+        [Fact]
+        public async Task Student_Cannot_Reserve_Already_Reserved_Package()
+        {
+            var packageRepo = Substitute.For<IPackageRepository>();
+            var studentRepo = Substitute.For<IStudentRepository>();
+            var studentId = Guid.NewGuid();
+
+            var student = new Student
+            {
+                Id = studentId,
+                Name = "Jane Doe",
+                City = City.Breda,
+                StudentNumber = "12345678",
+                EmailAddress = "jane.doe@student.avans.nl",
+            };
+            student.UpdateDateOfBirth(new DateTime(2000, 1, 1));
+
+            studentRepo.GetUserById(studentId).Returns(student);
+
+            var package = new Package
+            {
+                Id = Guid.NewGuid(),
+                Name = "Broodpakket",
+                MealType = MealType.Brood,
+                DateOfPickUp = DateTime.Now.AddDays(1),
+                Price = 1.50M,
+                ReservedBy = new Student
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "John Doe",
+                    StudentNumber = "12345678",
+                    EmailAddress = "j.doe@student.avans.nl",
+                    City = City.Breda
+                },
+                Canteen = new Canteen
+                {
+                    Id = Guid.NewGuid(),
+                    CanteenLocation = "LA",
+                    City = City.Breda
+                }
+            };
+
+            packageRepo.GetPackageByIdAsync(package.Id).Returns(package);
+            packageRepo.ReservePackageDirectlyAsync(package.Id, studentId).Returns(false);
+
+            var service = new ReservationService(packageRepo, studentRepo);
+
+            // Act
+            var reservedPackage = await service.ReservePackageAsync(package.Id, studentId);
+            Assert.Null(reservedPackage?.ReservedBy);
+        }
+
+        // Use case 8
         [Fact]
         public void Student_Can_Filter_On_The_Available_Packages()
         {
@@ -525,8 +1014,3 @@ namespace DontWasteFood.UI.Test.PackageTests
 
     }
 }
-
-
-
-
-

@@ -60,21 +60,42 @@ namespace DontWasteFood.Domain.Models
 
                 if (reservedStudent == null)
                 {
+                    Console.WriteLine("Reservation failed: No student provided for an 18+ package.");
                     return false;
                 }
 
+                // Bereken leeftijd
                 var studentAge = DateOfPickUp.Year - reservedStudent.DateOfBirth.Year;
+                Console.WriteLine($"Initial Age Calculation: {studentAge}");
                 if (DateOfPickUp < reservedStudent.DateOfBirth.AddYears(studentAge))
                 {
                     studentAge--;
+                    Console.WriteLine("Age adjusted due to pick-up date being before birthday.");
                 }
+                Console.WriteLine($"Final Age: {studentAge}");
+
                 if (studentAge < 18)
                 {
+                    Console.WriteLine("Reservation failed: Student is not 18+.");
                     return false;
                 }
             }
-            return ReservedBy == null && DateOfPickUp > DateTime.Now;
 
+            if (ReservedBy != null)
+            {
+                Console.WriteLine("Reservation failed: Package is already reserved.");
+                return false;
+            }
+
+            if (DateOfPickUp <= DateTime.Now)
+            {
+                Console.WriteLine("Reservation failed: Pick-up date is not in the future.");
+                return false;
+            }
+
+            Console.WriteLine("Reservation succeeded.");
+            return true;
         }
+
     }
 }

@@ -54,13 +54,12 @@ namespace DontWasteFood.Infrastructure.Service
             var reserved = await _packageRepository.ReservePackageDirectlyAsync(packageId, studentId);
             if (!reserved)
             {
-                return null; 
+                return null;
             }
 
             package.StudentId = studentId;
             package.ReservedBy = student;
             return package;
         }
-
     }
 }

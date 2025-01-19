@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DontWasteFood.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ae03a99cad2ce0bcfa6f4533cf50bc9f46c93299")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e4bcdef1d9809ddd3efc0e31fe32771178a40c07")]
 [assembly: System.Reflection.AssemblyProductAttribute("DontWasteFood.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DontWasteFood.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
